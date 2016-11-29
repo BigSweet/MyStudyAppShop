@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -7,19 +8,37 @@
     android:orientation="vertical"
     tools:context="com.demo.swt.mystudyappshop.MainActivity">
 
+    <com.demo.swt.mystudyappshop.Wight.CstToolbar
+        android:id="@+id/csttoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize">
+
+    </com.demo.swt.mystudyappshop.Wight.CstToolbar>
+
     <FrameLayout
         android:id="@+id/realtabcontent"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <android.support.v4.app.FragmentTabHost
         android:id="@android:id/tabhost"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!--   <TabWidget
+               android:id="@android:id/tabs"
+               android:orientation="horizontal"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:visibility="gone"
+               tools:visibility="visible"></TabWidget>-->
 
         <FrameLayout
+            android:background="@color/white"
             android:id="@android:id/tabcontent"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -1,20 +1,26 @@
 package com.demo.swt.mystudyappshop;
 
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.demo.swt.mystudyappshop.Fragment.CateGoryFragment;
 import com.demo.swt.mystudyappshop.Fragment.HomeFragment;
 import com.demo.swt.mystudyappshop.Fragment.MyCenterFragment;
 import com.demo.swt.mystudyappshop.Fragment.SearchFragment;
 import com.demo.swt.mystudyappshop.Fragment.ShopCartFragment;
+import com.demo.swt.mystudyappshop.Wight.CstToolbar;
+import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.Tab;
 
 import java.util.ArrayList;
@@ -24,12 +30,27 @@ public class MainActivity extends FragmentActivity {
     private FragmentTabHost mTabHost;
     private LayoutInflater inflater;
     private List<Tab> mTabs = new ArrayList<>();
+    private CstToolbar mCstToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         initTab();
+        initToolBar();
+        SwtToast.init(this);
+    }
+
+    private void initToolBar() {
+        mCstToolBar = (CstToolbar) findViewById(R.id.csttoolbar);
+        mCstToolBar.setTitle(R.string.title);
+        mCstToolBar.setLeft(R.mipmap.back, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SwtToast.show("你好");
+            }
+        });
     }
 
     private void initTab() {
@@ -46,6 +67,7 @@ public class MainActivity extends FragmentActivity {
         inflater = LayoutInflater.from(this);
 
         mTabHost = (FragmentTabHost) this.findViewById(android.R.id.tabhost);
+        // mTabHost.setup(this,getSupportFragmentManager());
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         for (Tab tab : mTabs) {
             TabHost.TabSpec tabSpec = mTabHost.newTabSpec(getString(tab.getTitle()));

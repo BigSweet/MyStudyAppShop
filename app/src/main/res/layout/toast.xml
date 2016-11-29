@@ -2,20 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
 
-    <ImageView
-        android:id="@+id/icon_tab"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:focusable="false" />
-
     <TextView
-        android:id="@+id/txt_indicator"
-        android:textColor="@color/select_tabs_text"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:shadowColor="#BB000000"
+        android:shadowRadius="2.75" />
 </LinearLayout>
