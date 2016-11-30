@@ -1,5 +1,6 @@
 package com.demo.swt.mystudyappshop.Wight;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -21,6 +22,7 @@ import com.demo.swt.mystudyappshop.R;
  * Created by pc on 2016/11/29.
  */
 
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CstToolbar extends Toolbar {
 
     private LayoutInflater inflater;
@@ -53,7 +55,7 @@ public class CstToolbar extends Toolbar {
             mSearchView = (EditText) mview.findViewById(R.id.toolbar_searchview);
             mLeftView = (ImageView) mview.findViewById(R.id.toolbar_left);
             mRightView = (ImageView) mview.findViewById(R.id.toolbar_right);
-          //  mRightImageButton = (ImageButton) mview.findViewById(R.id.toolbar_rightButton);
+            //  mRightImageButton = (ImageButton) mview.findViewById(R.id.toolbar_rightButton);
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             addView(mview, lp);
         }

@@ -17,13 +17,14 @@
 
     </com.demo.swt.mystudyappshop.Wight.CstToolbar>
 
+
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <android.support.v4.app.FragmentTabHost
+    <com.demo.swt.mystudyappshop.Wight.FragmentTabHost
         android:id="@android:id/tabhost"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -43,5 +44,5 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="0" />
-    </android.support.v4.app.FragmentTabHost>
+    </com.demo.swt.mystudyappshop.Wight.FragmentTabHost>
 </LinearLayout>

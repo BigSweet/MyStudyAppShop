@@ -1,9 +1,11 @@
 package com.demo.swt.mystudyappshop;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +22,7 @@ import com.demo.swt.mystudyappshop.Fragment.MyCenterFragment;
 import com.demo.swt.mystudyappshop.Fragment.SearchFragment;
 import com.demo.swt.mystudyappshop.Fragment.ShopCartFragment;
 import com.demo.swt.mystudyappshop.Wight.CstToolbar;
+import com.demo.swt.mystudyappshop.Wight.FragmentTabHost;
 import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.Tab;
 
