@@ -15,6 +15,8 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.demo.swt.mystudyappshop.Adapter.CommonAdapter;
 import com.demo.swt.mystudyappshop.Holder.ViewHolder;
+import com.demo.swt.mystudyappshop.Http.BaseCallBack;
+import com.demo.swt.mystudyappshop.Http.OkHttpClientHelp;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.bean.BannerBean;
 import com.google.gson.Gson;
@@ -54,11 +56,12 @@ public class HomeFragment extends Fragment {
 
     private List<BannerBean> mbannerlist;
     private Gson gson = new Gson();
+    private OkHttpClientHelp okHttpClientHelp = OkHttpClientHelp.getInstance();
 
     //okhttp网路请求
     private void requestImage() {
         String url = "http://10.0.12.130:8080/nihao.txt";
-        OkHttpClient client = new OkHttpClient();
+        /*OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -77,8 +80,30 @@ public class HomeFragment extends Fragment {
                     Log.e(getTag(), json);
                 }
             }
-        });
+        });*/
 
+        okHttpClientHelp.get(url, new BaseCallBack<List<BannerBean>>() {
+
+            @Override
+            public void onRequestBefore(Request request) {
+
+            }
+
+            @Override
+            public void onFailure(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(Response response, List<BannerBean> bannerBeen) {
+
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+
+            }
+        });
 
     }
 
