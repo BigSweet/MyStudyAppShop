@@ -16,21 +16,21 @@ import java.util.List;
 
 public abstract class BaseCallBack<T> {
 
-    Type type;
+    public Type mtype;
 
 
     static Type getSuperclassTypeParameter(Class<?> subclass) {
         Type superClass = subclass.getGenericSuperclass();
-        if (subclass instanceof Class) {
+      /*  if (subclass instanceof Class) {
             throw new RuntimeException("Missing type parameter");
-        }
+        }*/
 
         ParameterizedType parameterizedType = (ParameterizedType) superClass;
         return $Gson$Types.canonicalize(parameterizedType.getActualTypeArguments()[0]);
     }
 
     public BaseCallBack() {
-        type = getSuperclassTypeParameter(getClass());
+        mtype = getSuperclassTypeParameter(getClass());
     }
 
     public abstract void onRequestBefore(Request request);

@@ -13,21 +13,15 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.demo.swt.mystudyappshop.Adapter.CommonAdapter;
-import com.demo.swt.mystudyappshop.Holder.ViewHolder;
-import com.demo.swt.mystudyappshop.Http.BaseCallBack;
-import com.demo.swt.mystudyappshop.Http.OkHttpClientHelp;
+import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
 import com.demo.swt.mystudyappshop.R;
-import com.demo.swt.mystudyappshop.bean.BannerBean;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
+import com.demo.swt.mystudyappshop.bean.FeedBean;
+import com.demo.swt.mystudyappshop.bean.FeedBeanList;
+import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
+import com.demo.swt.mystudyappshop.bean.NewBannerBean;
+import com.demo.swt.mystudyappshop.bean.PostInfoBean;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +32,9 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private SliderLayout sliderLayout;
     private PagerIndicator indicator;
-    private List<BannerBean> bannerBeanList = new ArrayList<>();
+    private List<NewBannerBean> bannerBeanList = new ArrayList<>();
     private RecyclerView mHomeRv;
+    private List<FeedBean> feedlist = new ArrayList<>();
 
     @Nullable
     @Override
@@ -49,65 +44,71 @@ public class HomeFragment extends Fragment {
         indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
         mHomeRv = (RecyclerView) view.findViewById(R.id.home_recycle);
         requestImage();
-        // initRecycler();
-        initSlider();
+        requestRecycleview();
         return view;
     }
 
-    private List<BannerBean> mbannerlist;
-    private Gson gson = new Gson();
-    private OkHttpClientHelp okHttpClientHelp = OkHttpClientHelp.getInstance();
 
     //okhttp网路请求
     private void requestImage() {
-        String url = "http://10.0.12.130:8080/nihao.txt";
-        /*OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(url).build();
+        // String url = "http://aggr.imcoming.com.cn/aggre/rmd/feed/list?appid=1&school_id=5&appplt=aph&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&pageSize=20";
+        String url = "  http://www.imooc.com/api/teacher?type=4&num=30";
+        // String url = "http://relation.imcoming.com.cn/v1/user/assoc/role?appid=1&appplt=aph&org_id=226&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&user_id=9295747";
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
+        OkHttpClientManager.getAsyn(url,
+                new OkHttpClientManager.ResultCallback<NewBannerListBean>() {
 
-            }
 
-            @Override
-            public void onResponse(Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String json = response.body().string();
-                    Type type = new TypeToken<List<BannerBean>>() {
-                    }.getType();
-                  // mbannerlist = gson.fromJson(json, type);
-                    Log.e(getTag(), json);
-                }
-            }
-        });*/
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
 
-        okHttpClientHelp.get(url, new BaseCallBack<List<BannerBean>>() {
+                    @Override
+                    public void onResponse(NewBannerListBean response) {
+                        bannerBeanList = response.getData().subList(0, 3);
+                        initSlider();
+                    }
 
-            @Override
-            public void onRequestBefore(Request request) {
 
-            }
+                });
 
-            @Override
-            public void onFailure(Request request, Exception e) {
+    }
 
-            }
 
-            @Override
-            public void onSuccess(Response response, List<BannerBean> bannerBeen) {
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        requestRecycleview();
 
-            }
+    }
 
-            @Override
-            public void onError(Response response, int code, Exception e) {
+    private void requestRecycleview() {
+        String url = "http://aggr.imcoming.com.cn/aggre/rmd/feed/list?appid=1&school_id=5&appplt=aph&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&pageSize=20";
 
-            }
-        });
+        OkHttpClientManager.getAsyn(url,
+                new OkHttpClientManager.ResultCallback<FeedBeanList>() {
+
+
+                    @Override
+                    public void onError(Request request, Exception e) {
+                    }
+
+                    @Override
+                    public void onResponse(FeedBeanList response) {
+                        feedlist = response.getData().getList();
+                        initRecycler();
+                    }
+
+
+                });
 
     }
 
     private void initRecycler() {
+
+        for (FeedBean feedBean : feedlist) {
+            feedBean.getPost().getImages();
+        }
        /* mHomeRv.setAdapter(new CommonAdapter(getActivity(), ) {
 
             @Override
@@ -127,21 +128,11 @@ public class HomeFragment extends Fragment {
      * 封装一下这个加载banner的方法
      */
     private void initSlider() {
-        BannerBean bannerBean1 = new BannerBean(
-                "http://bpic.588ku.com/element_origin_min_pic/16/11/18/3d130707fdd156a27b92936e9e135dd0.jpg", "双12");
-        BannerBean bannerBean2 = new BannerBean(
-                "http://bpic.588ku.com/back_pic/00/03/35/34561e1273d9aeb.jpg", "DREAM");
-        BannerBean bannerBean3 = new BannerBean(
-                "http://bpic.588ku.com/element_origin_min_pic/00/00/11/225833e8c2a2889.jpg", "天猫");
-
-        bannerBeanList.add(bannerBean1);
-        bannerBeanList.add(bannerBean2);
-        bannerBeanList.add(bannerBean3);
-        for (final BannerBean bannerBean : bannerBeanList) {
+        for (final NewBannerBean bannerBean : bannerBeanList) {
             TextSliderView textSliderView = new TextSliderView(getActivity());
             textSliderView
-                    .description(bannerBean.getDes())
-                    .image(bannerBean.getImg());
+                    .description(bannerBean.getDescription())
+                    .image(bannerBean.getPicSmall());
             //给每个textSliderView添加点击事件
            /* textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                 @Override
