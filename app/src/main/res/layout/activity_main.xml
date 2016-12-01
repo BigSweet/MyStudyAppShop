@@ -30,13 +30,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--   <TabWidget
-               android:id="@android:id/tabs"
-               android:orientation="horizontal"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:visibility="gone"
-               tools:visibility="visible"></TabWidget>-->
 
         <FrameLayout
             android:background="@color/white"
