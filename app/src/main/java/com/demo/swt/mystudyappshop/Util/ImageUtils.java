@@ -3,15 +3,24 @@ package com.demo.swt.mystudyappshop.Util;
 /**
  * Created by pc on 2016/12/1.
  */
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.demo.swt.mystudyappshop.R;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import com.koushikdutta.ion.Ion;
 public class ImageUtils {
 
     /**
@@ -192,5 +201,47 @@ public class ImageUtils {
         }
         return value;
 
+    }
+
+
+    public static Bitmap getBitMapFromUri(String url) {
+        Bitmap bitmap;
+        InputStream is = null;
+        try {
+            URL murl = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) murl.openConnection();
+            is = new BufferedInputStream(connection.getInputStream());
+            bitmap = BitmapFactory.decodeStream(is);
+            connection.disconnect();
+            return bitmap;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public static void loadImage(final ImageView img, final String url) {
+        if (null != img) {
+            if (!TextUtils.isEmpty(url)) {
+                Ion.with(img)
+                        .centerCrop()
+                        .placeholder(R.mipmap.ic_launcher)
+                        .error(R.mipmap.ic_launcher)
+                        .fadeIn(false)
+                        .load(url);
+            } else {
+                img.setImageResource(R.mipmap.ic_launcher);
+            }
+        }
     }
 }

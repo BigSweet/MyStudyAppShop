@@ -3,18 +3,26 @@ package com.demo.swt.mystudyappshop.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.demo.swt.mystudyappshop.Adapter.CommonAdapter;
+import com.demo.swt.mystudyappshop.Adapter.MyAdapter;
+import com.demo.swt.mystudyappshop.Holder.ViewHolder;
 import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
 import com.demo.swt.mystudyappshop.R;
+import com.demo.swt.mystudyappshop.Util.ImageUtils;
+import com.demo.swt.mystudyappshop.Wight.NoNullUtils;
 import com.demo.swt.mystudyappshop.bean.FeedBean;
 import com.demo.swt.mystudyappshop.bean.FeedBeanList;
 import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
@@ -35,6 +43,8 @@ public class HomeFragment extends Fragment {
     private List<NewBannerBean> bannerBeanList = new ArrayList<>();
     private RecyclerView mHomeRv;
     private List<FeedBean> feedlist = new ArrayList<>();
+    private List<PostInfoBean> postlist = new ArrayList<>();
+    private MyAdapter myAdapter;
 
     @Nullable
     @Override
@@ -44,7 +54,6 @@ public class HomeFragment extends Fragment {
         indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
         mHomeRv = (RecyclerView) view.findViewById(R.id.home_recycle);
         requestImage();
-        requestRecycleview();
         return view;
     }
 
@@ -67,6 +76,7 @@ public class HomeFragment extends Fragment {
                     public void onResponse(NewBannerListBean response) {
                         bannerBeanList = response.getData().subList(0, 3);
                         initSlider();
+                        requestRecycleview();
                     }
 
 
@@ -74,13 +84,13 @@ public class HomeFragment extends Fragment {
 
     }
 
-
+/*
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         requestRecycleview();
 
-    }
+    }*/
 
     private void requestRecycleview() {
         String url = "http://aggr.imcoming.com.cn/aggre/rmd/feed/list?appid=1&school_id=5&appplt=aph&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&pageSize=20";
@@ -96,6 +106,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(FeedBeanList response) {
                         feedlist = response.getData().getList();
+                        //  postlist=feedlist.get()
                         initRecycler();
                     }
 
@@ -106,20 +117,22 @@ public class HomeFragment extends Fragment {
 
     private void initRecycler() {
 
-        for (FeedBean feedBean : feedlist) {
+      /*  for (FeedBean feedBean : feedlist) {
             feedBean.getPost().getImages();
-        }
-       /* mHomeRv.setAdapter(new CommonAdapter(getActivity(), ) {
+        }*/
+        myAdapter = new MyAdapter(getActivity(), feedlist);
+        mHomeRv.setAdapter(myAdapter);
+        mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+/*
+        mHomeRv.setAdapter(new CommonAdapter<FeedBean>(getActivity(), R.layout.home_rv_left_item, feedlist) {
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+            public void convert(ViewHolder holder, FeedBean feedBean) {
+                ImageUtils.loadImage((ImageView) holder.getView(R.id.imageview_top), feedBean.getPost().getImages().get(1));
+                ImageUtils.loadImage((ImageView) holder.getView(R.id.imageview_top), feedBean.getPost().getImages().get(2));
+                ImageUtils.loadImage((ImageView) holder.getView(R.id.imageview_top), feedBean.getPost().getImages().get(3));
             }
 
-            @Override
-            public void convert(ViewHolder holder, Object o) {
-
-            }
 
         });*/
     }

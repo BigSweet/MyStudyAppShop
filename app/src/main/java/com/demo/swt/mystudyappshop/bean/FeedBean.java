@@ -15,6 +15,15 @@ import java.util.List;
 
 public class FeedBean {
     private PostInfoBean post;
+    private String display_time;
+
+    public String getDisplay_time() {
+        return display_time;
+    }
+
+    public void setDisplay_time(String display_time) {
+        this.display_time = display_time;
+    }
 
     public PostInfoBean getPost() {
         return post;
