@@ -60,9 +60,7 @@ public class HomeFragment extends Fragment {
 
     //okhttp网路请求
     private void requestImage() {
-        // String url = "http://aggr.imcoming.com.cn/aggre/rmd/feed/list?appid=1&school_id=5&appplt=aph&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&pageSize=20";
         String url = "  http://www.imooc.com/api/teacher?type=4&num=30";
-        // String url = "http://relation.imcoming.com.cn/v1/user/assoc/role?appid=1&appplt=aph&org_id=226&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&user_id=9295747";
 
         OkHttpClientManager.getAsyn(url,
                 new OkHttpClientManager.ResultCallback<NewBannerListBean>() {
@@ -84,16 +82,16 @@ public class HomeFragment extends Fragment {
 
     }
 
-/*
+/*测试debug用
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         requestRecycleview();
 
     }*/
-
+    //请求recyclerview的数据
     private void requestRecycleview() {
-        String url = "http://aggr.imcoming.com.cn/aggre/rmd/feed/list?appid=1&school_id=5&appplt=aph&token=942755b4e265cff31f1b27c37b32e036&appver=3.1.0&pageSize=20";
+        String url = "https://aggr.anlaiye.com.cn/aggre/user/1311139/follow/feed/list?token=9ba24d10a891eea1c24754bbc1cfef0e&appver=3.1.0&pageNum=1&appid=1&appplt=aph&currentPage=1&page=1";
 
         OkHttpClientManager.getAsyn(url,
                 new OkHttpClientManager.ResultCallback<FeedBeanList>() {
@@ -115,26 +113,12 @@ public class HomeFragment extends Fragment {
 
     }
 
+    //设置recyclerview的数据和基本布局
     private void initRecycler() {
-
-      /*  for (FeedBean feedBean : feedlist) {
-            feedBean.getPost().getImages();
-        }*/
         myAdapter = new MyAdapter(getActivity(), feedlist);
         mHomeRv.setAdapter(myAdapter);
         mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-/*
-        mHomeRv.setAdapter(new CommonAdapter<FeedBean>(getActivity(), R.layout.home_rv_left_item, feedlist) {
 
-            @Override
-            public void convert(ViewHolder holder, FeedBean feedBean) {
-                ImageUtils.loadImage((ImageView) holder.getView(R.id.imageview_top), feedBean.getPost().getImages().get(1));
-                ImageUtils.loadImage((ImageView) holder.getView(R.id.imageview_top), feedBean.getPost().getImages().get(2));
-                ImageUtils.loadImage((ImageView) holder.getView(R.id.imageview_top), feedBean.getPost().getImages().get(3));
-            }
-
-
-        });*/
     }
 
     /**
@@ -177,7 +161,7 @@ public class HomeFragment extends Fragment {
             }
         });*/
     }
-
+    //生命周期结束的时候，banner停止滑动
     @Override
     public void onDestroy() {
         sliderLayout.stopAutoCycle();

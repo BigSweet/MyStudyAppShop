@@ -11,7 +11,15 @@ import java.util.List;
 public class PostInfoBean {
     @SerializedName("images")
     List<String> images; //图片
+    private String content;
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public List<String> getImages() {
         return images;
