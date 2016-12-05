@@ -1,5 +1,6 @@
 package com.demo.swt.mystudyappshop.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,13 +17,17 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.demo.swt.mystudyappshop.Activity.BigImageActivity;
 import com.demo.swt.mystudyappshop.Adapter.CommonAdapter;
 import com.demo.swt.mystudyappshop.Adapter.MyAdapter;
 import com.demo.swt.mystudyappshop.Holder.ViewHolder;
 import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
+import com.demo.swt.mystudyappshop.Interface.OnRecyclerViewItemClickListener;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.ImageUtils;
 import com.demo.swt.mystudyappshop.Wight.NoNullUtils;
+import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider;
+import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.FeedBean;
 import com.demo.swt.mystudyappshop.bean.FeedBeanList;
 import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
@@ -82,13 +87,13 @@ public class HomeFragment extends Fragment {
 
     }
 
-/*测试debug用
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        requestRecycleview();
+    /*测试debug用
+        @Override
+        public void onHiddenChanged(boolean hidden) {
+            super.onHiddenChanged(hidden);
+            requestRecycleview();
 
-    }*/
+        }*/
     //请求recyclerview的数据
     private void requestRecycleview() {
         String url = "https://aggr.anlaiye.com.cn/aggre/user/1311139/follow/feed/list?token=9ba24d10a891eea1c24754bbc1cfef0e&appver=3.1.0&pageNum=1&appid=1&appplt=aph&currentPage=1&page=1";
@@ -116,8 +121,26 @@ public class HomeFragment extends Fragment {
     //设置recyclerview的数据和基本布局
     private void initRecycler() {
         myAdapter = new MyAdapter(getActivity(), feedlist);
+        mHomeRv.addItemDecoration(new RecyclerLinearDivider(getActivity(), RecyclerView.VERTICAL, 5, getResources().getColor(R.color.gray1)));
         mHomeRv.setAdapter(myAdapter);
         mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //给recyclerview添加点击事件
+        myAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener<FeedBean>() {
+            @Override
+            public void onClick(int position, FeedBean feedBean) {
+                Intent intent = new Intent(getActivity(), BigImageActivity.class);
+                Bundle bundle = new Bundle();
+                if (feedBean.getPost().getImages().size() > 0) {
+                    bundle.putString("tu", feedBean.getPost().getImages().get(0));
+                }
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
+
+        });
+
 
     }
 
@@ -161,6 +184,7 @@ public class HomeFragment extends Fragment {
             }
         });*/
     }
+
     //生命周期结束的时候，banner停止滑动
     @Override
     public void onDestroy() {
