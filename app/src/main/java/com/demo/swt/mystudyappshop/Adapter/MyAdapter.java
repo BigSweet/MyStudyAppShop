@@ -96,11 +96,10 @@ public class MyAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         wuyuHolder.cstImage.setOnChildItemClickListener(new CstImage.OnChlidItemClickListener() {
             @Override
             public void onClick(int position, List<String> imgs) {
-                SwtToast.show("照片被点击了" + position);
                 Intent intent = new Intent(mcontext, BigImageActivity.class);
                 Bundle bundle = new Bundle();
-                if (imagelist.size() > 0) {
-                    bundle.putStringArrayList("tulist", (ArrayList<String>) imagelist);
+                if (imgs.size() > 0) {
+                    bundle.putStringArrayList("tulist", (ArrayList<String>) imgs);
                 }
                 intent.putExtras(bundle);
                 mcontext.startActivity(intent);
