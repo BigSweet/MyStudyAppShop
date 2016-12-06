@@ -46,10 +46,8 @@ public class HomeFragment extends Fragment {
     private SliderLayout sliderLayout;
     private PagerIndicator indicator;
     private List<NewBannerBean> bannerBeanList = new ArrayList<>();
-    private RecyclerView mHomeRv;
-    private List<FeedBean> feedlist = new ArrayList<>();
-    private List<PostInfoBean> postlist = new ArrayList<>();
-    private MyAdapter myAdapter;
+
+
 
     @Nullable
     @Override
@@ -57,7 +55,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home, container, false);
         sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
         indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
-        mHomeRv = (RecyclerView) view.findViewById(R.id.home_recycle);
+
         requestImage();
         return view;
     }
@@ -79,7 +77,7 @@ public class HomeFragment extends Fragment {
                     public void onResponse(NewBannerListBean response) {
                         bannerBeanList = response.getData().subList(0, 3);
                         initSlider();
-                        requestRecycleview();
+                        //requestRecycleview();
                     }
 
 
@@ -94,55 +92,11 @@ public class HomeFragment extends Fragment {
             requestRecycleview();
 
         }*/
-    //请求recyclerview的数据
-    private void requestRecycleview() {
-        String url = "https://aggr.anlaiye.com.cn/aggre/user/1311139/follow/feed/list?token=9ba24d10a891eea1c24754bbc1cfef0e&appver=3.1.0&pageNum=1&appid=1&appplt=aph&currentPage=1&page=1";
-
-        OkHttpClientManager.getAsyn(url,
-                new OkHttpClientManager.ResultCallback<FeedBeanList>() {
 
 
-                    @Override
-                    public void onError(Request request, Exception e) {
-                    }
-
-                    @Override
-                    public void onResponse(FeedBeanList response) {
-                        feedlist = response.getData().getList();
-                        //  postlist=feedlist.get()
-                        initRecycler();
-                    }
 
 
-                });
 
-    }
-
-    //设置recyclerview的数据和基本布局
-    private void initRecycler() {
-        myAdapter = new MyAdapter(getActivity(), feedlist);
-        mHomeRv.addItemDecoration(new RecyclerLinearDivider(getActivity(), RecyclerView.VERTICAL, 5, getResources().getColor(R.color.gray1)));
-        mHomeRv.setAdapter(myAdapter);
-        mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        //给recyclerview添加点击事件
-        myAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener<FeedBean>() {
-            @Override
-            public void onClick(int position, FeedBean feedBean) {
-                Intent intent = new Intent(getActivity(), BigImageActivity.class);
-                Bundle bundle = new Bundle();
-                if (feedBean.getPost().getImages().size() > 0) {
-                    bundle.putString("tu", feedBean.getPost().getImages().get(0));
-                }
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-
-
-        });
-
-
-    }
 
     /**
      * 封装一下这个加载banner的方法

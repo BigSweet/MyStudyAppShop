@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="CstImgLayout">
+        <attr name="bottom_margin" format="dimension" />
+        <attr name="left_margin" format="dimension" />
+        <attr name="right_margin" format="dimension" />
+        <attr name="top_margin" format="dimension" />
+        <attr name="all_margin" format="dimension" />
+        <attr name="child_margin" format="dimension" />
+        <attr name="row_num" format="integer" />
+        <attr name="need_intro" format="boolean" />
+        <attr name="real_width" format="dimension" />
+    </declare-styleable>
+</resources>

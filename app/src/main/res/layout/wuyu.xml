@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                tools:text="我是名字" />
+
+            <TextView
+                android:id="@+id/school"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/gray1"
+                android:textSize="12sp"
+                tools:text="我是来自什么学校" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
     <TextView
@@ -10,13 +56,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
         android:padding="10dp"
-        android:textSize="20sp" />
+        android:textSize="17sp"
+        tools:text="我是内容" />
 
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image_one"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_gravity="center" />
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone" />
+
+    <com.demo.swt.mystudyappshop.Wight.CstImage
+        android:id="@+id/cstimage"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_height="wrap_content">
+
+
+    </com.demo.swt.mystudyappshop.Wight.CstImage>
+
+    <View style="@style/HorizontalLineq3" />
 </LinearLayout>

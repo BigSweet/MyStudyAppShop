@@ -16,6 +16,15 @@ import java.util.List;
 public class FeedBean {
     private PostInfoBean post;
     private String display_time;
+    private UserBean user;
+
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
 
     public String getDisplay_time() {
         return display_time;

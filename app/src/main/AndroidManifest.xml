@@ -18,7 +18,6 @@
         </activity>
 
         <activity android:name=".Activity.BigImageActivity" />
-
     </application>
 
     <!-- if you want to load images from the internet -->
