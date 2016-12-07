@@ -62,15 +62,6 @@
         tools:text="我是内容" />
 
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/image_one"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="20dp"
-        android:visibility="gone" />
-
     <com.demo.swt.mystudyappshop.Wight.CstImage
         android:id="@+id/cstimage"
         android:layout_width="match_parent"

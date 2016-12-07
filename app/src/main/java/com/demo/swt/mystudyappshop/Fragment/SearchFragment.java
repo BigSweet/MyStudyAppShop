@@ -1,30 +1,22 @@
 package com.demo.swt.mystudyappshop.Fragment;
 
-import android.content.Intent;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.demo.swt.mystudyappshop.Activity.BigImageActivity;
-import com.demo.swt.mystudyappshop.Adapter.MyAdapter;
+import com.demo.swt.mystudyappshop.Adapter.SearchAdapter;
 import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
-import com.demo.swt.mystudyappshop.Interface.OnRecyclerViewItemClickListener;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider;
-import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.FeedBean;
 import com.demo.swt.mystudyappshop.bean.FeedBeanList;
-import com.demo.swt.mystudyappshop.bean.PostInfoBean;
 import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
@@ -36,7 +28,7 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
     private List<FeedBean> feedlist = new ArrayList<>();
-    private MyAdapter myAdapter;
+    private SearchAdapter myAdapter;
     private RecyclerView mHomeRv;
     private String nt = "";
     private String host = "https://aggr.anlaiye.com.cn/aggre/user/1311139/follow/feed/list?token=9ba24d10a891eea1c24754bbc1cfef0e&appver=3.1.0";
@@ -113,7 +105,7 @@ public class SearchFragment extends Fragment {
 
         switch (state) {
             case STATE_NORMAL:
-                myAdapter = new MyAdapter(getActivity(), feedlist);
+                myAdapter = new SearchAdapter(getActivity(), feedlist, R.layout.wuyu);
                 mHomeRv.addItemDecoration(new RecyclerLinearDivider(getActivity(), RecyclerView.VERTICAL, 5, getResources().getColor(R.color.gray1)));
                 mHomeRv.setAdapter(myAdapter);
                 mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));

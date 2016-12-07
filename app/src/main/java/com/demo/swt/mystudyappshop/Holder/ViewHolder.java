@@ -20,8 +20,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 import com.demo.swt.mystudyappshop.R;
 
+
+/**
+ * commonadapter用的holder
+ */
 public class ViewHolder extends BaseViewHolder {
     private SparseArray<View> mViews;
     private int mPosition;

@@ -1,38 +1,20 @@
 package com.demo.swt.mystudyappshop.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.demo.swt.mystudyappshop.Activity.BigImageActivity;
-import com.demo.swt.mystudyappshop.Adapter.CommonAdapter;
-import com.demo.swt.mystudyappshop.Adapter.MyAdapter;
-import com.demo.swt.mystudyappshop.Holder.ViewHolder;
 import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
-import com.demo.swt.mystudyappshop.Interface.OnRecyclerViewItemClickListener;
 import com.demo.swt.mystudyappshop.R;
-import com.demo.swt.mystudyappshop.Util.ImageUtils;
-import com.demo.swt.mystudyappshop.Wight.NoNullUtils;
-import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider;
-import com.demo.swt.mystudyappshop.Wight.SwtToast;
-import com.demo.swt.mystudyappshop.bean.FeedBean;
-import com.demo.swt.mystudyappshop.bean.FeedBeanList;
 import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
 import com.demo.swt.mystudyappshop.bean.NewBannerBean;
-import com.demo.swt.mystudyappshop.bean.PostInfoBean;
 import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
