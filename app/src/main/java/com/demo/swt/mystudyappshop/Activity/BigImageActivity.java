@@ -25,8 +25,8 @@ public class BigImageActivity extends FragmentActivity {
 
     private ArrayList<String> tulist = new ArrayList<>();
     private NoPreloadViewPager noPreloadViewPager;
-
-    private List<SimpleDraweeView> mlist= new ArrayList<>();
+    private int pos;
+    private List<SimpleDraweeView> mSimplelist = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class BigImageActivity extends FragmentActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         tulist = bundle.getStringArrayList("tulist");
+        pos = bundle.getInt("pos");
+        getSimpleList();
         noPreloadViewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -46,38 +48,45 @@ public class BigImageActivity extends FragmentActivity {
 
             @Override
             public boolean isViewFromObject(View view, Object object) {
-                return object == view;
+                return  view== object;
             }
 
             @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
-                //  container.removeView((View) object);
-                container.removeView(mlist.get(position));
+                container.removeView(mSimplelist.get(position));
             }
 
             @Override
             public Object instantiateItem(ViewGroup container, final int position) {
-                if (tulist.size() > 0) {
-                    for (int i = 0; i < tulist.size(); i++) {
-                        SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getApplicationContext());
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                        simpleDraweeView.setLayoutParams(params);
-                        simpleDraweeView.setImageURI(tulist.get(position));
-                        container.addView(simpleDraweeView);
-                        mlist.add(simpleDraweeView);
-                        simpleDraweeView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                finish();
-                            }
-                        });
-                        return simpleDraweeView;
-                    }
-                }
-                return null;
+                container.addView(mSimplelist.get(position));
+                return mSimplelist.get(position);
+
+
             }
+
+
         });
+        noPreloadViewPager.setCurrentItem(pos);
     }
 
+
+    protected List<SimpleDraweeView> getSimpleList() {
+        for (int i = 0; i < tulist.size(); i++) {
+            SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getApplicationContext());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            simpleDraweeView.setLayoutParams(params);
+            simpleDraweeView.setImageURI(tulist.get(i));
+            mSimplelist.add(simpleDraweeView);
+            simpleDraweeView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+
+        return mSimplelist;
+
+    }
 
 }

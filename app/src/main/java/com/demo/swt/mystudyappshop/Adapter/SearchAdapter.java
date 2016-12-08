@@ -45,6 +45,7 @@ public class SearchAdapter extends BaseAdapter<FeedBean, BaseHolder> {
                 Bundle bundle = new Bundle();
                 if (imgs.size() > 0) {
                     bundle.putStringArrayList("tulist", (ArrayList<String>) imgs);
+                    bundle.putInt("pos",position);
                 }
                 intent.putExtras(bundle);
                 context.startActivity(intent);
