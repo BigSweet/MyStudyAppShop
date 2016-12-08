@@ -60,10 +60,7 @@ public class BigImageActivity extends FragmentActivity {
             public Object instantiateItem(ViewGroup container, final int position) {
                 container.addView(mSimplelist.get(position));
                 return mSimplelist.get(position);
-
-
             }
-
 
         });
         noPreloadViewPager.setCurrentItem(pos);
@@ -84,9 +81,7 @@ public class BigImageActivity extends FragmentActivity {
                 }
             });
         }
-
         return mSimplelist;
-
     }
 
 }

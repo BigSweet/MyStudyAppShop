@@ -13,8 +13,10 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.demo.swt.mystudyappshop.Adapter.SearchAdapter;
 import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
+import com.demo.swt.mystudyappshop.Interface.OnRecyclerViewItemClickListener;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider;
+import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.FeedBean;
 import com.demo.swt.mystudyappshop.bean.FeedBeanList;
 import com.squareup.okhttp.Request;
@@ -50,6 +52,7 @@ public class SearchFragment extends Fragment {
 
         requestRecycleview();
         initReswipe();
+
         return view;
     }
 
@@ -109,6 +112,12 @@ public class SearchFragment extends Fragment {
                 mHomeRv.addItemDecoration(new RecyclerLinearDivider(getActivity(), RecyclerView.VERTICAL, 5, getResources().getColor(R.color.gray1)));
                 mHomeRv.setAdapter(myAdapter);
                 mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                myAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener<FeedBean>() {
+                    @Override
+                    public void onClick(int position, FeedBean feedBean) {
+                        SwtToast.show("item被点击了" + position);
+                    }
+                });
                 break;
 
             case STATE_NLOADMORE:

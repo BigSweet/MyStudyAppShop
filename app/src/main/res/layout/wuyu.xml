@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -65,11 +65,12 @@
     <com.demo.swt.mystudyappshop.Wight.CstImage
         android:id="@+id/cstimage"
         android:layout_width="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp">
 
 
     </com.demo.swt.mystudyappshop.Wight.CstImage>
+
 
     <View style="@style/HorizontalLineq3" />
 </LinearLayout>

@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
@@ -13,9 +15,14 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
 import com.demo.swt.mystudyappshop.R;
-import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
 import com.demo.swt.mystudyappshop.bean.NewBannerBean;
+import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
 import com.squareup.okhttp.Request;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.UmengTool;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.utils.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +35,7 @@ public class HomeFragment extends Fragment {
     private SliderLayout sliderLayout;
     private PagerIndicator indicator;
     private List<NewBannerBean> bannerBeanList = new ArrayList<>();
-
-
+    private Button button;
 
     @Nullable
     @Override
@@ -37,10 +43,53 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home, container, false);
         sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
         indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
+        button = (Button) view.findViewById(R.id.share);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+          /*      new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.WEIXIN)
+                        .withText("hello")
+                        .setCallback(umShareListener)
+                        .share();*/
+
+
+                new ShareAction(getActivity()).withText("hello")
+                        .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                        .setCallback(umShareListener).open();
+                UmengTool.getSignature(getActivity());
+
+            }
+        });
+
 
         requestImage();
         return view;
     }
+
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Log.d("plat", "platform" + platform);
+
+            Toast.makeText(getActivity(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(getActivity(), platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(getActivity(), platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
 
 
     //okhttp网路请求
@@ -74,10 +123,6 @@ public class HomeFragment extends Fragment {
             requestRecycleview();
 
         }*/
-
-
-
-
 
 
     /**

@@ -51,6 +51,9 @@ public class SearchAdapter extends BaseAdapter<FeedBean, BaseHolder> {
                 context.startActivity(intent);
             }
         });
+
+
+
     }
 }
 

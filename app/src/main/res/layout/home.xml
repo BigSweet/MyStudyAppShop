@@ -38,5 +38,11 @@
     </RelativeLayout>
 
 
+    <Button
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="分享" />
 
 </LinearLayout>

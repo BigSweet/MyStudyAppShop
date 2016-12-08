@@ -1,11 +1,8 @@
 package com.demo.swt.mystudyappshop;
 
-import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -13,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.demo.swt.mystudyappshop.Fragment.CateGoryFragment;
 import com.demo.swt.mystudyappshop.Fragment.HomeFragment;
@@ -25,6 +20,7 @@ import com.demo.swt.mystudyappshop.Wight.CstToolbar;
 import com.demo.swt.mystudyappshop.Wight.FragmentTabHost;
 import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.Tab;
+import com.umeng.socialize.UMShareAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,4 +86,16 @@ public class MainActivity extends FragmentActivity {
         txt.setText(getString(tab.getTitle()));
         return view;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
+    }
+
+
+
+
+
 }

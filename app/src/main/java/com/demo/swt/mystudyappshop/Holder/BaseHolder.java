@@ -3,7 +3,6 @@ package com.demo.swt.mystudyappshop.Holder;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
-import android.widget.TextView;
 
 import com.demo.swt.mystudyappshop.Interface.OnRecyclerViewItemClickListener;
 
@@ -48,12 +47,4 @@ public class BaseHolder<T> extends RecyclerView.ViewHolder {
         }
     }
 
-    protected void setText(TextView t, String s) {
-        if (null != t) {
-            if (null == s) {
-                s = "";
-            }
-            t.setText(s.trim());
-        }
-    }
 }
