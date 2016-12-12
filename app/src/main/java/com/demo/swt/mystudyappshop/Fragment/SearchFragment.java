@@ -30,16 +30,17 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
     private List<FeedBean> feedlist = new ArrayList<>();
+    private List<FeedBean> morenlist = new ArrayList<>();
     private SearchAdapter myAdapter;
     private RecyclerView mHomeRv;
     private String nt = "";
-    private String host = "https://aggr.anlaiye.com.cn/aggre/user/1311139/follow/feed/list?token=9ba24d10a891eea1c24754bbc1cfef0e&appver=3.1.0";
+    private String host = "https://aggr.anlaiye.com.cn/aggre/user/1311139/follow/feed/list?appid=1&appplt=aph&token=c42832d72cdb08f39d2d4c930327ecf7&appver=3.1.0&pageSize=20";
     private MaterialRefreshLayout materialRefreshLayout;
     private String url = host + nt;
 
     private static final int STATE_NORMAL = 0;
     private static final int STATE_REFESH = 1;
-    private static final int STATE_NLOADMORE = 2;
+    private static final int STATE_LOADMORE = 2;
     private int state = STATE_NORMAL;
     private FeedBeanList feedbeanlist;
 
@@ -68,7 +69,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
-                state = STATE_NLOADMORE;
+                state = STATE_LOADMORE;
                 nt = feedbeanlist.getData().getNt();
                 url = host + "&nt=" + nt;
                 requestRecycleview();
@@ -92,9 +93,13 @@ public class SearchFragment extends Fragment {
 
                     @Override
                     public void onResponse(FeedBeanList response) {
-                        feedlist = response.getData().getList();
-                        feedbeanlist = response;
-                        initRecycler();
+                        if (response.getData() != null) {
+                            feedlist = response.getData().getList();
+                            morenlist = response.getData().getList();
+                            feedbeanlist = response;
+                            initRecycler();
+                        }
+
                     }
 
 
@@ -120,14 +125,14 @@ public class SearchFragment extends Fragment {
                 });
                 break;
 
-            case STATE_NLOADMORE:
+            case STATE_LOADMORE:
                 myAdapter.addData(myAdapter.getdata().size(), feedlist);
                 mHomeRv.scrollToPosition(myAdapter.getdata().size());
                 materialRefreshLayout.finishRefreshLoadMore();
                 break;
 
             case STATE_REFESH:
-                myAdapter.addData(feedlist);
+                myAdapter.addData(morenlist);
                 materialRefreshLayout.finishRefresh();
                 break;
         }

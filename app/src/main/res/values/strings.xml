@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyStudyAppShop</string>
     <string name="home">主页</string>
-    <string name="search">搜索</string>
+    <string name="search">朋友圈</string>
     <string name="category">分类</string>
     <string name="shopcart">购物车</string>
     <string name="mycenter">个人中心</string>

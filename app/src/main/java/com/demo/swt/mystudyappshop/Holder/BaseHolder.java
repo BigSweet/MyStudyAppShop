@@ -32,6 +32,12 @@ public class BaseHolder<T> extends RecyclerView.ViewHolder {
         return (K) view;
     }
 
+    public RecyclerView getRecyclerView(int id) {
+        RecyclerView recyclerView = (RecyclerView) itemView.findViewById(id);
+
+        return recyclerView;
+    }
+
     public void setOnItemClickListener(final int position, final T t, final OnRecyclerViewItemClickListener<T> l) {
         if (null != itemView) {
             if (null != l) {

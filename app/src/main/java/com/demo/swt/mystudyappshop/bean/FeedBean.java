@@ -1,12 +1,5 @@
 package com.demo.swt.mystudyappshop.bean;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,6 +10,33 @@ public class FeedBean {
     private PostInfoBean post;
     private String display_time;
     private UserBean user;
+    private List<UpsBean> ups;
+    private List<CommentBean> comments;
+    private int feed_type;
+
+    public int getFeed_type() {
+        return feed_type;
+    }
+
+    public void setFeed_type(int feed_type) {
+        this.feed_type = feed_type;
+    }
+
+    public List<CommentBean> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentBean> comments) {
+        this.comments = comments;
+    }
+
+    public List<UpsBean> getUps() {
+        return ups;
+    }
+
+    public void setUps(List<UpsBean> ups) {
+        this.ups = ups;
+    }
 
     public UserBean getUser() {
         return user;

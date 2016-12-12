@@ -19,6 +19,7 @@ import java.util.List;
 public abstract class BaseAdapter<T, H extends BaseHolder> extends RecyclerView.Adapter<BaseHolder> {
 
     protected List<T> mDatas;
+    private T mData;
     protected LayoutInflater mInflater;
     protected Context mContext;
     protected int layoutResId;
@@ -30,7 +31,14 @@ public abstract class BaseAdapter<T, H extends BaseHolder> extends RecyclerView.
         this.mDatas = mDatas;
         mInflater = LayoutInflater.from(context);
         this.layoutResId = layoutId;
+    }
 
+
+    public BaseAdapter(Context context, T mData, int layoutId) {
+        this.mContext = context;
+        this.mData = mData;
+        mInflater = LayoutInflater.from(context);
+        this.layoutResId = layoutId;
     }
 
     @Override
@@ -44,10 +52,10 @@ public abstract class BaseAdapter<T, H extends BaseHolder> extends RecyclerView.
         H h = (H) holder;
         h.setOnItemClickListener(position, getItem(position), onItemClickListener);
         T t = getItem(position);
-        bindata(holder, t);
+        bindata(holder, t, position);
     }
 
-    public abstract void bindata(BaseHolder holder, T t);
+    public abstract void bindata(BaseHolder holder, T t, int position);
 
     public void setOnItemClickListener(OnRecyclerViewItemClickListener<T> l) {
         this.onItemClickListener = l;
@@ -61,7 +69,6 @@ public abstract class BaseAdapter<T, H extends BaseHolder> extends RecyclerView.
     public int getItemCount() {
         return mDatas.size();
     }
-
 
 
     public void addData(int position, List<T> morelist) {
@@ -83,9 +90,9 @@ public abstract class BaseAdapter<T, H extends BaseHolder> extends RecyclerView.
     }
 
 
-    protected void setText(TextView t, String s){
-        if (null != t){
-            if (null == s){
+    protected void setText(TextView t, String s) {
+        if (null != t) {
+            if (null == s) {
                 s = "";
             }
             t.setText(s.trim());

@@ -27,7 +27,7 @@ public class LanchActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lauch);
 
-        login = (Button) findViewById(R.id.login);
+        login = (Button) findViewById(R.id.qqlogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

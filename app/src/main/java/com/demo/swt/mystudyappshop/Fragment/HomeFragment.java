@@ -20,8 +20,8 @@ import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
 import com.squareup.okhttp.Request;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
-import com.umeng.socialize.UmengTool;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.utils.Log;
 
 import java.util.ArrayList;
@@ -44,22 +44,48 @@ public class HomeFragment extends Fragment {
         sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
         indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
         button = (Button) view.findViewById(R.id.share);
-
+        final UMImage image = new UMImage(getActivity(), R.mipmap.psb);//本地文件  zhe
+        final UMImage image1 = new UMImage(getActivity(), R.mipmap.psb1);//本地文件 95
+        final UMImage image2 = new UMImage(getActivity(), R.mipmap.psb2);//本地文件 shou
+        final UMImage image3 = new UMImage(getActivity(), R.mipmap.psb3);//本地文件 yao
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          /*      new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.WEIXIN)
-                        .withText("hello")
+            /*    new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.QQ)
+                        .withText("壶窍家")
+                        .withTitle("点击查看壶窍家的照")
+                        .withMedia(image2)
+                        .withTargetUrl("http://b158.photo.store.qq.com/psb?/V13BADFb0qMTmp/WxCrMRSU8NmoifYbC6rgB00WKajgXVhMaBSqvsttoKA!/b/dLqHMV6kDgAA&bo=WAIgAwAAAAABB1k!&rf=viewer_4")
                         .setCallback(umShareListener)
                         .share();*/
 
+                new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.QQ)
+                        .withText("煤炭坝")
+                        .withTitle("点击查看煤炭坝的照")
+                        .withMedia(image1)
+                        .withTargetUrl("http://b158.photo.store.qq.com/psb?/V13BADFb0qMTmp/r9D86*HoqetA*U9*AWee1oxzLtmOQiYlyoM5QBuPq6Q!/b/dNyAMV5gDgAA&bo=ngL2AQAAAAABB0s!&rf=viewer_4")
+                        .setCallback(umShareListener)
+                        .share();
 
-                new ShareAction(getActivity()).withText("hello")
+
+        /*        new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.QQ)
+                        .withText("姚")
+                        .withTitle("姚，并没有找到照片")
+                        .withMedia(image3)
+                        .withTargetUrl("http://a2.qpic.cn/psb?/V13BADFb0qMTmp/IRuW1w0MCRYYEU8xW8BKiLlMoi4iyx4*uk4iw.mevaU!/c/dI0BAAAAAAAA&bo=0wDhAAAAAAACBxE!&rf=viewer_4")
+                        .setCallback(umShareListener)
+                        .share();*/
+
+                // http://b158.photo.store.qq.com/psb?/V13BADFb0qMTmp/r9D86*HoqetA*U9*AWee1oxzLtmOQiYlyoM5QBuPq6Q!/b/dNyAMV5gDgAA&bo=ngL2AQAAAAABB0s!&rf=viewer_4
+              /*  new ShareAction(getActivity()).withText("颜哲，大傻逼").withMedia(image)
+                        .withTitle("点开查看颜哲美照")
                         .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
-                        .setCallback(umShareListener).open();
-                UmengTool.getSignature(getActivity());
-
+                        .withTargetUrl("http://b6.photo.store.qq.com/psb?/V13BADFb3i30mP/zLkSa1wjAE5WmPZsa.JnR9yRg3g7iyYE4KMjhai0R7Q!/m/dAYAAAAAAAAAnull&bo=gAJVAwAAAAAFB*A!&rf=photolist&t=5")
+                        .setCallback(umShareListener).open();*/
             }
+
+            //  UmengTool.getSignature(getActivity());
+
         });
 
 
