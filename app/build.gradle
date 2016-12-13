@@ -70,4 +70,7 @@ dependencies {
     compile files('libs/umeng_social_shareboard.jar')
     compile files('libs/umeng_shareboard_widget.jar')
     compile 'com.wanjian:sak:0.0.2'
+    compile 'me.relex:photodraweeview:1.1.2'
+    compile 'com.commit451:PhotoView:1.2.4'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }

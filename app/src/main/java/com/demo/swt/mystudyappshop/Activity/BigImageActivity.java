@@ -1,7 +1,6 @@
 package com.demo.swt.mystudyappshop.Activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -9,21 +8,15 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.LinearLayout;
 
+import com.demo.swt.mystudyappshop.GoodDraweeView.MyPhotoView;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Wight.NoPreloadViewPager;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.drawable.ScalingUtils;
-import com.facebook.drawee.generic.GenericDraweeHierarchy;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Created by pc on 2016/12/5.
@@ -34,7 +27,7 @@ public class BigImageActivity extends FragmentActivity {
     private ArrayList<String> tulist = new ArrayList<>();
     private NoPreloadViewPager noPreloadViewPager;
     private int pos;
-    private List<SimpleDraweeView> mSimplelist = new ArrayList<>();
+    private List<MyPhotoView> mSimplelist = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +35,6 @@ public class BigImageActivity extends FragmentActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.bigimagee);
         noPreloadViewPager = (NoPreloadViewPager) findViewById(R.id.nopreload);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         tulist = bundle.getStringArrayList("tulist");
@@ -75,43 +67,26 @@ public class BigImageActivity extends FragmentActivity {
     }
 
 
-    protected List<SimpleDraweeView> getSimpleList() {
+    protected List<MyPhotoView> getSimpleList() {
 
 
         for (int i = 0; i < tulist.size(); i++) {
-            SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getApplicationContext());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            simpleDraweeView.setLayoutParams(params);
+
+            MyPhotoView photoDraweeView = new MyPhotoView(getApplicationContext());
 
 
-            GenericDraweeHierarchy hierarchy = new GenericDraweeHierarchyBuilder(getResources())
-                    .setProgressBarImage(R.mipmap.progress)
-                    .setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP)
-                    .setProgressBarImageScaleType(ScalingUtils.ScaleType.CENTER_INSIDE)
-                    .build();
-            simpleDraweeView.setHierarchy(hierarchy);
-
-            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(tulist.get(i)))
-                    .setAutoRotateEnabled(true)
-                    .setProgressiveRenderingEnabled(true)
-                    .build();
-
-            DraweeController controller = Fresco.newDraweeControllerBuilder()
-                    .setImageRequest(request)
-                    .setAutoPlayAnimations(true)
-                    .setUri(tulist.get(i))
-                    .build();
-            simpleDraweeView.setController(controller);
-
-            mSimplelist.add(simpleDraweeView);
-            simpleDraweeView.setOnClickListener(new View.OnClickListener() {
+            photoDraweeView.setImageUri(tulist.get(i));
+            mSimplelist.add(photoDraweeView);
+            photoDraweeView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                 @Override
-                public void onClick(View v) {
+                public void onPhotoTap(View view, float x, float y) {
                     finish();
                 }
             });
+
         }
         return mSimplelist;
     }
+
 
 }
