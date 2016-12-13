@@ -10,8 +10,9 @@
     <LinearLayout
         android:id="@+id/wuyuitemlayout"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,17 +84,40 @@
             android:background="@color/gray1"
             android:orientation="horizontal"></LinearLayout>-->
 
-        <com.demo.swt.mystudyappshop.Wight.WordWrapView
-            android:id="@+id/wordview"
+        <!--  <com.demo.swt.mystudyappshop.Wight.WordWrapView
+              android:id="@+id/wordview"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="37dp"
+              android:layout_marginRight="10dp"
+              android:layout_marginTop="10dp"
+              android:background="@color/app_bg">-->
+
+        <LinearLayout
+            android:id="@+id/layoutzan"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="37dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="@color/app_bg">
+            android:background="@color/app_bg"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/friend_icon_zan" />
+
+            <TextView
+                android:id="@+id/zan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
 
 
-        </com.demo.swt.mystudyappshop.Wight.WordWrapView>
+        <!--    </com.demo.swt.mystudyappshop.Wight.WordWrapView>-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/commentzan"

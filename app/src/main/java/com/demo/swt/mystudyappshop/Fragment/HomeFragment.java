@@ -3,6 +3,7 @@ package com.demo.swt.mystudyappshop.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,8 @@ public class HomeFragment extends Fragment {
                         .withTargetUrl("http://b158.photo.store.qq.com/psb?/V13BADFb0qMTmp/WxCrMRSU8NmoifYbC6rgB00WKajgXVhMaBSqvsttoKA!/b/dLqHMV6kDgAA&bo=WAIgAwAAAAABB1k!&rf=viewer_4")
                         .setCallback(umShareListener)
                         .share();*/
-
+                v.setHapticFeedbackEnabled(true);
+                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.QQ)
                         .withText("煤炭坝")
                         .withTitle("点击查看煤炭坝的照")

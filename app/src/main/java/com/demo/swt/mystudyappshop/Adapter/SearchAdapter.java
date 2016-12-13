@@ -2,12 +2,10 @@ package com.demo.swt.mystudyappshop.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,7 +14,6 @@ import com.demo.swt.mystudyappshop.Holder.BaseHolder;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Wight.CstImage;
 import com.demo.swt.mystudyappshop.Wight.NoNullUtils;
-import com.demo.swt.mystudyappshop.Wight.WordWrapView;
 import com.demo.swt.mystudyappshop.bean.FeedBean;
 import com.demo.swt.mystudyappshop.bean.PostInfoBean;
 import com.demo.swt.mystudyappshop.bean.UpsBean;
@@ -36,6 +33,7 @@ public class SearchAdapter extends BaseAdapter<FeedBean, BaseHolder> {
     private List<TextView> textlist = new ArrayList<>();
     private PostInfoBean postInfoBean;
     private List<String> imglist;
+
 
     public SearchAdapter(Context context, List<FeedBean> mDatas, int layoutId) {
         super(context, mDatas, layoutId);
@@ -78,62 +76,20 @@ public class SearchAdapter extends BaseAdapter<FeedBean, BaseHolder> {
             setText((TextView) holder.getView(R.id.name), feedBean.getUser().getName());
             setText((TextView) holder.getView(R.id.school), feedBean.getUser().getEntity_name());
 
-            WordWrapView wordWrapView = (WordWrapView) holder.getView(R.id.wordview);
             RecyclerView comment = (RecyclerView) holder.getView(R.id.commentzan);
-
-            textlist.clear();
-            wordWrapView.removeAllViews();
+            TextView textView = (TextView) holder.getView(R.id.zan);
+            LinearLayout zanlayout = (LinearLayout) holder.getView(R.id.layoutzan);
+            StringBuffer stringBuffer = new StringBuffer();
+            uplist = feedBean.getUps();
             if (feedBean.getUps().size() > 0) {
-                uplist = feedBean.getUps();
-                ImageView imageView = new ImageView(context);
-                imageView.setImageResource(R.mipmap.friend_icon_zan);
-                wordWrapView.addView(imageView);
                 for (int i = 0; i < uplist.size(); i++) {
-                    TextView textView = new TextView(context);
-                    textView.setTextColor(Color.parseColor("#396b9c"));
-                    textlist.add(textView);
-                    wordWrapView.addView(textView);
-                    NoNullUtils.setText(textView, uplist.get(i).getName() + "。");
-                    wordWrapView.setVisibility(View.VISIBLE);
+                    stringBuffer.append(uplist.get(i).getName() + "。");
                 }
+                NoNullUtils.setText(textView, stringBuffer);
+            } else {
+                NoNullUtils.setVisible(zanlayout, false);
             }
 
-       /*     if (feedBean.getUps().size() > 0) {
-                ImageView imageView = new ImageView(context);
-                imageView.setImageResource(R.mipmap.friend_icon_zan);
-                wordWrapView.addView(imageView);
-                uplist = feedBean.getUps();
-                if (textlist.size() == 0) {
-                    for (int i = 0; i < uplist.size(); i++) {
-                        TextView textView = new TextView(context);
-                        textView.setTextColor(Color.parseColor("#396b9c"));
-                        textlist.add(textView);
-                        wordWrapView.addView(textView);
-                        wordWrapView.setVisibility(View.VISIBLE);
-                    }
-                }
-                if (textlist.size() > 0 || textlist.size() < uplist.size()) {
-                    for (int i = textlist.size(); i < uplist.size(); i++) {
-                        TextView textView = new TextView(context);
-                        textlist.add(textView);
-                        wordWrapView.addView(textView);
-                        wordWrapView.setVisibility(View.VISIBLE);
-                    }
-                }
-            *//*    if (textlist.size() > uplist.size() || textlist.size() == uplist.size()) {
-                    for (int i = uplist.size(); i < textlist.size(); i++) {
-                        NoNullUtils.setVisible(textlist.get(i), false);
-                        wordWrapView.setVisibility(View.VISIBLE);
-                    }
-                    wordWrapView.setVisibility(View.VISIBLE);
-                }*//*
-                for (int i = 0; i < uplist.size(); i++) {
-                    NoNullUtils.setText(textlist.get(i), uplist.get(i).getName() + "。");
-                }
-                wordWrapView.setVisibility(View.VISIBLE);
-            } else {
-                wordWrapView.setVisibility(View.GONE);
-            }*/
 
             if (feedBean.getComments() != null) {
                 CommentAdapter adapter = new CommentAdapter(context, feedBean.getComments(), R.layout.comment_item);

@@ -25,6 +25,8 @@ public class MyApplication extends Application {
         UMShareAPI.get(this);
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this).setProgressiveJpegConfig(new SimpleProgressiveJpegConfig()).build();
         Fresco.initialize(this, config);
+        com.wanjian.sak.LayoutManager.init(this);
+
     }
 
 }

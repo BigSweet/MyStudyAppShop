@@ -45,4 +45,10 @@
         android:background="@color/white"
         android:text="分享" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="强制点击震动，不管用户的感受哈哈"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
