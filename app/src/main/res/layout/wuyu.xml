@@ -76,33 +76,34 @@
 
         </com.demo.swt.mystudyappshop.Wight.CstImage>
 
-        <!--<LinearLayout
-            android:id="@+id/comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="37dp"
-            android:background="@color/gray1"
-            android:orientation="horizontal"></LinearLayout>-->
 
-        <!--  <com.demo.swt.mystudyappshop.Wight.WordWrapView
-              android:id="@+id/wordview"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="37dp"
-              android:layout_marginRight="10dp"
-              android:layout_marginTop="10dp"
-              android:background="@color/app_bg">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/displaytime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="2分钟前" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layoutzan"
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="37dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:background="@color/app_bg"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -116,8 +117,6 @@
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
 
-
-        <!--    </com.demo.swt.mystudyappshop.Wight.WordWrapView>-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/commentzan"

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FeedBean {
     private PostInfoBean post;
-    private String display_time;
+    private long display_time;
     private UserBean user;
     private List<UpsBean> ups;
     private List<CommentBean> comments;
@@ -46,11 +46,11 @@ public class FeedBean {
         this.user = user;
     }
 
-    public String getDisplay_time() {
+    public long getDisplay_time() {
         return display_time;
     }
 
-    public void setDisplay_time(String display_time) {
+    public void setDisplay_time(long display_time) {
         this.display_time = display_time;
     }
 

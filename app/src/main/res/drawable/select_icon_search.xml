@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@mipmap/select_search" android:state_selected="true" />
-    <item android:drawable="@mipmap/search" />
+    <item android:drawable="@mipmap/friend_select" android:state_selected="true" />
+    <item android:drawable="@mipmap/friend" />
 </selector>

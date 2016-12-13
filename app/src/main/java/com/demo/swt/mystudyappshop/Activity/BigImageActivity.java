@@ -1,6 +1,7 @@
 package com.demo.swt.mystudyappshop.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -12,7 +13,14 @@ import android.widget.LinearLayout;
 
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Wight.NoPreloadViewPager;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.drawable.ScalingUtils;
+import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +56,7 @@ public class BigImageActivity extends FragmentActivity {
 
             @Override
             public boolean isViewFromObject(View view, Object object) {
-                return  view== object;
+                return view == object;
             }
 
             @Override
@@ -68,11 +76,33 @@ public class BigImageActivity extends FragmentActivity {
 
 
     protected List<SimpleDraweeView> getSimpleList() {
+
+
         for (int i = 0; i < tulist.size(); i++) {
             SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getApplicationContext());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             simpleDraweeView.setLayoutParams(params);
-            simpleDraweeView.setImageURI(tulist.get(i));
+
+
+            GenericDraweeHierarchy hierarchy = new GenericDraweeHierarchyBuilder(getResources())
+                    .setProgressBarImage(R.mipmap.progress)
+                    .setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP)
+                    .setProgressBarImageScaleType(ScalingUtils.ScaleType.CENTER_INSIDE)
+                    .build();
+            simpleDraweeView.setHierarchy(hierarchy);
+
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(tulist.get(i)))
+                    .setAutoRotateEnabled(true)
+                    .setProgressiveRenderingEnabled(true)
+                    .build();
+
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setImageRequest(request)
+                    .setAutoPlayAnimations(true)
+                    .setUri(tulist.get(i))
+                    .build();
+            simpleDraweeView.setController(controller);
+
             mSimplelist.add(simpleDraweeView);
             simpleDraweeView.setOnClickListener(new View.OnClickListener() {
                 @Override

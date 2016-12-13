@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.demo.swt.mystudyappshop.Activity.BigImageActivity;
 import com.demo.swt.mystudyappshop.Holder.BaseHolder;
 import com.demo.swt.mystudyappshop.R;
+import com.demo.swt.mystudyappshop.Util.DetailTimeUtil;
 import com.demo.swt.mystudyappshop.Wight.CstImage;
 import com.demo.swt.mystudyappshop.Wight.NoNullUtils;
 import com.demo.swt.mystudyappshop.bean.FeedBean;
@@ -103,6 +104,7 @@ public class SearchAdapter extends BaseAdapter<FeedBean, BaseHolder> {
             SimpleDraweeView simpleDraweeView = (SimpleDraweeView) holder.getView(R.id.logo);
             simpleDraweeView.setImageURI(feedBean.getUser().getAvatar());
 
+            setText((TextView) holder.getView(R.id.displaytime), DetailTimeUtil.getTimeRange(feedBean.getDisplay_time()));
         } else {
             LinearLayout wuyuitem = (LinearLayout) holder.getView(R.id.wuyuitemlayout);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) wuyuitem.getLayoutParams();
