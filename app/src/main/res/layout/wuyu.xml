@@ -69,11 +69,11 @@
 
         <com.demo.swt.mystudyappshop.Wight.CstImage
             android:id="@+id/cstimage"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:layout_marginLeft="30dp">
-
-
         </com.demo.swt.mystudyappshop.Wight.CstImage>
 
 
