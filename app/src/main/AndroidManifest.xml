@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2"></action>
+            </intent-filter>
+        </service>
         <!--<activity android:name=".MainActivity" />-->
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,6 +28,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity android:name=".Activity.BigImageActivity" />
@@ -53,7 +63,11 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58490310e88bad3aa9000220"></meta-data>
+            android:value="B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3"></meta-data>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3" />
     </application>
 
 
@@ -78,4 +92,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 </manifest>

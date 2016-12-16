@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -102,7 +103,8 @@ public class SearchAdapter extends BaseAdapter<FeedBean, BaseHolder> {
                 NoNullUtils.setVisible(comment, false);
             }
             SimpleDraweeView simpleDraweeView = (SimpleDraweeView) holder.getView(R.id.logo);
-            simpleDraweeView.setImageURI(feedBean.getUser().getAvatar());
+            simpleDraweeView.setImageURI(feedBean.getUser().getAvatar() + "?x-oss-process=image/resize,h_200");
+            simpleDraweeView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             setText((TextView) holder.getView(R.id.displaytime), DetailTimeUtil.getTimeRange(feedBean.getDisplay_time()));
         } else {

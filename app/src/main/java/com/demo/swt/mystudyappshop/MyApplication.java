@@ -2,6 +2,7 @@ package com.demo.swt.mystudyappshop;
 
 import android.app.Application;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
@@ -26,6 +27,7 @@ public class MyApplication extends Application {
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this).setProgressiveJpegConfig(new SimpleProgressiveJpegConfig()).build();
         Fresco.initialize(this, config);
         com.wanjian.sak.LayoutManager.init(this);
+        SDKInitializer.initialize(getApplicationContext());
 
     }
 

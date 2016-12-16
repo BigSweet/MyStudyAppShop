@@ -26,6 +26,7 @@ public class BigImageActivity extends FragmentActivity {
 
     private ArrayList<String> tulist = new ArrayList<>();
     private NoPreloadViewPager noPreloadViewPager;
+  //  private ControlSlipViewPager controlSlipViewPager;
     private int pos;
     private List<MyPhotoView> mSimplelist = new ArrayList<>();
 

@@ -91,6 +91,7 @@ public class CstImage extends RelativeLayout {
         init();
 
     }
+
     private int dip2px(float dpValue) {
         final float scale = getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
@@ -283,8 +284,9 @@ public class CstImage extends RelativeLayout {
 
         final ImageView img = imageView;
 
-        if (null != img) {
-                Picasso.with(getContext()).load(imgs.get(position)).into(img);
+
+            Picasso.with(getContext()).load(imgs.get(position)).into(img);
+
             //add by zhangxutong end ,feature :按尺寸加载图片
             img.setOnClickListener(new OnClickListener() {
                 @Override
@@ -311,6 +313,9 @@ public class CstImage extends RelativeLayout {
                 }
             });
         }
-    }
+
+
+
+
 
 }

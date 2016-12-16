@@ -115,8 +115,8 @@ public class MyPhotoView extends PhotoView {
                                     final Bitmap bitmap = closeableStaticBitmap.getUnderlyingBitmap();
                                     if (bitmap != null) {
                                         setImageBitmap(bitmap);
-                                        // 如果是长图，让其宽度放大至与屏幕等宽
-                                        //setScaleType(ScaleType.CENTER_INSIDE);
+
+
                                     }
                                 }
                             }
