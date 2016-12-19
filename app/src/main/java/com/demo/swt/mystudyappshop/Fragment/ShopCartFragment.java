@@ -44,6 +44,7 @@ public class ShopCartFragment extends Fragment implements View.OnClickListener {
     private Dialog dialog;
     private PopupWindow mPopupWindow;
     private LocationManager mgr;
+    private Button dingwei;
     /**
      * 定位的客户端
      */
@@ -89,10 +90,12 @@ public class ShopCartFragment extends Fragment implements View.OnClickListener {
 //        SDKInitializer.initialize(this);
         //获取地图控件引用
 
-        mMapView = (MapView) view.findViewById(R.id.bmapView);
+        mMapView = (MapView) view.findViewById(R.id.mapView);
         mBaiduMap = mMapView.getMap();
         type_button = (Button) view.findViewById(R.id.select_type);
         type_button.setOnClickListener(this);
+        dingwei= (Button) view.findViewById(R.id.dingwei);
+        dingwei.setOnClickListener(this);
         initOritationListener();
         initMyLocation();
         return view;
