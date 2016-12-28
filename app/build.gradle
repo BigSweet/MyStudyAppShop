@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -80,4 +81,6 @@ dependencies {
     compile 'com.commit451:PhotoView:1.2.4'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/jcore-android_v1.0.0.jar')
+    compile files('libs/jpush-android_v3.0.0.jar')
 }

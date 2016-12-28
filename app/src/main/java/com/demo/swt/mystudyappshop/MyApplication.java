@@ -9,6 +9,8 @@ import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by pc on 2016/12/5.
  */
@@ -28,6 +30,8 @@ public class MyApplication extends Application {
         Fresco.initialize(this, config);
         com.wanjian.sak.LayoutManager.init(this);
         SDKInitializer.initialize(getApplicationContext());
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
     }
 
