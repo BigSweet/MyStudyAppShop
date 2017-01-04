@@ -287,7 +287,6 @@ public class CstImage extends RelativeLayout {
 
             Picasso.with(getContext()).load(imgs.get(position)).into(img);
 
-            //add by zhangxutong end ,feature :按尺寸加载图片
             img.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

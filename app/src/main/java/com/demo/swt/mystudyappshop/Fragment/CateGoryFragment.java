@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.demo.swt.mystudyappshop.R;
 
@@ -14,10 +15,12 @@ import com.demo.swt.mystudyappshop.R;
  */
 
 public class CateGoryFragment extends Fragment {
+    private Button city;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.category, container, false);
+        View view=inflater.inflate(R.layout.category, container, false);
+        return view;
     }
 
 

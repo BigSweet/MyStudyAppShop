@@ -5,11 +5,17 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="分类" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/select_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray1"
+            android:text="选择城市" />
+    </LinearLayout>
 
 </LinearLayout>
