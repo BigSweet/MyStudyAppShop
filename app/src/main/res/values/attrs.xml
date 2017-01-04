@@ -13,4 +13,16 @@
         <attr name="need_intro" format="boolean" />
         <attr name="real_width" format="dimension" />
     </declare-styleable>
+
+
+
+    <attr name="titleText" format="string" />
+    <attr name="titleTextColor" format="color" />
+    <attr name="titleTextSize" format="dimension" />
+
+    <declare-styleable name="CstOneView">
+        <attr name="titleText" />
+        <attr name="titleTextColor" />
+        <attr name="titleTextSize" />
+    </declare-styleable>
 </resources>
