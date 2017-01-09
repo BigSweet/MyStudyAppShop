@@ -1,14 +1,14 @@
 package com.demo.swt.mystudyappshop.Fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
+import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.SelectCityActivity.SelectCityActivity;
 
@@ -17,7 +17,6 @@ import com.demo.swt.mystudyappshop.SelectCityActivity.SelectCityActivity;
  */
 
 public class CateGoryFragment extends Fragment {
-    private Button city;
 
     @Nullable
     @Override
@@ -27,6 +26,14 @@ public class CateGoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SelectCityActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.zhima).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ZhiMaLeiDaActivity.class);
                 startActivity(intent);
             }
         });

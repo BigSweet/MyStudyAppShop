@@ -147,7 +147,7 @@ public class CstOneView extends View {
         specMode = MeasureSpec.getMode(heightMeasureSpec);
         specSize = MeasureSpec.getSize(heightMeasureSpec);
         switch (specMode) {
-            case MeasureSpec.EXACTLY:// 明确指定了宽度和高度的
+            case MeasureSpec.EXACTLY:// 明确指定了宽度和高度的 或者是match_parent
                 height = getPaddingTop() + getPaddingBottom() + specSize;
                 break;
             case MeasureSpec.AT_MOST:// 一般为WARP_CONTENT
@@ -157,6 +157,11 @@ public class CstOneView extends View {
 
         setMeasuredDimension(width, height);//设置自定义view的宽度和高度
 
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
     }
 
     @Override

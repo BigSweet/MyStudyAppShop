@@ -16,6 +16,13 @@
             android:layout_height="wrap_content"
             android:background="@color/gray1"
             android:text="选择城市" />
+
+        <Button
+            android:id="@+id/zhima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray1"
+            android:text="芝麻信用雷达图" />
     </LinearLayout>
 
 </LinearLayout>

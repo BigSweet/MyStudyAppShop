@@ -134,6 +134,7 @@
         </activity>
 
         <activity android:name=".Activity.BigImageActivity" />
+        <activity android:name=".Activity.ZhiMaLeiDaActivity" />
 
         <activity android:name=".SelectCityActivity.SelectCityActivity" />
         <activity
