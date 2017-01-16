@@ -16,7 +16,7 @@ import com.demo.swt.mystudyappshop.Fragment.HomeFragment;
 import com.demo.swt.mystudyappshop.Fragment.MyCenterFragment;
 import com.demo.swt.mystudyappshop.Fragment.SearchFragment;
 import com.demo.swt.mystudyappshop.Fragment.ShopCartFragment;
-import com.demo.swt.mystudyappshop.Wight.CstToolbar;
+import com.demo.swt.mystudyappshop.Wight.CstTopBanner;
 import com.demo.swt.mystudyappshop.Wight.FragmentTabHost;
 import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.bean.Tab;
@@ -29,7 +29,8 @@ public class MainActivity extends FragmentActivity {
     private FragmentTabHost mTabHost;
     private LayoutInflater inflater;
     private List<Tab> mTabs = new ArrayList<>();
-    private CstToolbar mCstToolBar;
+//    private CstToolbar mCstToolBar;
+    private CstTopBanner cstTopBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,40 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initToolBar() {
-        mCstToolBar = (CstToolbar) findViewById(R.id.csttoolbar);
-        mCstToolBar.setTitle(R.string.title);
-        mCstToolBar.setLeft(R.mipmap.back, new View.OnClickListener() {
+        cstTopBanner= (CstTopBanner) findViewById(R.id.csttopbanner);
+//        mCstToolBar = (CstToolbar) findViewById(R.id.csttoolbar);
+//        mCstToolBar.setTitle(R.string.title);
+//        mCstToolBar.setLeft(R.mipmap.back, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SwtToast.show("你好");
+//            }
+//        });
+
+        if (needToolBar() && null != cstTopBanner) {
+            cstTopBanner.setVisibility(View.VISIBLE);
+            cstTopBanner.getCentreText().setCompoundDrawables(null, null, null, null);
+            cstTopBanner.getCentreText().setOnClickListener(null);
+        }
+        cstTopBanner.setCentre(null,"孙文韬的学习app",null);
+        cstTopBanner.setLeft(R.mipmap.back, "", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SwtToast.show("你好");
             }
         });
+    }
+/*
+    public void initToolBar() {
+        if (needToolBar() && null != cstTopBanner) {
+            cstTopBanner.setVisibility(View.VISIBLE);
+            cstTopBanner.getCentreText().setCompoundDrawables(null, null, null, null);
+            cstTopBanner.getCentreText().setOnClickListener(null);
+        }
+    }*/
+
+    protected boolean needToolBar() {
+        return true;
     }
 
     private void initTab() {

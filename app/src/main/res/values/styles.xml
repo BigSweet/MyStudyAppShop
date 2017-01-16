@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="textview_black_14sp">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize14</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+
+    <style name="app_top_title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize18</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

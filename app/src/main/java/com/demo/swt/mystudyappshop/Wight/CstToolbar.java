@@ -3,8 +3,6 @@ package com.demo.swt.mystudyappshop.Wight;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +18,7 @@ import com.demo.swt.mystudyappshop.R;
 
 /**
  * Created by pc on 2016/11/29.
+ * @deprecated
  */
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)

@@ -8,14 +8,21 @@
     android:orientation="vertical"
     tools:context="com.demo.swt.mystudyappshop.MainActivity">
 
-    <com.demo.swt.mystudyappshop.Wight.CstToolbar
+ <!--   <com.demo.swt.mystudyappshop.Wight.CstToolbar
         android:id="@+id/csttoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize">
 
-    </com.demo.swt.mystudyappshop.Wight.CstToolbar>
+    </com.demo.swt.mystudyappshop.Wight.CstToolbar>-->
+
+    <com.demo.swt.mystudyappshop.Wight.CstTopBanner
+        android:id="@+id/csttopbanner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/q150">
+
+    </com.demo.swt.mystudyappshop.Wight.CstTopBanner>
 
 
     <FrameLayout
