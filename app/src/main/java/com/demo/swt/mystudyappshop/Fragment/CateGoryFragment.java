@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.SelectCityActivity.SelectCityActivity;
@@ -22,6 +23,7 @@ public class CateGoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.category, container, false);
+
         view.findViewById(R.id.select_city).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +36,13 @@ public class CateGoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ZhiMaLeiDaActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.rgbabutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RgbaActivity.class);
                 startActivity(intent);
             }
         });

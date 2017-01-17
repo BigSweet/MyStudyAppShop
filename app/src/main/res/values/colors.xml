@@ -17,4 +17,10 @@
     <color name="full_transparent">#00000000</color>
     <color name="gray_333333">#333333</color>
     <color name="color_666666">#666666</color>
+    <color name="transparent_black">#b0222222</color>
+    <color name="halftransparent_black">#80000000</color>
+    <color name="sfw_red">#d62d20</color>
+    <color name="sfw_blue">#0057e7</color>
+    <color name="sfw_green">#008744</color>
+    <color name="sfw_yellow">#ffa700</color>
 </resources>

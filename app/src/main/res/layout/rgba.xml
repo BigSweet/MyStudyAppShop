@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
-
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/select_city"
+        <ImageView
+            android:id="@+id/image111"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gray1"
-            android:padding="5dp"
-            android:text="自定义的小控件" />
+            android:src="@mipmap/ic_launcher" />
 
         <Button
-            android:id="@+id/zhima"
+            android:id="@+id/alpbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gray1"
-            android:text="芝麻信用雷达图" />
+            android:text="点击半透明" />
 
         <Button
-            android:id="@+id/rgbabutton"
+            android:id="@+id/noalpbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gray1"
-            android:text="RGBA" />
-
+            android:text="点击不透明" />
     </LinearLayout>
 
-
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这里测试的是一个简单的设置色值，在recyclerview中还是通过holder设置" />
 </LinearLayout>

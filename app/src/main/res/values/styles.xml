@@ -22,4 +22,11 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <!-- 灰色－16sp字体 -->
+    <style name="textview_white_16sp">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize16</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

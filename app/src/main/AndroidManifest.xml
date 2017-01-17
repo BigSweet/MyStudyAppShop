@@ -15,11 +15,11 @@
 
 
         <supports-screens
-            android:smallScreens="true"
-            android:normalScreens="true"
+            android:anyDensity="true"
             android:largeScreens="true"
+            android:normalScreens="true"
             android:resizeable="true"
-            android:anyDensity="true" />
+            android:smallScreens="true" />
         <!-- Required SDK 核心功能-->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
@@ -144,6 +144,7 @@
         <activity android:name=".Activity.ZhiMaLeiDaActivity" />
 
         <activity android:name=".SelectCityActivity.SelectCityActivity" />
+        <activity android:name=".Activity.RgbaActivity" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

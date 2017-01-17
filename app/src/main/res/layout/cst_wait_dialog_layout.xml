@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/btn_10_black_bg"
+    android:gravity="center"
+    android:paddingBottom="@dimen/margin10"
+    android:paddingLeft="@dimen/margin15"
+    android:paddingRight="@dimen/margin15"
+    android:paddingTop="@dimen/margin10" >
+
+    <RelativeLayout
+        android:id="@+id/cst_wait_dialog_first_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:id="@+id/cst_wait_dialog_img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" >
+
+            <include
+                android:id="@+id/cst_wait_dialog_progressBar"
+                layout="@layout/app_progress"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/cst_wait_dialog_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@null" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/cst_wait_dialog_text"
+            style="@style/textview_white_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cst_wait_dialog_img_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin10"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
