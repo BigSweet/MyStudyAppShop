@@ -31,6 +31,13 @@
             android:layout_height="wrap_content"
             android:background="@color/gray1"
             android:text="RGBA" />
+        <Button
+            android:id="@+id/qrcodebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray1"
+            android:text="QRcode" />
+
 
     </LinearLayout>
 

@@ -145,6 +145,7 @@
 
         <activity android:name=".SelectCityActivity.SelectCityActivity" />
         <activity android:name=".Activity.RgbaActivity" />
+        <activity android:name=".Activity.QrCodeActivity" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -215,6 +216,8 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- Required -->
     <permission
         android:name="com.demo.swt.mystudyappshop.permission.JPUSH_MESSAGE"

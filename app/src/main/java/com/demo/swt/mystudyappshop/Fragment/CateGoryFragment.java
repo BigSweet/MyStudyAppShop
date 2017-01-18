@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
@@ -43,6 +44,14 @@ public class CateGoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), RgbaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.qrcodebutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QrCodeActivity.class);
                 startActivity(intent);
             }
         });

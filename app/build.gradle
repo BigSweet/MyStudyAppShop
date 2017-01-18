@@ -83,4 +83,5 @@ dependencies {
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/jcore-android_v1.0.0.jar')
     compile files('libs/jpush-android_v3.0.0.jar')
+    compile project(':mylib')
 }
