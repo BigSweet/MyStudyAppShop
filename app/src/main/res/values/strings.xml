@@ -6,4 +6,7 @@
     <string name="shopcart">地图</string>
     <string name="mycenter">个人中心</string>
     <string name="title">swt的商城APP学习Demo</string>
+    <string name="str_recoding_nomal">按住 说话</string>
+    <string name="str_recoding_recoding">松开 结束</string>
+    <string name="str_recoding_cancle">松开手指 取消发送</string>
 </resources>
