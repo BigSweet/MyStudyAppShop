@@ -2,6 +2,7 @@ package com.demo.swt.mystudyappshop.Util;
 
 import android.media.MediaRecorder;
 import android.os.Build;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,26 +63,29 @@ public class AudioManager {
                 dir.mkdir();
             }
             String fillName = generateFileName();
-            File file = new File(dir, fillName);
-            mCurrentFilePath = file.getAbsolutePath();
+//           File  mRecAudioPath= Environment.getExternalStorageDirectory();
+
+            File mRecAudioFile = File.createTempFile(fillName, ".amr", dir);
+//            File file = new File(dir, fillName);
+//            File    mRecAudioFile=File.createTempFile(dir,".amr",)
+            mCurrentFilePath = mRecAudioFile.getAbsolutePath();
             mMediaRecorder = new MediaRecorder();
-            //设置输出文件路劲
-            mMediaRecorder.setOutputFile(file.getAbsolutePath());
             //设置mMediaRecorder音频源是麦克风
-             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
 
             int versionSdk = Build.VERSION.SDK_INT; // 设备SDK版本（Android版本号）
-
-
-            if (versionSdk > 10) {
-                //设置音频的格式
-                mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
-            } else {
-                //设置音频的格式
-                mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
-            }
+//            if (versionSdk > 10) {
+            //设置音频的格式
+            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+//            } else {
+            //设置音频的格式
+//                mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
+//            }
             //设置音频的编码
-            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+//            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+            //设置输出文件路劲
+            mMediaRecorder.setOutputFile(mRecAudioFile.getAbsolutePath());
             mMediaRecorder.prepare();
             mMediaRecorder.start();
             isprepare = true;
@@ -94,17 +98,22 @@ public class AudioManager {
     }
 
     private String generateFileName() {
-        return UUID.randomUUID().toString() + ".amr";
+        String filename = UUID.randomUUID().toString();
+        Log.i("swt", filename);
+        return filename;
     }
 
     public int getVoiceLevel(int maxlevel) {
+        int relLev=1;
         if (isprepare) {
             try {
-                return maxlevel * mMediaRecorder.getMaxAmplitude() / 32768 + 1;
+                relLev =maxlevel * mMediaRecorder.getMaxAmplitude() / 32768 + 1;
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        return 1;
+        return relLev;
+
     }
 
     public void release() {

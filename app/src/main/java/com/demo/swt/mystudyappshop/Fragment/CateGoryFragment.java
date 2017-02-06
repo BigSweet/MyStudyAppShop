@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
+import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
 import com.demo.swt.mystudyappshop.Activity.WebChatActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
@@ -60,6 +61,13 @@ public class CateGoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WebChatActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.recorddemobutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RecordDemoActivity.class);
                 startActivity(intent);
             }
         });

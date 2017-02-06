@@ -49,7 +49,6 @@ public class Dilogmanager {
             label.setVisibility(View.VISIBLE);
             mIcon.setImageResource(R.mipmap.recorder);
             label.setText("手指上滑 取消发送");
-
         }
     }
 
@@ -85,9 +84,9 @@ public class Dilogmanager {
     public void updateVoiceLevel(int level) {
 
         if (mDialog != null && mDialog.isShowing()) {
-            mIcon.setVisibility(View.VISIBLE);
-            mVoice.setVisibility(View.VISIBLE);
-            label.setVisibility(View.VISIBLE);
+//            mIcon.setVisibility(View.VISIBLE);
+//            mVoice.setVisibility(View.VISIBLE);
+//            label.setVisibility(View.VISIBLE);
 
             int resId = mContext.getResources().getIdentifier("v" + level, "mipmap", mContext.getPackageName());
             mVoice.setImageResource(resId);

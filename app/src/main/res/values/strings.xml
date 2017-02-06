@@ -9,4 +9,8 @@
     <string name="str_recoding_nomal">按住 说话</string>
     <string name="str_recoding_recoding">松开 结束</string>
     <string name="str_recoding_cancle">松开手指 取消发送</string>
+    <string name="startRecord">开始录音</string>
+    <string name="stopRecord">结束录音</string>
+    <string name="startPlay">开始播放</string>
+    <string name="stopPlay">结束播放</string>
 </resources>

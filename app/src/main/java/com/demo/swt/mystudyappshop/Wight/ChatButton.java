@@ -40,7 +40,7 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
         dilogmanager = new Dilogmanager(context);
 
 
-        String dir = Environment.getExternalStorageDirectory() + "sweet";
+        String dir = Environment.getExternalStorageDirectory() + "";
         mAudioManager = AudioManager.getInstance(dir);
         mAudioManager.setOnAudioStateListener(this);
         setOnLongClickListener(new OnLongClickListener() {
@@ -70,7 +70,7 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
             while (isRecoding) {
                 try {
                     Thread.sleep(100);
-                    mTime += 0.1f;
+                    mTime = mTime + 0.1f;
                     mHandler.sendEmptyMessage(MSG_VOICE_CHANGED);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -78,7 +78,7 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
             }
         }
     };
-    private int mTime;
+    private float mTime;
     private final static int MSG_AUDIO_PREPARE = 0X110;
     private final static int MSG_VOICE_CHANGED = 0X111;
     private final static int MSG_DILOG_DISMISS = 0X112;
@@ -95,6 +95,7 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
                     dilogmanager.updateVoiceLevel(mAudioManager.getVoiceLevel(7));
                     break;
                 case MSG_DILOG_DISMISS:
+                    dilogmanager.dissMissDialog();
                     break;
             }
         }
@@ -112,7 +113,6 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
         int y = (int) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                //// TODO: 2017/1/19  
                 chanerState(STATE_RECORDING);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -129,18 +129,17 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
                     reset();
                     return super.onTouchEvent(event);
                 }
+
                 if (!isRecoding || mTime < 0.6f) {
                     dilogmanager.toShort();
-                    mAudioManager.cancle();
+//                    mAudioManager.cancle();
                     mHandler.sendEmptyMessageDelayed(MSG_DILOG_DISMISS, 1300);
                 } else if (CUR_STATE == STATE_RECORDING) {
                     dilogmanager.dissMissDialog();
                     mAudioManager.release();
-                    if (mListener!=null)
-                    {
-                        mListener.onFinsh(mTime,mAudioManager.getCurrentFilePath());
+                    if (mListener != null) {
+                        mListener.onFinsh(mTime, mAudioManager.getCurrentFilePath());
                     }
-                    //callbacktoactivity
                 }
                 if (CUR_STATE == STATE_WANT_CANLE) {
                     dilogmanager.dissMissDialog();
@@ -154,8 +153,10 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
 
     private void reset() {
         isRecoding = false;
-        chanerState(STATE_NOMAL);
         mTime = 0;
+        mReady = false;
+        chanerState(STATE_NOMAL);
+
 
     }
 
@@ -179,7 +180,7 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
                 case STATE_NOMAL:
                     setBackgroundResource(R.drawable.recoding_button_state_nomal);
                     setText(R.string.str_recoding_nomal);
-                    dilogmanager.recording();
+//                    dilogmanager.recording();
                     break;
                 case STATE_RECORDING:
                     setBackgroundResource(R.drawable.recoding_button_state_recodingl);

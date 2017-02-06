@@ -52,6 +52,13 @@
             android:text="webchat"
             android:background="@color/gray1"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/recorddemobutton"
+            android:layout_width="wrap_content"
+            android:text="录音demo"
+            android:background="@color/gray1"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 
