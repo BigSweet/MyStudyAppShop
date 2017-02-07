@@ -60,7 +60,7 @@ public class WebChatActivity extends FragmentActivity {
                 animView.setBackgroundResource(R.drawable.play_anim);
                 AnimationDrawable anim = (AnimationDrawable) animView.getBackground();
                 anim.start();
-                MediaManager.playSound(mlist.get(position).getFilepath(), new MediaPlayer.OnCompletionListener() {
+                MediaManager.getInstance().playSound(mlist.get(position).getFilepath(), new MediaPlayer.OnCompletionListener() {
 
                     @Override
                     public void onCompletion(MediaPlayer mp) {
@@ -74,19 +74,19 @@ public class WebChatActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        MediaManager.pause();
+        MediaManager.getInstance().pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MediaManager.resume();
+        MediaManager.getInstance().resume();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MediaManager.release();
+        MediaManager.getInstance().release();
 
     }
 }

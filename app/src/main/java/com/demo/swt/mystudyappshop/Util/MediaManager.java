@@ -5,7 +5,7 @@ import android.media.*;
 import java.io.IOException;
 
 /**
- * 介绍：这里写介绍
+ * 介绍：播放管理类，单例模式
  * 作者：sweet
  * 邮箱：sunwentao@imcoming.cn
  * 时间: 2017/2/7
@@ -15,7 +15,21 @@ public class MediaManager {
     private static MediaPlayer mMediaPlayer;
     private static boolean isPause;
 
-    public static void playSound(String filepath, MediaPlayer.OnCompletionListener onCompletionListener) {
+    private MediaManager() {
+
+    }
+
+    private static MediaManager instance;
+
+    public static MediaManager getInstance() {
+        if (instance == null) {
+            instance = new MediaManager();
+
+        }
+        return instance;
+    }
+
+    public  void playSound(String filepath, MediaPlayer.OnCompletionListener onCompletionListener) {
         if (mMediaPlayer == null) {
             mMediaPlayer = new MediaPlayer();
             mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -40,14 +54,14 @@ public class MediaManager {
         }
     }
 
-    public  static void pause() {
+    public  void pause() {
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
             isPause = true;
         }
     }
 
-    public static void resume() {
+    public  void resume() {
         if (mMediaPlayer != null && isPause) {
             mMediaPlayer.start();
             isPause = false;
@@ -57,7 +71,7 @@ public class MediaManager {
     }
 
 
-    public static void release() {
+    public  void release() {
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
             mMediaPlayer = null;
