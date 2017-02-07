@@ -38,8 +38,10 @@ public class WebChatAdapter extends BaseAdapter<RecordBean, BaseHolder> {
 
     @Override
     public void bindata(BaseHolder holder, RecordBean recordBean, int position) {
-        setText((TextView) holder.getView(R.id.record_time), recordBean.getTime() + "");
+        setText((TextView) holder.getView(R.id.record_time), (int)recordBean.getTime()+"");
         ViewGroup.LayoutParams lp = holder.getView(R.id.record_length).getLayoutParams();
         lp.width = (int) (mMinItemWidth + (mMaxItemWidth / 60f * getItem(position).getTime()));
+
     }
+
 }

@@ -120,7 +120,7 @@ public class SearchFragment extends Fragment {
                 mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
                 myAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener<FeedBean>() {
                     @Override
-                    public void onClick(int position, FeedBean feedBean) {
+                    public void onClick(int position, FeedBean feedBean,View view) {
                         SwtToast.show("item被点击了" + position);
                     }
                 });

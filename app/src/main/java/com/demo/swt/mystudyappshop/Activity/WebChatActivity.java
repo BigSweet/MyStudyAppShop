@@ -1,6 +1,7 @@
 package com.demo.swt.mystudyappshop.Activity;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 import com.demo.swt.mystudyappshop.Adapter.WebChatAdapter;
 import com.demo.swt.mystudyappshop.Interface.OnRecyclerViewItemClickListener;
 import com.demo.swt.mystudyappshop.R;
+import com.demo.swt.mystudyappshop.Util.MediaManager;
 import com.demo.swt.mystudyappshop.Wight.ChatButton;
 import com.demo.swt.mystudyappshop.bean.RecordBean;
 
@@ -28,6 +30,7 @@ public class WebChatActivity extends FragmentActivity {
     private RecyclerView chatrecycle;
     private List<RecordBean> mlist = new ArrayList<>();
     private ChatButton mChatButton;
+    private View animView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,14 +51,42 @@ public class WebChatActivity extends FragmentActivity {
         chatrecycle.setLayoutManager(new LinearLayoutManager(this));
         adapter.setOnItemClickListener(new OnRecyclerViewItemClickListener<RecordBean>() {
             @Override
-            public void onClick(int position, RecordBean recordBean) {
-                View animView = findViewById(R.id.record_anim);
+            public void onClick(int position, RecordBean recordBean, View view) {
+                if (animView != null) {
+                    animView.setBackgroundResource(R.mipmap.adj);
+                    animView = null;
+                }
+                animView = view.findViewById(R.id.record_anim);
                 animView.setBackgroundResource(R.drawable.play_anim);
                 AnimationDrawable anim = (AnimationDrawable) animView.getBackground();
                 anim.start();
+                MediaManager.playSound(mlist.get(position).getFilepath(), new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        animView.setBackgroundResource(R.mipmap.adj);
+                    }
+                });
             }
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MediaManager.pause();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MediaManager.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MediaManager.release();
+
+    }
 }

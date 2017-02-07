@@ -44,7 +44,7 @@ public class BaseHolder<T> extends RecyclerView.ViewHolder {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        l.onClick(position, t);
+                        l.onClick(position, t,v);
                     }
                 });
             } else {
