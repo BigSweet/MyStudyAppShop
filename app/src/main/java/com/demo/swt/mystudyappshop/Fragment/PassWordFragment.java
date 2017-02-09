@@ -53,10 +53,10 @@ public class PassWordFragment extends Fragment implements LockPatternView.OnPatt
         view.findViewById(R.id.getpassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(passwdrdstr)) {
+                if (TextUtils.isEmpty(getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE).getString("password",""))) {
                     password.setText("你还没有设置密码");
                 } else {
-                    password.setText("你的密码是" + passwdrdstr);
+                    password.setText("你的密码是" + getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE).getString("password",""));
 
                 }
             }
