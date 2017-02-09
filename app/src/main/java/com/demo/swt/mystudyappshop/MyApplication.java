@@ -10,6 +10,7 @@ import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.smssdk.SMSSDK;
 
 /**
  * Created by pc on 2016/12/5.
@@ -32,6 +33,7 @@ public class MyApplication extends Application {
         SDKInitializer.initialize(getApplicationContext());
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        SMSSDK.initSDK(this, "1b352297f9785", "f955ca405239479857a016b78b3bac5b");
 
     }
 

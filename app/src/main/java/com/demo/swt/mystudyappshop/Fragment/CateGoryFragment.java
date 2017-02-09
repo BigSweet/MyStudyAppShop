@@ -16,6 +16,13 @@ import com.demo.swt.mystudyappshop.Activity.WebChatActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.SelectCityActivity.SelectCityActivity;
+import com.demo.swt.mystudyappshop.Wight.SwtToast;
+
+import java.util.HashMap;
+
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 
 /**
  * Created by pc on 2016/11/29.
@@ -80,6 +87,26 @@ public class CateGoryFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.smsservice).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //打开注册页面
+                RegisterPage registerPage = new RegisterPage();
+                registerPage.setRegisterCallback(new EventHandler() {
+                    public void afterEvent(int event, int result, Object data) {
+                        // 解析注册结果
+                        if (result == SMSSDK.RESULT_COMPLETE) {
+                            @SuppressWarnings("unchecked")
+                            HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
+                            String country = (String) phoneMap.get("country");
+                            String phone = (String) phoneMap.get("phone");
+                            SwtToast.show("地区" + country + "手机号" + phone + "的用户验证成功");
+                        }
+                    }
+                });
+                registerPage.show(getActivity());
+            }
+        });
         return view;
     }
 
