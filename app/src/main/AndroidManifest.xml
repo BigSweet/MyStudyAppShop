@@ -132,14 +132,17 @@
         </service>
         <!--<activity android:name=".MainActivity" />-->
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".Activity.WelcomeAcitivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
-
         <activity android:name=".Activity.BigImageActivity"/>
         <activity android:name=".Activity.ZhiMaLeiDaActivity"/>
         <activity android:name=".Activity.WebChatActivity"/>
@@ -147,6 +150,7 @@
         <activity android:name=".Activity.RgbaActivity"/>
         <activity android:name=".Activity.QrCodeActivity"/>
         <activity android:name=".Activity.RecordDemoActivity"/>
+        <activity android:name=".Activity.NineLockActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

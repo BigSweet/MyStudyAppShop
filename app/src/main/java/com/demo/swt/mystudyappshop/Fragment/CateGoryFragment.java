@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
 import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
@@ -71,6 +72,14 @@ public class CateGoryFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        view.findViewById(R.id.ninebutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NineLockActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

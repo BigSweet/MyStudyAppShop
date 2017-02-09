@@ -59,6 +59,13 @@
             android:background="@color/gray1"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/ninebutton"
+            android:layout_width="wrap_content"
+            android:text="九宫格解锁"
+            android:background="@color/gray1"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 
