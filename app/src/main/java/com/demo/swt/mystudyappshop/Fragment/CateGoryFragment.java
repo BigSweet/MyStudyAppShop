@@ -12,6 +12,7 @@ import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
 import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
+import com.demo.swt.mystudyappshop.Activity.SqliteDataBaseActivity;
 import com.demo.swt.mystudyappshop.Activity.WebChatActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
@@ -107,6 +108,14 @@ public class CateGoryFragment extends Fragment {
                 registerPage.show(getActivity());
             }
         });
+        view.findViewById(R.id.aqlitebutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SqliteDataBaseActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

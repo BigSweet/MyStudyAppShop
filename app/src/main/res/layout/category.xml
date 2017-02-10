@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,65 +16,80 @@
             android:layout_height="wrap_content"
             android:background="@color/gray1"
             android:padding="5dp"
-            android:text="自定义的小控件" />
+            android:text="自定义的小控件"/>
 
         <Button
             android:id="@+id/zhima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:text="芝麻信用雷达图" />
+            android:text="芝麻信用雷达图"/>
 
         <Button
             android:id="@+id/rgbabutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:text="RGBA" />
+            android:text="RGBA"/>
+
         <Button
             android:id="@+id/qrcodebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:text="QRcode" />
-
+            android:text="QRcode"/>
 
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/webchatbutton"
             android:layout_width="wrap_content"
-            android:text="webchat"
+            android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:layout_height="wrap_content" />
+            android:text="webchat"/>
+
         <Button
             android:id="@+id/recorddemobutton"
             android:layout_width="wrap_content"
-            android:text="录音demo"
+            android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:layout_height="wrap_content" />
+            android:text="录音demo"/>
 
         <Button
             android:id="@+id/ninebutton"
             android:layout_width="wrap_content"
-            android:text="九宫格解锁"
+            android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:layout_height="wrap_content" />
+            android:text="九宫格解锁"/>
+
         <Button
             android:id="@+id/smsservice"
             android:layout_width="wrap_content"
-            android:text="短信验证"
+            android:layout_height="wrap_content"
             android:background="@color/gray1"
-            android:layout_height="wrap_content" />
+            android:text="短信验证"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/aqlitebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray1"
+            android:text="sqlite数据库"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

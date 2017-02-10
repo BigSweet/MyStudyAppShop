@@ -33,7 +33,7 @@ public class WelcomeAcitivity extends FragmentActivity {
                     startActivity(new Intent(WelcomeAcitivity.this, NineLockActivity.class));
                     finish();
                 }else {
-                    getSupportFragmentManager().beginTransaction().replace(android.R.id.content, PassWordFragment.newInstance(PassWordFragment.TYPE_CHECK)).commit();
+                    getSupportFragmentManager().beginTransaction().replace(android.R.id.content, PassWordFragment.newInstance(PassWordFragment.TYPE_CHECK)).commitAllowingStateLoss();
                 }
             }
         }, 1000);
