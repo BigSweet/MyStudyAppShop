@@ -71,7 +71,6 @@ public class RecordDemoActivity extends FragmentActivity {
 
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -91,7 +90,6 @@ public class RecordDemoActivity extends FragmentActivity {
 
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             mRecorder.stop();
             mRecorder.release();
             mRecorder = null;
@@ -103,7 +101,6 @@ public class RecordDemoActivity extends FragmentActivity {
 
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             mPlayer = new MediaPlayer();
             try{
                 mPlayer.setDataSource(FileName);
@@ -120,7 +117,6 @@ public class RecordDemoActivity extends FragmentActivity {
 
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             mPlayer.release();
             mPlayer = null;
         }

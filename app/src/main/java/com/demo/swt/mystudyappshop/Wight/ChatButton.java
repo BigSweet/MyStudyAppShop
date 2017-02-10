@@ -188,14 +188,12 @@ public class ChatButton extends Button implements AudioManager.AudioStateListene
                     isRecoding = true;
                     if (isRecoding) {
                         dilogmanager.recording();
-                        // TODO: 2017/1/19  dilog.recoding
                     }
                     break;
                 case STATE_WANT_CANLE:
                     setBackgroundResource(R.drawable.recoding_button_state_recodingl);
                     setText(R.string.str_recoding_cancle);
                     dilogmanager.wantToCancel();
-                    // TODO: 2017/1/19  dilog.cancle
                     break;
             }
         }

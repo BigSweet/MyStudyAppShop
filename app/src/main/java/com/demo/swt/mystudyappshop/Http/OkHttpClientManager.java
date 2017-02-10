@@ -442,7 +442,6 @@ public class OkHttpClientManager {
                 File file = files[i];
                 String fileName = file.getName();
                 fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileName)), file);
-                //TODO 根据文件名设置contentType
                 builder.addPart(Headers.of("Content-Disposition",
                         "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""),
                         fileBody);
