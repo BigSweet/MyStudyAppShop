@@ -10,7 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -86,7 +85,6 @@ dependencies {
     compile project(':mylib')
     compile files('libs/MobCommons-2016.1201.1839.jar')
     compile files('libs/MobTools-2016.1201.1839.jar')
-    compile name:'SMSSDKGUI-2.1.3',ext:'aar'
-    compile name:'SMSSDK-2.1.3',ext:'aar'
-
+    compile name: 'SMSSDKGUI-2.1.3', ext: 'aar'
+    compile name: 'SMSSDK-2.1.3', ext: 'aar'
 }

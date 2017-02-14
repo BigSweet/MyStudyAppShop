@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <supports-screens
             android:anyDensity="true"
             android:largeScreens="true"
@@ -158,6 +157,7 @@
         <activity android:name=".Activity.RecordDemoActivity"/>
         <activity android:name=".Activity.NineLockActivity"/>
         <activity android:name=".Activity.SqliteDataBaseActivity"/>
+        <activity android:name=".Activity.ChatJiqiActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -192,6 +192,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3"/>
+
     </application>
 
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
