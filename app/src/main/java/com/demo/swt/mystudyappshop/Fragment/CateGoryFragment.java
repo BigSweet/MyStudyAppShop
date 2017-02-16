@@ -15,6 +15,7 @@ import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
 import com.demo.swt.mystudyappshop.Activity.SqliteDataBaseActivity;
 import com.demo.swt.mystudyappshop.Activity.WebChatActivity;
+import com.demo.swt.mystudyappshop.Activity.WuZiQiActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.SelectCityActivity.SelectCityActivity;
@@ -124,7 +125,13 @@ public class CateGoryFragment extends Fragment {
             }
         });
 
-
+        view.findViewById(R.id.wuziqi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WuZiQiActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

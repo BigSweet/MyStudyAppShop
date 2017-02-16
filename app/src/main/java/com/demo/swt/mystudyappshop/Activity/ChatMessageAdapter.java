@@ -66,7 +66,6 @@ public class ChatMessageAdapter extends BaseAdapter
 		ViewHolder viewHolder = null;
 		if (convertView == null)
 		{
-			// ͨ��ItemType���ò�ͬ�Ĳ���
 			if (getItemViewType(position) == 0)
 			{
 				convertView = mInflater.inflate(R.layout.item_from_msg, parent,
@@ -91,7 +90,6 @@ public class ChatMessageAdapter extends BaseAdapter
 		{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		// ��������
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		viewHolder.mDate.setText(df.format(chatMessage.getDate()));
 		viewHolder.mMsg.setText(chatMessage.getMsg());

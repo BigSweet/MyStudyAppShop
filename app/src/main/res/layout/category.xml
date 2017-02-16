@@ -104,6 +104,15 @@
             android:background="@drawable/bg_edittext"
             android:text="语音聊天机器人"/>
 
+        <Button
+            android:padding="5dp"
+            android:id="@+id/wuziqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:text="五子棋游戏"/>
+
+
     </LinearLayout>
 
 
