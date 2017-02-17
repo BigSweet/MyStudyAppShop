@@ -10,15 +10,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        manifestPlaceholders =[UMENG_CHANNEL_VALUE:"umeng"]
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            signingConfig signingConfigs.debug
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
 
     signingConfigs {
         debug {
@@ -27,6 +21,58 @@ android {
             keyAlias "androiddebugkey"
             keyPassword "android"
         }
+        //为签名包添加配置
+        release {
+            keyAlias 'china'
+            keyPassword '123456'
+            storeFile file('D:/work/release.jks')
+            storePassword '123456'
+            //指定生成的release包的文件名
+
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+
+    productFlavors {  //在这里添加你所有需要打包的渠道
+        xiaomi {}        //xiaomi渠道 
+        meizu {}         //魅族
+
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            def buildType
+            if (variant.buildType.name.equals('release')) {
+                buildType = "release"
+            } else if (variant.buildType.name.equals('debug')) {
+                buildType = "debug"
+            }
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
+                //def fileName = "Anlaiye-v${defaultConfig.versionName}-${getDate()}-${variant.productFlavors[0].name}-${buildType}.apk"
+                def fileName = "Sunwentao-v${defaultConfig.versionName}-${variant.productFlavors[0].name}-${buildType}.apk"
+                output.outputFile = new File(outputFile.parent + buildType, fileName)
+            }
+        }
     }
 
     sourceSets {
@@ -34,6 +80,14 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
 }
 
 

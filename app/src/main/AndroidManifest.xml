@@ -184,11 +184,13 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
+        <meta-data android:value="Channel ID" android:name="${UMENG_CHANNEL_VALUE}"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3"></meta-data>
+            android:value="58490310e88bad3aa9000220"></meta-data>
+
+        <!--原来的appkey   B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3-->
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
