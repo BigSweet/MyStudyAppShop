@@ -4,30 +4,45 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/image111"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            android:id="@+id/imageview1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@mipmap/psb" />
 
-        <Button
-            android:id="@+id/alpbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="点击半透明" />
-
-        <Button
-            android:id="@+id/noalpbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="点击不透明" />
+        <ImageView
+            android:id="@+id/imageview2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@mipmap/psb" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="这里测试的是一个简单的设置色值，在recyclerview中还是通过holder设置" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@mipmap/psb" />
+
+        <ImageView
+            android:id="@+id/imageview4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@mipmap/psb" />
+
+
+    </LinearLayout>
 </LinearLayout>
