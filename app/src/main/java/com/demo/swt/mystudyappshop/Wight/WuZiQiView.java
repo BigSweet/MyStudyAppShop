@@ -27,6 +27,12 @@ import java.util.List;
  * 时间: 2017/2/15
  */
 
+/**
+ * 首先画棋盘new paint 初始化画笔，
+ * 根据屏幕的宽度设置自定义view的高度,在onmeasure中测量,进行特殊情况处理，unspecified的时候
+ * 最后通过 setMeasuredDimension(width, width);完成大小的测量，然后绘制线条
+ *
+ */
 public class WuZiQiView extends View {
     private int maxline = 10;
     private int mpanelWidth;
@@ -46,7 +52,7 @@ public class WuZiQiView extends View {
     public WuZiQiView(Context context, AttributeSet attrs) {
 
         super(context, attrs);
-        setBackgroundColor(0x44ff0000);
+//        setBackgroundColor(0x44ff0000);
         init();
     }
 
@@ -75,6 +81,13 @@ public class WuZiQiView extends View {
         setMeasuredDimension(width, width);
     }
 
+    /**
+     *
+     * @param w    当前的宽度
+     * @param h    当前的高度
+     * @param oldw 改变之前的宽度
+     * @param oldh 改变之前的高度
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);

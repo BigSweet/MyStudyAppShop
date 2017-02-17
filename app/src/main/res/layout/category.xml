@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
-            android:text="webchat"/>
+            android:text="微信语音聊天"/>
 
         <Button
             android:padding="5dp"
