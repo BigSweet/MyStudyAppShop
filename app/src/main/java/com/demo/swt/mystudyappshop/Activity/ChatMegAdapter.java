@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.bean.ChatMessage;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -51,6 +52,7 @@ public class ChatMegAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             LeftViewHolder leftViewHolder = (LeftViewHolder) holder;
             leftViewHolder.mDate.setText(df.format(chatMessage.getDate()));
             leftViewHolder.mMsg.setText(chatMessage.getMsg());
+            leftViewHolder.mUrl.setImageURI(chatMessage.getUrl());
         } else {
             RightViewHolder rightViewHolder = (RightViewHolder) holder;
             rightViewHolder.mDate.setText(df.format(chatMessage.getDate()));
@@ -78,6 +80,7 @@ public class ChatMegAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         private TextView mDate;
         private TextView mMsg;
+        private SimpleDraweeView mUrl;
 
         public LeftViewHolder(View itemView) {
             super(itemView);
@@ -85,6 +88,7 @@ public class ChatMegAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     .findViewById(R.id.id_form_msg_date);
             mMsg = (TextView) itemView
                     .findViewById(R.id.id_from_msg_info);
+            mUrl = (SimpleDraweeView) itemView.findViewById(R.id.id_from_msg_url);
         }
     }
 

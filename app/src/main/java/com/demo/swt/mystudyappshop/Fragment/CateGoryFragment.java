@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.swt.mystudyappshop.Activity.BaiDuActivity;
 import com.demo.swt.mystudyappshop.Activity.ChatJiqiActivity;
 import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
@@ -129,6 +130,13 @@ public class CateGoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WuZiQiActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.butt_ditu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BaiDuActivity.class);
                 startActivity(intent);
             }
         });

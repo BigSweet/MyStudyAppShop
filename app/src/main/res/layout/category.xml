@@ -19,11 +19,11 @@
             android:text="自定义的小控件"/>
 
         <Button
-            android:padding="5dp"
             android:id="@+id/zhima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="芝麻雷达图"/>
 
         <Button
@@ -34,11 +34,11 @@
             android:text="RGBA"/>
 
         <Button
-            android:padding="3dp"
             android:id="@+id/qrcodebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="3dp"
             android:text="QRcode"/>
 
 
@@ -50,35 +50,35 @@
         android:orientation="horizontal">
 
         <Button
-            android:padding="5dp"
             android:id="@+id/webchatbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="微信语音聊天"/>
 
         <Button
-            android:padding="5dp"
             android:id="@+id/recorddemobutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="录音demo"/>
 
         <Button
-            android:padding="5dp"
             android:id="@+id/ninebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="九宫格解锁"/>
 
         <Button
-            android:padding="5dp"
             android:id="@+id/smsservice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="短信验证"/>
 
     </LinearLayout>
@@ -89,30 +89,36 @@
         android:orientation="horizontal">
 
         <Button
-            android:padding="5dp"
             android:id="@+id/aqlitebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="sqlite数据库"/>
 
         <Button
-            android:padding="5dp"
             android:id="@+id/chatjiqiren"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="语音聊天机器人"/>
 
         <Button
-            android:padding="5dp"
             android:id="@+id/wuziqi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
+            android:padding="5dp"
             android:text="五子棋游戏"/>
 
-
+        <Button
+            android:id="@+id/butt_ditu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:padding="5dp"
+            android:text="百度地图"/>
     </LinearLayout>
 
 

@@ -1,5 +1,7 @@
 package com.demo.swt.mystudyappshop.Util;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSONObject;
 import com.demo.swt.mystudyappshop.TuLingJiQi.Aes;
 import com.demo.swt.mystudyappshop.TuLingJiQi.Md5;
@@ -35,6 +37,7 @@ public class ChatUtil {
         try {
             result = gson.fromJson(jsonRes, Result.class);
             chatMessage.setMsg(result.getText());
+            chatMessage.setUrl(result.getUrl());
         } catch (Exception e) {
             chatMessage.setMsg("服务器繁忙，请稍候再试");
         }
@@ -66,6 +69,7 @@ public class ChatUtil {
         json.put("data", data);
         //请求图灵api
         String result = PostServer.SendPost(json.toString(), url);
+        Log.i("Data", result);
         return result;
     }
 }

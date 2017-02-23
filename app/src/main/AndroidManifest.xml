@@ -159,6 +159,7 @@
         <activity android:name=".Activity.SqliteDataBaseActivity"/>
         <activity android:name=".Activity.ChatJiqiActivity"/>
         <activity android:name=".Activity.WuZiQiActivity"/>
+        <activity android:name=".Activity.BaiDuActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

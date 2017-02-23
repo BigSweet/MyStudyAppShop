@@ -3,6 +3,11 @@ package com.demo.swt.mystudyappshop.TuLingJiQi;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 /**
  * 加密请求测试类
  * @author 图灵机器人
@@ -14,6 +19,14 @@ public class AesTest {
 		utils.testAes();
 	}
 	public void testAes(){
+		try {
+			KeyGenerator keyGenerator= KeyGenerator.getInstance("DES");
+			keyGenerator.init(56);
+			SecretKey secretKey=keyGenerator.generateKey();
+			byte[] key =secretKey.getEncoded();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 		//图灵网站上的secret
 		String secret = "ad9301dcf7d37e3f";
 		//图灵网站上的apiKey

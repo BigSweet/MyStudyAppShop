@@ -23,4 +23,7 @@
     <color name="sfw_blue">#0057e7</color>
     <color name="sfw_green">#008744</color>
     <color name="sfw_yellow">#ffa700</color>
+    <color name="black1">#000000</color>
+    <color name="color_ffdc5b">#FFDC5B</color>
+    <color name="color_999999">#999999</color>
 </resources>

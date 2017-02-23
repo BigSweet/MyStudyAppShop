@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@color/white"
+                                                    android:orientation="vertical">
+
+    <com.cjj.MaterialRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:id="@+id/refresh"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:background="@color/white">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/baike_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </com.cjj.MaterialRefreshLayout>
+
+
+    <!--
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="next"
+            android:text="点我下一页" />-->
+
+</LinearLayout>
