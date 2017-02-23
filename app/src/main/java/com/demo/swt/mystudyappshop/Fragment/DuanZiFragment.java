@@ -166,6 +166,7 @@ public class DuanZiFragment extends Fragment {
                         nomallist.add(mBaiKeBean);
                     }
 
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(), 500);
 
 
                 } catch (IOException e) {
@@ -173,12 +174,7 @@ public class DuanZiFragment extends Fragment {
                 }
             }
         }.start();
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mHandler.obtainMessage();
-            }
-        }, 1000);
+
 
     }
 

@@ -160,6 +160,7 @@
         <activity android:name=".Activity.ChatJiqiActivity"/>
         <activity android:name=".Activity.WuZiQiActivity"/>
         <activity android:name=".Activity.BaiDuActivity"/>
+        <activity android:name=".Activity.AnimationActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -185,7 +186,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <meta-data android:value="Channel ID" android:name="${UMENG_CHANNEL_VALUE}"/>
+
+        <meta-data
+            android:name="${UMENG_CHANNEL_VALUE}"
+            android:value="Channel ID"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
