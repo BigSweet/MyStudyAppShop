@@ -134,7 +134,13 @@
             android:padding="5dp"
             android:text="动画demo"/>
 
-
+        <Button
+            android:id="@+id/camrea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:padding="5dp"
+            android:text="摄像机demo"/>
     </LinearLayout>
 
 </LinearLayout>

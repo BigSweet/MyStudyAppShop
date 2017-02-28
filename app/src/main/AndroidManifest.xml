@@ -161,6 +161,8 @@
         <activity android:name=".Activity.WuZiQiActivity"/>
         <activity android:name=".Activity.BaiDuActivity"/>
         <activity android:name=".Activity.AnimationActivity"/>
+        <activity android:name=".Activity.CameraDemoActivity"/>
+        <activity android:name=".Activity.CustomCameraActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

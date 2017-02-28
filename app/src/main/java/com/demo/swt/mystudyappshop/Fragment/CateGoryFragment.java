@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.demo.swt.mystudyappshop.Activity.AnimationActivity;
 import com.demo.swt.mystudyappshop.Activity.BaiDuActivity;
+import com.demo.swt.mystudyappshop.Activity.CameraDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.ChatJiqiActivity;
 import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
@@ -145,6 +146,13 @@ public class CateGoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AnimationActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.camrea).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CameraDemoActivity.class);
                 startActivity(intent);
             }
         });
