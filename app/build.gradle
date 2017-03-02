@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-        manifestPlaceholders =[UMENG_CHANNEL_VALUE:"umeng"]
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
     }
 
     signingConfigs {
@@ -28,7 +28,6 @@ android {
             storeFile file('D:/work/release.jks')
             storePassword '123456'
             //指定生成的release包的文件名
-
         }
     }
     buildTypes {
