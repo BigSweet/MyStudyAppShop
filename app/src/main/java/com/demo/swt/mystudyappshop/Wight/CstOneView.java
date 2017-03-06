@@ -1,4 +1,4 @@
-package com.demo.swt.mystudyappshop.SelectCityActivity;
+package com.demo.swt.mystudyappshop.Wight;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -34,12 +34,21 @@ public class CstOneView extends View {
      */
     private int mTitleTextSize;
 
+
     /**
-     * 绘制时控制文本绘制的范围
+     * mBound 文字的范围
+     * mPaint 画笔
      */
     private Rect mBound;
+
     private Paint mPaint;
 
+    /**
+     * 构造方法依次调用
+     *
+     * @param context
+     * @param attrs
+     */
     public CstOneView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -60,9 +69,11 @@ public class CstOneView extends View {
         /**
          * 获得我们所定义的自定义样式属性
          */
+        //获取TypedArray，里面存取了所有的自定义的属性值
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CstOneView, defStyle, 0);
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
+            //把所有的属性值拿出来，并赋值给我们定义的值
             int attr = a.getIndex(i);
             switch (attr) {
                 case R.styleable.CstOneView_titleText:
@@ -100,13 +111,11 @@ public class CstOneView extends View {
             }
 
         });
-
-
     }
 
     private String randomText() {
         Random random = new Random();
-        Set<Integer> set = new HashSet<Integer>();
+        Set<Integer> set = new HashSet<>();
         while (set.size() < 4) {
             int randomInt = random.nextInt(10);
             set.add(randomInt);

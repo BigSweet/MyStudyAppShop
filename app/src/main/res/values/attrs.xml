@@ -3,26 +3,56 @@
 
 
     <declare-styleable name="CstImgLayout">
-        <attr name="bottom_margin" format="dimension" />
-        <attr name="left_margin" format="dimension" />
-        <attr name="right_margin" format="dimension" />
-        <attr name="top_margin" format="dimension" />
-        <attr name="all_margin" format="dimension" />
-        <attr name="child_margin" format="dimension" />
-        <attr name="row_num" format="integer" />
-        <attr name="need_intro" format="boolean" />
-        <attr name="real_width" format="dimension" />
+        <attr name="bottom_margin" format="dimension"/>
+        <attr name="left_margin" format="dimension"/>
+        <attr name="right_margin" format="dimension"/>
+        <attr name="top_margin" format="dimension"/>
+        <attr name="all_margin" format="dimension"/>
+        <attr name="child_margin" format="dimension"/>
+        <attr name="row_num" format="integer"/>
+        <attr name="need_intro" format="boolean"/>
+        <attr name="real_width" format="dimension"/>
     </declare-styleable>
 
 
-
-    <attr name="titleText" format="string" />
-    <attr name="titleTextColor" format="color" />
-    <attr name="titleTextSize" format="dimension" />
-
     <declare-styleable name="CstOneView">
-        <attr name="titleText" />
-        <attr name="titleTextColor" />
-        <attr name="titleTextSize" />
+        <attr name="titleText" format="string"/>
+        <attr name="titleTextColor" format="color"/>
+        <attr name="titleTextSize" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="TestView">
+        <attr name="testText" format="string"/>
+        <attr name="testSize" format="dimension"/>
+        <attr name="testColor" format="color"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="CstTwoView">
+        <attr name="text" format="string"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color"/>
+        <attr name="imgsrc" format="reference"/>
+        <attr name="imgScaleType">
+            <enum name="fillXY" value="0"/>
+            <enum name="center" value="1"/>
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="CstThreeView">
+        <attr name="firstColor" format="color"/>
+        <attr name="secondColor" format="color"/>
+        <attr name="circleWidth" format="dimension"/>
+        <attr name="speed" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="CstManView">
+        <attr name="headColor" format="color"/>
+        <attr name="HeadcircleWidth" format="dimension"/>
+        <attr name="bodyColor" format="color"/>
+        <attr name="bodycircleWidth" format="dimension"/>
+        <attr name="LefthandColor" format="color"/>
+        <attr name="LefthandWidth" format="dimension"/>
     </declare-styleable>
 </resources>
