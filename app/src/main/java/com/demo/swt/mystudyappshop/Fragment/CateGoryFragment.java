@@ -12,6 +12,7 @@ import com.demo.swt.mystudyappshop.Activity.AnimationActivity;
 import com.demo.swt.mystudyappshop.Activity.BaiDuActivity;
 import com.demo.swt.mystudyappshop.Activity.CameraDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.ChatJiqiActivity;
+import com.demo.swt.mystudyappshop.Activity.FlowLayoutActivity;
 import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
 import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
@@ -156,6 +157,15 @@ public class CateGoryFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        view.findViewById(R.id.flow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FlowLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

@@ -31,7 +31,6 @@ import java.util.List;
  * 首先画棋盘new paint 初始化画笔，
  * 根据屏幕的宽度设置自定义view的高度,在onmeasure中测量,进行特殊情况处理，unspecified的时候
  * 最后通过 setMeasuredDimension(width, width);完成大小的测量，然后绘制线条
- *
  */
 public class WuZiQiView extends View {
     private int maxline = 10;
@@ -58,7 +57,9 @@ public class WuZiQiView extends View {
 
     private void init() {
         mPaint.setColor(0x88000000);
+        //抗锯齿
         mPaint.setAntiAlias(true);
+        //防抖动。
         mPaint.setDither(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mWhitePiece = BitmapFactory.decodeResource(getResources(), R.drawable.stone_w2);
@@ -82,7 +83,6 @@ public class WuZiQiView extends View {
     }
 
     /**
-     *
      * @param w    当前的宽度
      * @param h    当前的高度
      * @param oldw 改变之前的宽度

@@ -1,16 +1,10 @@
 package com.demo.swt.mystudyappshop.Wight;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
-
-import com.demo.swt.mystudyappshop.R;
 
 /**
  * 介绍：这里写介绍
@@ -20,91 +14,64 @@ import com.demo.swt.mystudyappshop.R;
  */
 
 public class TestView extends View {
-    private String testText;
-    private int testSize;
-    private int testColor;
-    private Paint mPaint;
-    private Rect mbounds;
-
-    public TestView(Context context) {
-        this(context, null);
-    }
+    private int maxline = 10;
+    private int mpanelWidth;
+    private float mLineHeight;
+    private Paint mPaint = new Paint();
 
     public TestView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        setBackgroundColor(0x44ff0000);
+        init();
     }
 
-    public TestView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TestView, defStyleAttr, 0);
-        int n = a.getIndexCount();
-        for (int i = 0; i < n; i++) {
-            int attr = a.getIndex(i);
-            switch (attr) {
-                case R.styleable.TestView_testSize:
-                    testSize = a.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics()));
-                    break;
-                case R.styleable.TestView_testColor:
-                    testColor = a.getColor(attr, Color.BLACK);
-                    break;
-                case R.styleable.TestView_testText:
-                    testText = a.getString(attr);
-                    break;
+    private void init() {
 
-            }
-        }
-        a.recycle();
-        mPaint = new Paint();
-        mbounds = new Rect();
-        mPaint.setTextSize(testSize);
-        mPaint.getTextBounds(testText, 0, testText.length(), mbounds);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = 0;
-        int height = 0;
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 
-        /**
-         * 设置宽度
-         */
-        int specMode = MeasureSpec.getMode(widthMeasureSpec);
-        int specSize = MeasureSpec.getSize(widthMeasureSpec);
-        switch (specMode) {
-            case MeasureSpec.EXACTLY:// 明确指定了宽度的
-                width = getPaddingLeft() + getPaddingRight() + specSize;
-                break;
-            case MeasureSpec.AT_MOST:// 一般为WARP_CONTENT
-                width = getPaddingLeft() + getPaddingRight() + mbounds.width();
-                break;
+        int width = Math.min(widthSize, heightSize);
+        if (heightMode == MeasureSpec.UNSPECIFIED) {
+            width = widthSize;
+        } else if (widthMode == MeasureSpec.UNSPECIFIED) {
+            width = heightSize;
         }
-
-        /**
-         * 设置高度
-         */
-        specMode = MeasureSpec.getMode(heightMeasureSpec);
-        specSize = MeasureSpec.getSize(heightMeasureSpec);
-        switch (specMode) {
-            case MeasureSpec.EXACTLY:// 明确指定了宽度和高度的 或者是match_parent
-                height = getPaddingTop() + getPaddingBottom() + specSize;
-                break;
-            case MeasureSpec.AT_MOST:// 一般为WARP_CONTENT
-                height = getPaddingTop() + getPaddingBottom() + mbounds.height();
-                break;
-        }
-
-        setMeasuredDimension(width, height);//设置自定义view的宽度和高度
+        //设置自定义view的宽度和高度
+        setMeasuredDimension(width, width);
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mpanelWidth = w;//设置view的宽度为棋盘的宽度
+        mLineHeight = mpanelWidth * 1.0f / maxline;//获取每一行的宽度=棋盘的宽度/行数
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        mPaint.setColor(Color.YELLOW);
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);
-        mPaint.setColor(Color.RED);
-        canvas.drawText(testText, getWidth() / 2 - mbounds.width() / 2, getHeight() / 2 + mbounds.height() / 2, mPaint);
+        doawBoard(canvas);//画棋盘
+
     }
+
+    private void doawBoard(Canvas canvas) {
+        int w = mpanelWidth;
+        int LineHeight = (int) mLineHeight;
+        for (int i = 0; i < maxline; i++) {
+            //不能从起点开始画，因为我们还需要放置旗子，所以这里取行宽的2分之1
+            int startX = (int) (mLineHeight / 2);
+            int endX = (int) (w - mLineHeight / 2);
+            int y = (int) ((0.5 + i) * LineHeight);
+            canvas.drawLine(startX, y, endX, y, mPaint);
+            canvas.drawLine(y, startX, y, endX, mPaint);
+        }
+    }
+
 }

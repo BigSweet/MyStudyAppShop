@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <com.demo.swt.mystudyappshop.Wight.MyFlowLayout
+        android:layout_width="match_parent"
+        android:background="@color/sfw_red"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="孙文韬加油啊"
+            android:textColor="#43BBE7"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="加油"
+            android:textColor="#43BBE7"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="可以的"
+            android:textColor="#43BBE7"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="你觉得呢"
+            android:textColor="#43BBE7"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="以后我"
+            android:textColor="#43BBE7"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="会变成"
+            android:textColor="#43BBE7"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="一个大神的"
+            android:textColor="#43BBE7"/>
+        <TextView
+            style="@style/text_flag_01"
+            android:text="哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦"
+            android:textColor="#43BBE7"/>
+
+
+    </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
+</LinearLayout>

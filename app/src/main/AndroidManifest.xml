@@ -130,7 +130,7 @@
             </intent-filter>
         </service>
         <!--<activity android:name=".MainActivity" />-->
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
 
         </activity>
         <activity
@@ -155,7 +155,7 @@
         <activity android:name=".Activity.RgbaActivity"/>
         <activity android:name=".Activity.QrCodeActivity"/>
         <activity android:name=".Activity.RecordDemoActivity"/>
-        <activity android:name=".Activity.NineLockActivity"/>
+        <activity android:name=".Activity.NineLockActivity" android:theme="@style/Anim_fade"/>
         <activity android:name=".Activity.SqliteDataBaseActivity"/>
         <activity android:name=".Activity.ChatJiqiActivity"/>
         <activity android:name=".Activity.WuZiQiActivity"/>
@@ -163,6 +163,7 @@
         <activity android:name=".Activity.AnimationActivity"/>
         <activity android:name=".Activity.CameraDemoActivity"/>
         <activity android:name=".Activity.CustomCameraActivity"/>
+        <activity android:name=".Activity.FlowLayoutActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
