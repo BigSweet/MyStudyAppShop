@@ -35,7 +35,17 @@ import cn.smssdk.gui.RegisterPage;
  * Created by pc on 2016/11/29.
  */
 
-public class CateGoryFragment extends Fragment {
+public class TabFenLeiFragment extends Fragment {
+
+    public static TabFenLeiFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TabFenLeiFragment fragment = new TabFenLeiFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Nullable
     @Override

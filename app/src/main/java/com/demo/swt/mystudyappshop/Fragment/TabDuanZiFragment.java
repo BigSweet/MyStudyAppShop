@@ -20,7 +20,17 @@ import java.util.List;
  * Created by pc on 2016/11/29.
  */
 
-public class ShopCartFragment extends Fragment {
+public class TabDuanZiFragment extends Fragment {
+
+    public static TabDuanZiFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TabDuanZiFragment fragment = new TabDuanZiFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     private ViewPager mViewPager;//
     private TabLayout mTabLayout; //
     private DuanZiFragment mDuanZiFragment;
@@ -31,7 +41,7 @@ public class ShopCartFragment extends Fragment {
     private DuanZiFragment mQiuTuFragment;
     private DuanZiFragment mXinXianFragment;
     public List<Fragment> mFragmentList = new ArrayList<>();
-    private static final String[] mTitles = {"热图","24小时","热门","文字","穿越","糗图","新鲜"};
+    private static final String[] mTitles = new String[]{"热图", "24小时", "热门", "文字", "穿越", "糗图", "新鲜"};
     private static int RE_TU = 1;
     private static int XIAO_SHI = 2;
     private static int RE_MEN = 3;
@@ -44,16 +54,16 @@ public class ShopCartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.duanzi_main, container, false);
-
+        mFragmentList.clear();
         mViewPager = (ViewPager) view.findViewById(R.id.duanzi_viepager);
         mTabLayout = (TabLayout) view.findViewById(R.id.duanzi_tab);
         mDuanZiFragment = getReTuFragment();
         mReMenFragment = getReMenFragment();
-        mXiaoShiFragment=getXiaoShiFragment();
-        mWenZiFragment=getWenziFragment();
-        mChuangYueFragment=getChuangYueFragment();
-        mQiuTuFragment=getQiuTuFragment();
-        mXinXianFragment=getXinXianFragment();
+        mXiaoShiFragment = getXiaoShiFragment();
+        mWenZiFragment = getWenziFragment();
+        mChuangYueFragment = getChuangYueFragment();
+        mQiuTuFragment = getQiuTuFragment();
+        mXinXianFragment = getXinXianFragment();
         mFragmentList.add(mDuanZiFragment);
         mFragmentList.add(mReMenFragment);
         mFragmentList.add(mXiaoShiFragment);
@@ -61,10 +71,9 @@ public class ShopCartFragment extends Fragment {
         mFragmentList.add(mChuangYueFragment);
         mFragmentList.add(mQiuTuFragment);
         mFragmentList.add(mXinXianFragment);
-        mXiaoShiFragment=getXiaoShiFragment();
+        mXiaoShiFragment = getXiaoShiFragment();
         mViewPager.setAdapter(new MyFragmentAdapter(getFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
-
         return view;
     }
 
@@ -104,30 +113,35 @@ public class ShopCartFragment extends Fragment {
         bundle.putInt("FLAG", RE_MEN);
         return (DuanZiFragment) Fragment.instantiate(getActivity(), DuanZiFragment.class.getName(), bundle);
     }
+
     private DuanZiFragment getXiaoShiFragment() {
 
         Bundle bundle = new Bundle();
         bundle.putInt("FLAG", XIAO_SHI);
         return (DuanZiFragment) Fragment.instantiate(getActivity(), DuanZiFragment.class.getName(), bundle);
     }
+
     private DuanZiFragment getWenziFragment() {
 
         Bundle bundle = new Bundle();
         bundle.putInt("FLAG", WEN_ZI);
         return (DuanZiFragment) Fragment.instantiate(getActivity(), DuanZiFragment.class.getName(), bundle);
     }
+
     private DuanZiFragment getChuangYueFragment() {
 
         Bundle bundle = new Bundle();
         bundle.putInt("FLAG", CHUANG_YUE);
         return (DuanZiFragment) Fragment.instantiate(getActivity(), DuanZiFragment.class.getName(), bundle);
     }
+
     private DuanZiFragment getQiuTuFragment() {
 
         Bundle bundle = new Bundle();
         bundle.putInt("FLAG", QIU_TU);
         return (DuanZiFragment) Fragment.instantiate(getActivity(), DuanZiFragment.class.getName(), bundle);
     }
+
     private DuanZiFragment getXinXianFragment() {
 
         Bundle bundle = new Bundle();

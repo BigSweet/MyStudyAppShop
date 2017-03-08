@@ -28,7 +28,16 @@ import java.util.List;
  * Created by pc on 2016/11/29.
  */
 
-public class SearchFragment extends Fragment {
+public class TabFriendFragment extends Fragment {
+
+    public static TabFriendFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        TabFriendFragment fragment = new TabFriendFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     private List<FeedBean> feedlist = new ArrayList<>();
     private List<FeedBean> morenlist = new ArrayList<>();
     private SearchAdapter myAdapter;

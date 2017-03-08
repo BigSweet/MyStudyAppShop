@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.demo.swt.mystudyappshop.MainActivity">
+    >
 
- <!--   <com.demo.swt.mystudyappshop.Wight.CstToolbar
-        android:id="@+id/csttoolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize">
 
-    </com.demo.swt.mystudyappshop.Wight.CstToolbar>-->
 
     <com.demo.swt.mystudyappshop.Wight.CstTopBanner
         android:id="@+id/csttopbanner"
@@ -25,24 +16,25 @@
     </com.demo.swt.mystudyappshop.Wight.CstTopBanner>
 
 
-    <FrameLayout
-        android:id="@+id/realtabcontent"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <com.demo.swt.mystudyappshop.Wight.FragmentTabHost
-        android:id="@android:id/tabhost"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <FrameLayout
-            android:background="@color/white"
-            android:id="@android:id/tabcontent"
-            android:layout_width="0dp"
+<!--
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0" />
-    </com.demo.swt.mystudyappshop.Wight.FragmentTabHost>
+            android:layout_weight="1">
+
+
+        </android.support.v4.view.ViewPager>-->
+
+    <com.demo.swt.mystudyappshop.Wight.NoPreloadViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+    </com.demo.swt.mystudyappshop.Wight.NoPreloadViewPager>
+
+        <include layout="@layout/main_bottom"/>
+
+
 </LinearLayout>

@@ -47,7 +47,7 @@ public class NoPreloadViewPager extends ViewGroup {
 
     private static final boolean USE_CACHE = false;
 
-    private static final int DEFAULT_OFFSCREEN_PAGES = 1;//默认是1
+    private static final int DEFAULT_OFFSCREEN_PAGES = 0;//默认是1
     private static final int MAX_SETTLE_DURATION = 600; // ms
 
     static class ItemInfo {

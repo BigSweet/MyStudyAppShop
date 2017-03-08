@@ -47,19 +47,12 @@ public class DuanZiFragment extends Fragment {
     private static final int STATE_LOADMORE = 2;
     private int state = STATE_NORMAL;
     private int FlAG;
-    String remen = "http://www.qiushibaike.com/8hr/page/" + index + "/";
-    String retu = "http://www.qiushibaike.com/imgrank/page/" + index + "/";
-    String xiaoshi = "http://www.qiushibaike.com/hot/page/" + index + "/";
-    String wenzi = "  http://www.qiushibaike.com/text/page/" + index + "/";
-    String chuanyue = " http://www.qiushibaike.com/history/862c9499d3e81ceb75ef070ed0c11b23/page/" + index + "/";
-    String qiutu = "    http://www.qiushibaike.com/pic/page/" + index + "/";
-    String xinxian = "http://www.qiushibaike.com/textnew/page/" + index + "/";
+
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             initRecycler();
-
         }
     };
 
@@ -72,6 +65,13 @@ public class DuanZiFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        requestRecycleview();
+        initReswipe();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,8 +79,6 @@ public class DuanZiFragment extends Fragment {
         mBaiKeRv = (RecyclerView) view.findViewById(R.id.baike_recycle);
         materialRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
 
-        requestRecycleview();
-        initReswipe();
 
         return view;
     }
@@ -116,7 +114,15 @@ public class DuanZiFragment extends Fragment {
             public void run() {
                 super.run();
                 try {
+
                     String url = null;
+                    String remen = "http://www.qiushibaike.com/8hr/page/" + index + "/";
+                    String retu = "http://www.qiushibaike.com/imgrank/page/" + index + "/";
+                    String xiaoshi = "http://www.qiushibaike.com/hot/page/" + index + "/";
+                    String wenzi = "  http://www.qiushibaike.com/text/page/" + index + "/";
+                    String chuanyue = " http://www.qiushibaike.com/history/862c9499d3e81ceb75ef070ed0c11b23/page/" + index + "/";
+                    String qiutu = "    http://www.qiushibaike.com/pic/page/" + index + "/";
+                    String xinxian = "http://www.qiushibaike.com/textnew/page/" + index + "/";
                     if (FlAG == 1) {
                         url = retu;
                     }

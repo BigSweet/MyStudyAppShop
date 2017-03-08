@@ -21,7 +21,16 @@ import java.util.Map;
  * Created by pc on 2016/11/29.
  */
 
-public class MyCenterFragment extends Fragment implements View.OnClickListener {
+public class TabSettingFragment extends Fragment implements View.OnClickListener {
+
+    public static TabSettingFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        TabSettingFragment fragment = new TabSettingFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     private Button qqlogin;
     private Button weixinlogin;
     private UMShareAPI mShareAPI;

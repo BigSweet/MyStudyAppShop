@@ -32,7 +32,17 @@ import java.util.List;
  * Created by pc on 2016/11/29.
  */
 
-public class HomeFragment extends Fragment {
+public class TabMainFragment extends Fragment {
+
+    public static TabMainFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TabMainFragment fragment = new TabMainFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     private SliderLayout sliderLayout;
     private PagerIndicator indicator;
     private List<NewBannerBean> bannerBeanList = new ArrayList<>();
@@ -60,7 +70,7 @@ public class HomeFragment extends Fragment {
                         .setCallback(umShareListener)
                         .share();*/
                 v.setHapticFeedbackEnabled(true);
-                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
+                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.QQ)
                         .withText("煤炭坝")
                         .withTitle("点击查看煤炭坝的照")
@@ -197,7 +207,7 @@ public class HomeFragment extends Fragment {
     //生命周期结束的时候，banner停止滑动
     @Override
     public void onDestroy() {
-        sliderLayout.stopAutoCycle();
         super.onDestroy();
+        sliderLayout.stopAutoCycle();
     }
 }
