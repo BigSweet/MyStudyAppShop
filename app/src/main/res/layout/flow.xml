@@ -6,49 +6,174 @@
 
 
     <com.demo.swt.mystudyappshop.Wight.MyFlowLayout
-        android:layout_width="match_parent"
-        android:background="@color/sfw_red"
-        android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
         <TextView
             style="@style/text_flag_01"
-            android:text="孙文韬加油啊"
-            android:textColor="#43BBE7"/>
+            android:text="Welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="加油"
-            android:textColor="#43BBE7"/>
+            android:text="IT工程师"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="可以的"
-            android:textColor="#43BBE7"/>
+            android:text="学习ing"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="你觉得呢"
-            android:textColor="#43BBE7"/>
+            android:text="恋爱ing"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="以后我"
-            android:textColor="#43BBE7"/>
+            android:text="挣钱ing"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="会变成"
-            android:textColor="#43BBE7"/>
+            android:text="努力ing"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="一个大神的"
-            android:textColor="#43BBE7"/>
+            android:text="I thick i can"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+    </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
+
+
+    <com.demo.swt.mystudyappshop.Wight.MyFlowLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
         <TextView
             style="@style/text_flag_01"
-            android:text="哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦"
-            android:textColor="#43BBE7"/>
+            android:background="@drawable/flag_02"
+            android:text="Welcome"
+            android:textColor="#888888"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_02"
+            android:text="IT工程师"
+            android:textColor="#888888"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_02"
+            android:text="学习ing"
+            android:textColor="#888888"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_02"
+            android:text="恋爱ing"
+            android:textColor="#888888"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_02"
+            android:text="挣钱ing"
+            android:textColor="#888888"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_02"
+            android:text="努力ing"
+            android:textColor="#888888"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_02"
+            android:text="I thick i can"
+            android:textColor="#888888"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
+
+    <com.demo.swt.mystudyappshop.Wight.MyFlowLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="Welcome"
+            android:textColor="#43BBE7"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="IT工程师"
+            android:textColor="#43BBE7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="学习ing"
+            android:textColor="#43BBE7"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="恋爱ing"
+            android:textColor="#43BBE7"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="挣钱ing"
+            android:textColor="#43BBE7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="努力ing"
+            android:textColor="#43BBE7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_03"
+            android:text="I thick i can"
+            android:textColor="#43BBE7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 </LinearLayout>
