@@ -130,9 +130,10 @@
             </intent-filter>
         </service>
         <!--<activity android:name=".MainActivity" />-->
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
 
         </activity>
+        <activity android:name=".greendao.GreenMainAcitivity"/>
         <activity
             android:name=".Activity.WelcomeAcitivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -155,7 +156,9 @@
         <activity android:name=".Activity.RgbaActivity"/>
         <activity android:name=".Activity.QrCodeActivity"/>
         <activity android:name=".Activity.RecordDemoActivity"/>
-        <activity android:name=".Activity.NineLockActivity" android:theme="@style/Anim_fade"/>
+        <activity
+            android:name=".Activity.NineLockActivity"
+            android:theme="@style/Anim_fade"/>
         <activity android:name=".Activity.SqliteDataBaseActivity"/>
         <activity android:name=".Activity.ChatJiqiActivity"/>
         <activity android:name=".Activity.WuZiQiActivity"/>

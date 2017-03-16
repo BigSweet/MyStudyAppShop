@@ -128,6 +128,13 @@
             android:background="@drawable/bg_edittext"
             android:padding="5dp"
             android:text="FlowLayout"/>
+        <Button
+            android:id="@+id/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:padding="5dp"
+            android:text="GreenDao"/>
     </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 
 </LinearLayout>
