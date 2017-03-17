@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+              android:orientation="vertical"
+             android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/id_item_image"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/friends_sends_pictures_no"
+        android:scaleType="centerCrop" />
+
+</LinearLayout>

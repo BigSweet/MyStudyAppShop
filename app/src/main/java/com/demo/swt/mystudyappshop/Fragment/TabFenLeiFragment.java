@@ -14,6 +14,7 @@ import com.demo.swt.mystudyappshop.Activity.CameraDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.ChatJiqiActivity;
 import com.demo.swt.mystudyappshop.Activity.FlowLayoutActivity;
 import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
+import com.demo.swt.mystudyappshop.Activity.PhotosListActivity;
 import com.demo.swt.mystudyappshop.Activity.QrCodeActivity;
 import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
@@ -188,6 +189,13 @@ public class TabFenLeiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LeiDaActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.bendixiangce).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PhotosListActivity.class);
                 startActivity(intent);
             }
         });

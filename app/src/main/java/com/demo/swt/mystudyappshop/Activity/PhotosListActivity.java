@@ -10,11 +10,11 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.demo.swt.mystudyappshop.Adapter.PhotoSRvAdapter;
-import com.demo.swt.mystudyappshop.MainActivity;
 import com.demo.swt.mystudyappshop.R;
 
 import java.io.File;
@@ -65,11 +65,11 @@ public class PhotosListActivity extends AppCompatActivity {
             /**
              * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
              */
-//            mAdapter = new PhotoSRvAdapter(getApplicationContext(),mImgs,R.layout.photorvitem);
+            mAdapter = new PhotoSRvAdapter(getApplicationContext(), mImgs, R.layout.photorvitem, mImgDir.getAbsolutePath());
 
-//            mAdapter = new MyAdapter(getApplicationContext(), mImgs,
-//                    mImgDir.getAbsolutePath());
-//            mRecyclerView.setAdapter();
+
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
 
         }
 
@@ -86,23 +86,19 @@ public class PhotosListActivity extends AppCompatActivity {
     /**
      * 利用ContentProvider扫描手机中的图片，此方法在运行在子线程中 完成图片的扫描，最终获得jpg最多的那个文件夹
      */
-    private void getImages()
-    {
+    private void getImages() {
         if (!Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED))
-        {
+                Environment.MEDIA_MOUNTED)) {
             Toast.makeText(this, "暂无外部存储", Toast.LENGTH_SHORT).show();
             return;
         }
         // 显示进度条
         mProgressDialog = ProgressDialog.show(this, null, "正在加载...");
 
-        new Thread(new Runnable()
-        {
+        new Thread(new Runnable() {
 
             @Override
-            public void run()
-            {
+            public void run() {
                 Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                 ContentResolver mContentResolver = PhotosListActivity.this
                         .getContentResolver();
@@ -111,11 +107,10 @@ public class PhotosListActivity extends AppCompatActivity {
                 Cursor mCursor = mContentResolver.query(mImageUri, null,
                         MediaStore.Images.Media.MIME_TYPE + "=? or "
                                 + MediaStore.Images.Media.MIME_TYPE + "=?",
-                        new String[] { "image/jpeg", "image/png" },
+                        new String[]{"image/jpeg", "image/png"},
                         MediaStore.Images.Media.DATE_MODIFIED);
 
-                while (mCursor.moveToNext())
-                {
+                while (mCursor.moveToNext()) {
                     // 获取图片的路径
                     String path = mCursor.getString(mCursor
                             .getColumnIndex(MediaStore.Images.Media.DATA));
@@ -124,34 +119,28 @@ public class PhotosListActivity extends AppCompatActivity {
                     String dirPath = parentFile.getAbsolutePath();
 
                     //利用一个HashSet防止多次扫描同一个文件夹（不加这个判断，图片多起来还是相当恐怖的~~）
-                    if(mDirPaths.contains(dirPath))
-                    {
+                    if (mDirPaths.contains(dirPath)) {
                         continue;
-                    }
-                    else
-                    {
+                    } else {
                         mDirPaths.add(dirPath);
                     }
 
-                    int picSize = parentFile.list(new FilenameFilter()
-                    {
+                    int picSize = parentFile.list(new FilenameFilter() {
                         @Override
-                        public boolean accept(File dir, String filename)
-                        {
+                        public boolean accept(File dir, String filename) {
                             if (filename.endsWith(".jpg"))
                                 return true;
                             return false;
                         }
                     }).length;
-                    if (picSize > mPicsSize)
-                    {
+                    if (picSize > mPicsSize) {
                         mPicsSize = picSize;
                         mImgDir = parentFile;
                     }
                 }
                 mCursor.close();
                 //扫描完成，辅助的HashSet也就可以释放内存了
-                mDirPaths = null ;
+                mDirPaths = null;
                 // 通知Handler扫描图片完成
                 mHandler.sendEmptyMessage(0x110);
 
