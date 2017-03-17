@@ -131,8 +131,8 @@
         </service>
         <!--<activity android:name=".MainActivity" />-->
         <activity android:name=".MainActivity">
-
         </activity>
+        <activity android:name=".goodviewpager.LeiDaActivity"/>
         <activity android:name=".greendao.GreenMainAcitivity"/>
         <activity
             android:name=".Activity.WelcomeAcitivity"

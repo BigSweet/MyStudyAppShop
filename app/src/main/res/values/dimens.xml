@@ -7,7 +7,7 @@
     <dimen name="theme_photo_height">256dp</dimen>
     <dimen name="card_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-
+    <dimen name="viewpager_margin">2dp</dimen>
     <!-- listView的Item上图片的尺寸 -->
     <dimen name="listview_image_height">70dip</dimen>
     <dimen name="listview_image_width">95dip</dimen>

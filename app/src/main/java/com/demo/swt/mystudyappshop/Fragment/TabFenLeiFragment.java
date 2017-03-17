@@ -24,6 +24,7 @@ import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.SelectCityActivity.SelectCityActivity;
 import com.demo.swt.mystudyappshop.Wight.SwtToast;
+import com.demo.swt.mystudyappshop.goodviewpager.LeiDaActivity;
 import com.demo.swt.mystudyappshop.greendao.GreenMainAcitivity;
 
 import java.util.HashMap;
@@ -180,6 +181,13 @@ public class TabFenLeiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), GreenMainAcitivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.leidasoamiao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LeiDaActivity.class);
                 startActivity(intent);
             }
         });

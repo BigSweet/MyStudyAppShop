@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
             android:padding="5dp"
-            android:text="FlowLayout"/>
+            android:text="FlowLayout"/>se
         <Button
             android:id="@+id/green"
             android:layout_width="wrap_content"
@@ -135,6 +135,13 @@
             android:background="@drawable/bg_edittext"
             android:padding="5dp"
             android:text="GreenDao"/>
+        <Button
+            android:id="@+id/leidasoamiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:padding="5dp"
+            android:text="雷达扫描"/>
     </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 
 </LinearLayout>

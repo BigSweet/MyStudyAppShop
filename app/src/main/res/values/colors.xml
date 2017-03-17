@@ -26,4 +26,8 @@
     <color name="black1">#000000</color>
     <color name="color_ffdc5b">#FFDC5B</color>
     <color name="color_999999">#999999</color>
+    <color name="line_color_blue">#3C8EAE</color>
+    <color name="bg_color_pink">#FF90A2</color>
+    <color name="bg_color_blue">#43D5FF</color>
+    <color name="bg_color_blue_light">#84B5CA</color>
 </resources>
