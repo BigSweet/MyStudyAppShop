@@ -10,15 +10,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.Indicators.PagerIndicator;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.demo.swt.mystudyappshop.Http.OkHttpClientManager;
 import com.demo.swt.mystudyappshop.R;
+import com.demo.swt.mystudyappshop.Util.CstAutoSlideBaseView;
+import com.demo.swt.mystudyappshop.Util.CstComomSliderView;
+import com.demo.swt.mystudyappshop.bean.BannerBean;
 import com.demo.swt.mystudyappshop.bean.NewBannerBean;
-import com.demo.swt.mystudyappshop.bean.NewBannerListBean;
-import com.squareup.okhttp.Request;
+import com.demo.swt.mystudyappshop.contract.IBannerConstact;
+import com.demo.swt.mystudyappshop.presenter.BannerPresenter;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -32,7 +30,9 @@ import java.util.List;
  * Created by pc on 2016/11/29.
  */
 
-public class TabMainFragment extends Fragment {
+public class TabMainFragment extends Fragment implements IBannerConstact.IView {
+    CstComomSliderView mCstComomSliderView;
+    private IBannerConstact.IPresenter mIPresenter;
 
     public static TabMainFragment newInstance() {
 
@@ -43,17 +43,27 @@ public class TabMainFragment extends Fragment {
         return fragment;
     }
 
-    private SliderLayout sliderLayout;
-    private PagerIndicator indicator;
+    //    private SliderLayout sliderLayout;
+//    private PagerIndicator indicator;
     private List<NewBannerBean> bannerBeanList = new ArrayList<>();
     private Button button;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mIPresenter = new BannerPresenter(this);
+        mIPresenter.requestBanner(56);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
-        sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
-        indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
+//        sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
+//        indicator = (PagerIndicator) view.findViewById(R.id.custom_indicator);
+        mCstComomSliderView = (CstComomSliderView) view.findViewById(R.id.sliderview);
+
         button = (Button) view.findViewById(R.id.share);
         final UMImage image = new UMImage(getActivity(), R.mipmap.psb);//本地文件  zhe
         final UMImage image1 = new UMImage(getActivity(), R.mipmap.psb1);//本地文件 95
@@ -100,11 +110,20 @@ public class TabMainFragment extends Fragment {
 
         });
 
-
-        requestImage();
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mCstComomSliderView.startAutoPlay();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mCstComomSliderView.stopAutoPlay();
+    }
 
     private UMShareListener umShareListener = new UMShareListener() {
         @Override
@@ -130,84 +149,13 @@ public class TabMainFragment extends Fragment {
     };
 
 
-    //okhttp网路请求
-    private void requestImage() {
-        String url = "  http://www.imooc.com/api/teacher?type=4&num=30";
-
-        OkHttpClientManager.getAsyn(url,
-                new OkHttpClientManager.ResultCallback<NewBannerListBean>() {
-
-
-                    @Override
-                    public void onError(Request request, Exception e) {
-                    }
-
-                    @Override
-                    public void onResponse(NewBannerListBean response) {
-                        bannerBeanList = response.getData().subList(0, 3);
-                        initSlider();
-                        //requestRecycleview();
-                    }
-
-
-                });
-
-    }
-
-    /*测试debug用
-        @Override
-        public void onHiddenChanged(boolean hidden) {
-            super.onHiddenChanged(hidden);
-            requestRecycleview();
-
-        }*/
-
-
-    /**
-     * 封装一下这个加载banner的方法
-     */
-    private void initSlider() {
-        for (final NewBannerBean bannerBean : bannerBeanList) {
-            TextSliderView textSliderView = new TextSliderView(getActivity());
-            textSliderView
-                    .description(bannerBean.getDescription())
-                    .image(bannerBean.getPicSmall());
-            //给每个textSliderView添加点击事件
-           /* textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                @Override
-                public void onSliderClick(BaseSliderView slider) {
-
-                }
-            });*/
-            sliderLayout.addSlider(textSliderView);
-        }
-        sliderLayout.setCustomIndicator(indicator);
-        sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
-        sliderLayout.setDuration(5000);
-        //给sliderlayotu添加滑动改变事件
-   /*     sliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d("swt", "onPageScrolled");
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.i("swt", "onPageSelected");
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                Log.i("swt", "onPageScrollStateChanged");
-            }
-        });*/
-    }
-
-    //生命周期结束的时候，banner停止滑动
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        sliderLayout.stopAutoCycle();
+    public void showBanner(List<BannerBean> bannerBeen) {
+            mCstComomSliderView.setData(bannerBeen);
+    }
+
+    @Override
+    public CstAutoSlideBaseView getSideBaseView() {
+        return mCstComomSliderView;
     }
 }

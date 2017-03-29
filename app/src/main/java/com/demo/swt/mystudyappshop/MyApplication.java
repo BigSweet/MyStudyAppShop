@@ -3,6 +3,10 @@ package com.demo.swt.mystudyappshop;
 import android.app.Application;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.demo.swt.mystudyappshop.Util.LoadImgUtils;
+import com.demo.swt.mystudyappshop.Util.NetworkUtils;
+import com.demo.swt.mystudyappshop.net.IonNetInterface;
+import com.demo.swt.mystudyappshop.net.MyIntercept;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
@@ -34,6 +38,10 @@ public class MyApplication extends Application {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         SMSSDK.initSDK(this, "1b352297f9785", "f955ca405239479857a016b78b3bac5b");
+        NetworkUtils.setContext(this);
+        IonNetInterface.get().start(this);
+        IonNetInterface.get().setInterceptNet(new MyIntercept());
+        LoadImgUtils.setContext(this);
 
     }
 

@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -126,6 +128,8 @@ public class TabFriendFragment extends Fragment {
                 myAdapter = new SearchAdapter(getActivity(), feedlist, R.layout.wuyu);
                 mHomeRv.addItemDecoration(new RecyclerLinearDivider(getActivity(), RecyclerView.VERTICAL, 5, getResources().getColor(R.color.gray1)));
                 mHomeRv.setAdapter(myAdapter);
+                LayoutAnimationController controller= new LayoutAnimationController(AnimationUtils.loadAnimation(getActivity(),R.anim.zoom_in));
+                mHomeRv.setLayoutAnimation(controller);
                 mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
                 myAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener<FeedBean>() {
                     @Override

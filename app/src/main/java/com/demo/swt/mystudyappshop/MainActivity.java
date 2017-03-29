@@ -19,7 +19,6 @@ import com.demo.swt.mystudyappshop.Fragment.TabMainFragment;
 import com.demo.swt.mystudyappshop.Fragment.TabSettingFragment;
 import com.demo.swt.mystudyappshop.Wight.CstTopBanner;
 import com.demo.swt.mystudyappshop.Wight.NoPreloadViewPager;
-import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.umeng.socialize.UMShareAPI;
 
 import java.util.ArrayList;
@@ -242,12 +241,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             cstTopBanner.getCentreText().setOnClickListener(null);
         }
         cstTopBanner.setCentre(null,"孙文韬的学习app",null);
-        cstTopBanner.setLeft(R.mipmap.back, "", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SwtToast.show("你好");
-            }
-        });
+        cstTopBanner.setLeft(R.mipmap.back, "", null);
     }
 /*
     public void initToolBar() {
