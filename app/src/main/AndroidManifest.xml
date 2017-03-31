@@ -168,6 +168,7 @@
         <activity android:name=".Activity.CameraDemoActivity"/>
         <activity android:name=".Activity.CustomCameraActivity"/>
         <activity android:name=".Activity.FlowLayoutActivity"/>
+        <activity android:name=".Activity.TanTanActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

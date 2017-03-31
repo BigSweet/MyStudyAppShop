@@ -117,6 +117,8 @@ public class TabMainFragment extends Fragment implements IBannerConstact.IView {
     public void onResume() {
         super.onResume();
         mCstComomSliderView.startAutoPlay();
+        //因为没有写刷新所以加上这个算了
+        mIPresenter.requestBanner(56);
     }
 
     @Override
@@ -151,7 +153,9 @@ public class TabMainFragment extends Fragment implements IBannerConstact.IView {
 
     @Override
     public void showBanner(List<BannerBean> bannerBeen) {
+        if (null != bannerBeen && bannerBeen.size() > 0) {
             mCstComomSliderView.setData(bannerBeen);
+        }
     }
 
     @Override

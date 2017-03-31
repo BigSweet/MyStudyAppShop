@@ -152,6 +152,14 @@
             android:background="@drawable/bg_edittext"
             android:padding="5dp"
             android:text="本地相册"/>
+
+        <Button
+            android:id="@+id/kapian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"
+            android:padding="5dp"
+            android:text="滑动卡片"/>
     </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 
 </LinearLayout>
