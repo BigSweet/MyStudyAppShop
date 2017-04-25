@@ -123,5 +123,10 @@ public class RetrofitManager {
 
     }
 
+    //测试类
+    public Observable getPlayData() {
+        return mApiService.getPlayData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
+    }
 
 }

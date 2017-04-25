@@ -1,5 +1,7 @@
 package com.demo.swt.mystudyappshop.retrofit;
 
+import com.demo.swt.mystudyappshop.bean.PlayBean;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 
@@ -18,5 +20,6 @@ public interface ApiService {
     Observable<BaseData<CateBean>> getTest();
 
 
-
+    @GET("c/res/getCartoonList?count=500&&s_category_id=37")
+    Observable<BaseData<PlayBean>> getPlayData();
 }

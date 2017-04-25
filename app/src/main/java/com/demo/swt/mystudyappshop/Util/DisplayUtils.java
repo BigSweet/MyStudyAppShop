@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 
+import com.demo.swt.mystudyappshop.MyApplication;
+
 
 public class DisplayUtils {
 
@@ -22,6 +24,15 @@ public class DisplayUtils {
         return (int) (dpValue * scale + 0.5f);
     }
 
+    //获取屏幕的宽
+    public static int getScreenWidth() {
+        return MyApplication.getmContext().getResources().getDisplayMetrics().widthPixels;
+    }
+    //获取屏幕的高度
+    public static int getScreenHeight() {
+        final int height = MyApplication.getmContext().getResources().getDisplayMetrics().heightPixels;
+        return height;
+    }
     /**
      * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
      */

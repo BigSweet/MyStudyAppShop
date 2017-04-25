@@ -32,4 +32,11 @@
     <color name="bg_color_blue">#43D5FF</color>
     <color name="bg_color_blue_light">#84B5CA</color>
     <color name="gray_cccccc">#cccccc</color>
+    <color name="android_back">#f4f4f4</color>
+    <color name="audio_title_bac">#54000000</color>
+    <color name="color_grey_999999">#999999</color>
+    <color name="peter_back">#aedbe9</color>
+    <color name="seek_play">#1ecea6</color>
+    <color name="theme_body_dark">#cc20272a</color>
+    <color name="transparent">#00000000</color>
 </resources>

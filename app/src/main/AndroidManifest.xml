@@ -195,6 +195,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:name=".Activity.PlayViewActivity"
+            android:screenOrientation="landscape"/>
+
         <meta-data
             android:name="${UMENG_CHANNEL_VALUE}"
             android:value="Channel ID"/>

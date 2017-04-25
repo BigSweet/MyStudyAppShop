@@ -22,7 +22,7 @@ import java.util.List;
  * 邮箱：sunwentao@priemdu.cn
  * 时间: 2017/4/12
  */
-public abstract class SWBaseFragment extends Fragment    {
+public abstract class SWBaseFragment extends Fragment {
     protected View cacheView;
     protected FragmentManager mFragmentManager;
     protected CstTopBanner topBanner;
@@ -30,7 +30,13 @@ public abstract class SWBaseFragment extends Fragment    {
     protected SWBaseActivity mActivity;
     protected Bundle bundle;
     protected LayoutInflater mInflater;
-//    protected Handler mHandler = new Handler();
+
+    //    protected Handler mHandler = new Handler();
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bundle = getArguments();
+    }
 
     @Nullable
     @Override
@@ -59,6 +65,7 @@ public abstract class SWBaseFragment extends Fragment    {
     protected boolean needCache() {
         return true;
     }
+
     //直接findviewbyid在基类里面做了
     public <T extends View> T findViewById(int resId) {
         if (cacheView == null) {
@@ -66,6 +73,7 @@ public abstract class SWBaseFragment extends Fragment    {
         }
         return (T) cacheView.findViewById(resId);
     }
+
     /**
      * 直接findViewById()初始化组件
      *
@@ -182,10 +190,6 @@ public abstract class SWBaseFragment extends Fragment    {
     protected abstract int getLayoutId();
 
 
-
-
-
-
     public void showLodingView() {
         //throw new RuntimeException("请实现此方法，或者继承BaseLodingFragment");
     }
@@ -208,9 +212,11 @@ public abstract class SWBaseFragment extends Fragment    {
             removeFragment(fragment);
         }
     }
+
     public void removeFragment(Fragment fragment) {
         mFragmentManager.beginTransaction().remove(fragment).commitAllowingStateLoss();
     }
+
     public final void replace(int contaninViewId, Fragment fragment) {
         if (null != fragment && null != mFragmentManager) {
             mFragmentManager
