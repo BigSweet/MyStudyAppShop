@@ -55,4 +55,5 @@
         <attr name="LefthandColor" format="color"/>
         <attr name="LefthandWidth" format="dimension"/>
     </declare-styleable>
+
 </resources>
