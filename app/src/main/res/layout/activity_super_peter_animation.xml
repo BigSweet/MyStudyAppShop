@@ -26,7 +26,14 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerInParent="true" />
-
+        <ImageView
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/big_img_play"
+            android:src="@drawable/btn_peter_pause"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/top_view"
             android:layout_width="match_parent"

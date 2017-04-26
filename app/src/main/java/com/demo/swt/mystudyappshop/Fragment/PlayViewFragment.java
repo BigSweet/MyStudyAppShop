@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.demo.swt.mystudyappshop.BasePackage.SWBaseFragment;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.DisplayUtils;
+import com.demo.swt.mystudyappshop.Wight.NoNullUtils;
 import com.demo.swt.mystudyappshop.Wight.SWVideoView;
 import com.demo.swt.mystudyappshop.bean.CartoonListBean;
 import com.demo.swt.mystudyappshop.bean.PlayBean;
@@ -87,6 +88,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
     private int startY;
     private int threshold;
     private boolean isClick = true;
+    private ImageView BigIMg;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -109,8 +111,8 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         vudioLayout = findViewById(R.id.vudio_layout);
         centerLayout = findViewById(R.id.center_layout);
         dialog = findViewById(R.id.vodioBar);
-
-
+        BigIMg = findViewById(R.id.big_img_play);
+        BigIMg.setOnClickListener(this);
         initView();
     }
 
@@ -126,8 +128,6 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         return super.onCreateView(inflater, container, savedInstanceState);
 
     }
-
-
 
 
     BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -192,9 +192,6 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         filter.addAction(Intent.ACTION_SCREEN_ON);/*屏幕亮屏广播*/
         getActivity().registerReceiver(receiver, filter);
     }
-
-
-
 
 
     /**
@@ -382,8 +379,13 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         }
     };
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mVideo.pause();
+    }
 
-/*
+    /*
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -414,7 +416,6 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
 
 
     @Override
@@ -449,7 +450,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
             topView.setAnimation(animation);
             topView.clearAnimation();
             topView.setVisibility(View.GONE);
-
+            NoNullUtils.setVisible(BigIMg, false);
             Animation animation1 = AnimationUtils.loadAnimation(getActivity(),
                     R.anim.option_leave_from_bottom);
             bottomView.startAnimation(animation1);
@@ -460,6 +461,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
             int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
         } else {
+            NoNullUtils.setVisible(BigIMg, true);
             topView.setVisibility(View.VISIBLE);
             topView.clearAnimation();
             Animation animation = AnimationUtils.loadAnimation(getActivity(),
@@ -504,18 +506,36 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         switch (v.getId()) {
             case R.id.btn_play:
                 if (mVideo.isPlaying()) {
+                    BigIMg.setImageResource(R.drawable.btn_peter_play);
+
                     mVideo.pause();
                     btnPlay.setImageResource(R.drawable.btn_peter_play);
                 } else {
                     mVideo.start();
                     btnPlay.setImageResource(R.drawable.btn_peter_pause);
+                    BigIMg.setImageResource(R.drawable.btn_peter_pause);
+
                 }
                 if (getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
                     mHandler.removeCallbacks(hideRunnable);
                     mHandler.postDelayed(hideRunnable, HIDE_TIME);
                 }
                 break;
-
+            case R.id.big_img_play:
+                if (mVideo.isPlaying()) {
+                    mVideo.pause();
+                    btnPlay.setImageResource(R.drawable.btn_peter_play);
+                    BigIMg.setImageResource(R.drawable.btn_peter_play);
+                } else {
+                    mVideo.start();
+                    btnPlay.setImageResource(R.drawable.btn_peter_pause);
+                    BigIMg.setImageResource(R.drawable.btn_peter_pause);
+                }
+                if (getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                    mHandler.removeCallbacks(hideRunnable);
+                    mHandler.postDelayed(hideRunnable, HIDE_TIME);
+                }
+                break;
             case R.id.btn_notscreen:
                 finishFragment();
                 break;
