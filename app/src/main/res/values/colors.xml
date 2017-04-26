@@ -39,4 +39,5 @@
     <color name="seek_play">#1ecea6</color>
     <color name="theme_body_dark">#cc20272a</color>
     <color name="transparent">#00000000</color>
+    <color name="style_color">#005fff</color><!--主题色-->
 </resources>

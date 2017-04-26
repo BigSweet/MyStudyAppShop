@@ -1,12 +1,15 @@
 package com.demo.swt.mystudyappshop.Fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,10 +17,13 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -53,35 +59,31 @@ import java.util.TimerTask;
  */
 public class PlayViewFragment extends SWBaseFragment implements View.OnClickListener {
 
-    ImageView btnNext;
-    ImageView btn_notscreen;
-    SWVideoView mVideo;
-    ImageView btnPlay;
-    ImageView btnScreen;
-    TextView playTxt;
-    TextView toalTxt;
-    SeekBar vudioSeekBar;
-    TextView vodioName;
-    TextView vodioName1;
-    TextView numTxt;
-    LinearLayout bottomView;
-    LinearLayout topView;
-    RelativeLayout vudioLayout;
-    RelativeLayout centerLayout;
+    private ImageView btnNext;
+    private ImageView btn_notscreen;
+    private SWVideoView mVideo;
+    private ImageView btnPlay;
+    private ImageView btnScreen;
+    private TextView playTxt;
+    private TextView toalTxt;
+    private SeekBar vudioSeekBar;
+    private  TextView vodioName;
+    private TextView vodioName1;
+    private TextView numTxt;
+    private LinearLayout bottomView;
+    private LinearLayout topView;
+    private RelativeLayout vudioLayout;
+    private  RelativeLayout centerLayout;
     public ProgressBar dialog;
     private static final String TAG = "SPSuperPeterAnimationActivity";
     public static final String KEY_INTENT_CATEGORY_ID = "IntnetCategoryIdKey";
     private String resource_id;
-
     // 视频播放时间
     private int playTime;
-
     int mIndex = 0;
-
-
     // 自动隐藏顶部和底部View的时间
     private static final int HIDE_TIME = 6000;
-
+    protected boolean mChangeVolume = false;//是否改变音量
     private float mLastMotionX;
     private float mLastMotionY;
     private int startX;
@@ -89,6 +91,26 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
     private int threshold;
     private boolean isClick = true;
     private ImageView BigIMg;
+    private AudioManager mAudioManager;
+    protected int mScreenWidth; //屏幕宽度
+    protected int mScreenHeight; //屏幕高度
+    protected int mSeekEndOffset; //手动滑动的起始偏移位置
+    final IntentFilter filter = new IntentFilter();
+    //    ArrayList<SPFirstEntity> spAmountList = new ArrayList();
+//    SPFirstEntity amountItem = new SPFirstEntity();
+    CartoonListBean mItem;
+    List<CartoonListBean> mList = new ArrayList<>();
+    protected TextView mBrightnessDialogTv;
+    protected Dialog mBrightnessDialog;
+    protected float mBrightnessData = -1; //亮度
+
+    protected int mThreshold = 80; //手势偏差值
+    protected boolean mFirstTouch = false;//是否首次触摸
+    protected boolean mBrightness = false;//是否改变亮度
+    protected int mGestureDownVolume; //手势调节音量的大小
+    protected ProgressBar mDialogVolumeProgressBar;
+    protected Dialog mVolumeDialog;
+    protected Drawable mVolumeProgressDrawable;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -114,7 +136,12 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         BigIMg = findViewById(R.id.big_img_play);
         BigIMg.setOnClickListener(this);
         initView();
+        mSeekEndOffset = DisplayUtils.dip2px(50);
+        mAudioManager = (AudioManager) getActivity().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        mScreenWidth = getActivity().getResources().getDisplayMetrics().widthPixels;
+        mScreenHeight = getActivity().getResources().getDisplayMetrics().heightPixels;
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -145,12 +172,6 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
             }
         }
     };
-    final IntentFilter filter = new IntentFilter();
-
-    //    ArrayList<SPFirstEntity> spAmountList = new ArrayList();
-//    SPFirstEntity amountItem = new SPFirstEntity();
-    CartoonListBean mItem;
-    List<CartoonListBean> mList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -265,16 +286,58 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         mVideo.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                final float x = event.getX();
-                final float y = event.getY();
+                float x = event.getX();
+                float y = event.getY();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mLastMotionX = x;
                         mLastMotionY = y;
                         startX = (int) x;
                         startY = (int) y;
+                        mFirstTouch = true;
+                        mChangeVolume = false;
+                        mBrightness = false;
                         break;
                     case MotionEvent.ACTION_MOVE:
+                        float deltaX = x - mLastMotionX;
+                        float deltaY = y - mLastMotionY;
+                        float absDeltaX = Math.abs(deltaX);
+                        float absDeltaY = Math.abs(deltaY);
+                        if (!mChangeVolume && !mBrightness) {
+                            if (absDeltaX > mThreshold || absDeltaY > mThreshold) {
+//                            cancelProgressTimer();
+                                if (absDeltaX >= mThreshold) {
+                                } else {
+                                    int screenHeight = DisplayUtils.getScreenHeight(getActivity());
+                                    boolean noEnd = Math.abs(screenHeight - mLastMotionY) > mSeekEndOffset;
+                                    if (mFirstTouch) {
+                                        mBrightness = (mLastMotionX < mScreenWidth * 0.5f) && noEnd;
+                                        mFirstTouch = false;
+                                    }
+                                    if (!mBrightness) {
+                                        mChangeVolume = noEnd;
+                                        mGestureDownVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                                    }
+//                                mShowVKey = !noEnd;
+                                }
+                            }
+                        }
+
+                        if (mChangeVolume) {
+                            deltaY = -deltaY;
+                            int max = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                            int deltaV = (int) (max * deltaY * 3 / mScreenWidth);
+                            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mGestureDownVolume + deltaV, 0);
+                            int volumePercent = (int) (mGestureDownVolume * 100 / max + deltaY * 3 * 100 / mScreenWidth);
+                            Log.d("swt", "mGestureDownVolume" + mGestureDownVolume + "volumePercent" + volumePercent + "mScreenHeight" + mScreenWidth + "deltay" + deltaY);
+                            showVolumeDialog(-deltaY, volumePercent);
+                        } else if (mBrightness) {
+                            if (Math.abs(deltaY) > mThreshold) {
+                                float percent = (-deltaY / mScreenHeight);
+                                onBrightnessSlide(percent);
+                                mLastMotionY = y;
+                            }
+                        }
                         break;
                     case MotionEvent.ACTION_UP://触摸屏幕
                         if (Math.abs(x - startX) > threshold
@@ -288,6 +351,8 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
                             showOrHide();
                         }
                         isClick = true;
+                        dismissVolumeDialog();
+                        dismissBrightnessDialog();
                         break;
 
                     default:
@@ -295,6 +360,8 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
                 }
                 return true;
             }
+
+
         });
         mVideo.setOnInfoListener(new MediaPlayer.OnInfoListener() {
             @Override
@@ -309,6 +376,103 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
                 return true;
             }
         });
+    }
+
+    /**
+     * 滑动改变亮度
+     *
+     * @param percent
+     */
+
+    private void onBrightnessSlide(float percent) {
+        mBrightnessData = getActivity().getWindow().getAttributes().screenBrightness;
+        if (mBrightnessData <= 0.00f) {
+            mBrightnessData = 0.50f;
+        } else if (mBrightnessData < 0.01f) {
+            mBrightnessData = 0.01f;
+        }
+        WindowManager.LayoutParams lpa = getActivity().getWindow().getAttributes();
+        lpa.screenBrightness = mBrightnessData + percent;
+        if (lpa.screenBrightness > 1.0f) {
+            lpa.screenBrightness = 1.0f;
+        } else if (lpa.screenBrightness < 0.01f) {
+            lpa.screenBrightness = 0.01f;
+        }
+        showBrightnessDialog(lpa.screenBrightness);
+        getActivity().getWindow().setAttributes(lpa);
+    }
+
+    protected void dismissBrightnessDialog() {
+        if (mBrightnessDialog != null) {
+            mBrightnessDialog.dismiss();
+            mBrightnessDialog = null;
+        }
+    }
+
+    protected void showBrightnessDialog(float percent) {
+        if (mBrightnessDialog == null) {
+            View localView = LayoutInflater.from(getContext()).inflate(R.layout.video_brightness, null);
+            mBrightnessDialogTv = (TextView) localView.findViewById(R.id.app_video_brightness);
+            mBrightnessDialog = new Dialog(getContext(), R.style.video_style_dialog_progress);
+            mBrightnessDialog.setContentView(localView);
+            mBrightnessDialog.getWindow().addFlags(8);
+            mBrightnessDialog.getWindow().addFlags(32);
+            mBrightnessDialog.getWindow().addFlags(16);
+            mBrightnessDialog.getWindow().setLayout(-2, -2);
+            WindowManager.LayoutParams localLayoutParams = mBrightnessDialog.getWindow().getAttributes();
+            localLayoutParams.gravity = Gravity.RIGHT;
+//            localLayoutParams.width = getWidth();
+//            localLayoutParams.height = getHeight();
+            int location[] = new int[2];
+//            getLocationOnScreen(location);
+            localLayoutParams.x = location[0];
+            localLayoutParams.y = location[1];
+            mBrightnessDialog.getWindow().setAttributes(localLayoutParams);
+        }
+        if (!mBrightnessDialog.isShowing()) {
+            mBrightnessDialog.show();
+        }
+        if (mBrightnessDialogTv != null)
+            mBrightnessDialogTv.setText((int) (percent * 100) + "%");
+    }
+
+    private void dismissVolumeDialog() {
+        if (mVolumeDialog != null) {
+            mVolumeDialog.dismiss();
+            mVolumeDialog = null;
+        }
+    }
+
+
+    private void showVolumeDialog(float v, int volumePercent) {
+        if (mVolumeDialog == null) {
+            View localView = LayoutInflater.from(getContext()).inflate(R.layout.video_volume_dialog, null);
+            mDialogVolumeProgressBar = ((ProgressBar) localView.findViewById(R.id.volume_progressbar));
+            if (mVolumeProgressDrawable != null) {
+                mDialogVolumeProgressBar.setProgressDrawable(mVolumeProgressDrawable);
+            }
+            mVolumeDialog = new Dialog(getContext(), R.style.video_style_dialog_progress);
+            mVolumeDialog.setContentView(localView);
+            mVolumeDialog.getWindow().addFlags(8);
+            mVolumeDialog.getWindow().addFlags(32);
+            mVolumeDialog.getWindow().addFlags(16);
+            mVolumeDialog.getWindow().setLayout(-2, -2);
+            WindowManager.LayoutParams localLayoutParams = mVolumeDialog.getWindow().getAttributes();
+            localLayoutParams.gravity = Gravity.LEFT;
+//            localLayoutParams.width = getWidth();
+//            localLayoutParams.height = getHeight();
+            int location[] = new int[2];
+
+//            getLocationOnScreen(location);
+            localLayoutParams.x = location[0];
+            localLayoutParams.y = location[1];
+            mVolumeDialog.getWindow().setAttributes(localLayoutParams);
+        }
+        if (!mVolumeDialog.isShowing()) {
+            mVolumeDialog.show();
+        }
+
+        mDialogVolumeProgressBar.setProgress(volumePercent);
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -428,20 +592,6 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         super.onConfigurationChanged(newConfig);
     }
 
-/*    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        //按下键盘上返回按钮
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                onBackPressed();
-            } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-            return true;
-        } else {
-            return super.onKeyDown(keyCode, event);
-        }
-    }*/
 
     private void showOrHide() {
         if (topView.getVisibility() == View.VISIBLE) {
