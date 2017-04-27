@@ -196,6 +196,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <activity
+            android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name=".Activity.PlayViewActivity"
             android:screenOrientation="landscape"/>

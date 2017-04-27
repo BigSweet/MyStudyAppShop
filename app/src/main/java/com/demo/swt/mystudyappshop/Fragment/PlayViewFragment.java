@@ -2,7 +2,6 @@ package com.demo.swt.mystudyappshop.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -67,13 +66,13 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
     private TextView playTxt;
     private TextView toalTxt;
     private SeekBar vudioSeekBar;
-    private  TextView vodioName;
+    private TextView vodioName;
     private TextView vodioName1;
     private TextView numTxt;
     private LinearLayout bottomView;
     private LinearLayout topView;
     private RelativeLayout vudioLayout;
-    private  RelativeLayout centerLayout;
+    private RelativeLayout centerLayout;
     public ProgressBar dialog;
     private static final String TAG = "SPSuperPeterAnimationActivity";
     public static final String KEY_INTENT_CATEGORY_ID = "IntnetCategoryIdKey";
@@ -157,7 +156,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
     }
 
 
-    BroadcastReceiver receiver = new BroadcastReceiver() {
+/*    BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -171,7 +170,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
                 btnPlay.setImageResource(R.drawable.btn_peter_pause);
             }
         }
-    };
+    };*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -208,10 +207,9 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
 
         vudioSeekBar.setOnSeekBarChangeListener(mSeekBarChangeListener);
 
-
         filter.addAction(Intent.ACTION_SCREEN_OFF);/*屏幕灭屏广播*/
         filter.addAction(Intent.ACTION_SCREEN_ON);/*屏幕亮屏广播*/
-        getActivity().registerReceiver(receiver, filter);
+//        getActivity().registerReceiver(receiver, filter);
     }
 
 
@@ -490,7 +488,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
             switch (msg.what) {
                 case 1:
                     if (mVideo.getCurrentPosition() > 0) {
-
+                        mCurrentPosition = mVideo.getCurrentPosition();
                         playTxt.setText(formatTime(mVideo.getCurrentPosition()));
                         int progress = mVideo.getCurrentPosition() * 100 / mVideo.getDuration();
 //                        if (mVideo.isPlaying() && dialog.getVisibility() == View.VISIBLE) {
@@ -531,8 +529,8 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,
                                       boolean fromUser) {
+            int time = progress * mVideo.getDuration() / 100;
             if (fromUser) {
-                int time = progress * mVideo.getDuration() / 100;
                 mVideo.seekTo(time);
                 dialog.setVisibility(View.GONE);
                 if (getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
@@ -543,10 +541,24 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         }
     };
 
+
+    protected long mCurrentPosition; //当前的播放位置
+
+
     @Override
     public void onPause() {
         super.onPause();
+        mCurrentPosition = mVideo.getCurrentPosition();
         mVideo.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mCurrentPosition > 0 && mVideo != null) {
+            mVideo.seekTo((int) mCurrentPosition);
+            mVideo.start();
+        }
     }
 
     /*
@@ -562,6 +574,8 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
     }*/
 
 
+ /*   */
+
     /**
      * 横屏
      */
@@ -573,8 +587,8 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         btnNext.setVisibility(View.VISIBLE);
         bottomView.setVisibility(View.VISIBLE);
         topView.setVisibility(View.VISIBLE);
-        mVideo.getLayoutParams().height = DisplayUtils.getScreenHeight();
-        mVideo.getLayoutParams().width = DisplayUtils.getScreenWidth();
+        mVideo.getLayoutParams().height = mScreenWidth;
+        mVideo.getLayoutParams().width = mScreenHeight;
 
         View decorView = getActivity().getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -591,7 +605,6 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         }
         super.onConfigurationChanged(newConfig);
     }
-
 
     private void showOrHide() {
         if (topView.getVisibility() == View.VISIBLE) {
@@ -638,7 +651,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
         }
     };
 
-
+/*
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -649,7 +662,7 @@ public class PlayViewFragment extends SWBaseFragment implements View.OnClickList
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
