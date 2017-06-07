@@ -24,4 +24,11 @@ public class RequestParemUtils {
                 .putBody("locationId", String.valueOf(locationId));
         return requestParem;
     }
+
+    //banner
+    public static RequestParem gettoken() {
+        RequestParem requestParem = JavaRequestParem.post(UrlAddress.gettoken());
+        return requestParem;
+    }
+
 }

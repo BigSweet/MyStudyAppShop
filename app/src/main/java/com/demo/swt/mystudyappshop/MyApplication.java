@@ -8,6 +8,7 @@ import com.demo.swt.mystudyappshop.Util.LoadImgUtils;
 import com.demo.swt.mystudyappshop.Util.LogUtils;
 import com.demo.swt.mystudyappshop.Util.NetworkUtils;
 import com.demo.swt.mystudyappshop.Wight.Config;
+import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.demo.swt.mystudyappshop.net.IonNetInterface;
 import com.demo.swt.mystudyappshop.net.MyIntercept;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -35,6 +36,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
+        SwtToast.init(mContext);
         //只在debug下才打印出日志
         LogUtils.setDebug(Config.isDebug);
         UMShareAPI.get(this);

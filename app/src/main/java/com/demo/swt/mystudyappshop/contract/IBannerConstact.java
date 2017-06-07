@@ -15,11 +15,12 @@ import java.util.List;
 public interface IBannerConstact {
     interface IView  {
         void showBanner(List<BannerBean> bannerBeen);
-
+        void showToken(TokenBean tokenBean);
         CstAutoSlideBaseView getSideBaseView();
     }
 
     interface IPresenter {
         void requestBanner(int type);
+        void requestToken();
     }
 }

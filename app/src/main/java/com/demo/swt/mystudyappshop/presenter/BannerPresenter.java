@@ -5,6 +5,7 @@ import com.demo.swt.mystudyappshop.Util.RequestParemUtils;
 import com.demo.swt.mystudyappshop.bean.BannerBean;
 import com.demo.swt.mystudyappshop.bean.BannerBeanList;
 import com.demo.swt.mystudyappshop.contract.IBannerConstact;
+import com.demo.swt.mystudyappshop.contract.TokenBean;
 import com.demo.swt.mystudyappshop.net.NetInterfaceFactory;
 import com.demo.swt.mystudyappshop.net.RequestParem;
 import com.demo.swt.mystudyappshop.result.ResultMessage;
@@ -48,6 +49,29 @@ public class BannerPresenter implements IBannerConstact.IPresenter {
         });
 
     }
+
+    @Override
+    public void requestToken() {
+        RequestParem requestParem = RequestParemUtils.gettoken();
+        NetInterfaceFactory.getNetInterface().doRequest(requestParem, new RequestListner<TokenBean>(view, TokenBean.class) {
+            @Override
+            public boolean onSuccess(TokenBean TokenBean) throws Exception {
+//                List<BannerBean> bannerBeen = bannerList.getList();
+//                view.showBanner(bannerBeen);
+                return true;
+            }
+
+            @Override
+            public void onEnd(ResultMessage e) {
+                super.onEnd(e);
+                if(!e.isSuccess()){
+                    view.showBanner(new ArrayList<BannerBean>());
+                }
+            }
+        });
+
+    }
+
 
 
 }

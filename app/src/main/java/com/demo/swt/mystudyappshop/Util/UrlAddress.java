@@ -14,5 +14,9 @@ public class UrlAddress {
     //社区banner
     public static String getURL_COMMUNITY_BANNER() {
         return ADV_URL + "/ad/app/getList.do";
+    }    //社区banner
+    public static String gettoken() {
+        return "http://101.200.236.44:8668/api/v1/auth/authenticate?id_card=1 ";
     }
+
 }

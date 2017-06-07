@@ -65,7 +65,18 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
+        <service android:name=".Util.DownloadService"/>
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.demo.swt.mystudyappshop"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <!--元数据-->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
         <!-- Required SDK核心功能-->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
@@ -200,6 +211,9 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name=".Activity.PlayViewActivity"
             android:screenOrientation="landscape"/>
+
+        <activity android:name=".Activity.BiuBiuViewpagerActivity"/>
+        <activity android:name=".Activity.DownloadAppActivity"/>
 
         <meta-data
             android:name="${UMENG_CHANNEL_VALUE}"

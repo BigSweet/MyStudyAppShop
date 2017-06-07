@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 
 import com.demo.swt.mystudyappshop.Activity.AnimationActivity;
 import com.demo.swt.mystudyappshop.Activity.BaiDuActivity;
+import com.demo.swt.mystudyappshop.Activity.BiuBiuViewpagerActivity;
 import com.demo.swt.mystudyappshop.Activity.CameraDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.ChatJiqiActivity;
+import com.demo.swt.mystudyappshop.Activity.DownloadAppActivity;
 import com.demo.swt.mystudyappshop.Activity.FlowLayoutActivity;
 import com.demo.swt.mystudyappshop.Activity.NineLockActivity;
 import com.demo.swt.mystudyappshop.Activity.PhotosListActivity;
@@ -213,6 +215,20 @@ public class TabFenLeiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PlayViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.biubiuviewpager).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BiuBiuViewpagerActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.update_app).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DownloadAppActivity.class);
                 startActivity(intent);
             }
         });

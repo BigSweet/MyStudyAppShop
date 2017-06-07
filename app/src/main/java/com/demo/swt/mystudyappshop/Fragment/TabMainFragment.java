@@ -16,6 +16,7 @@ import com.demo.swt.mystudyappshop.Util.CstComomSliderView;
 import com.demo.swt.mystudyappshop.bean.BannerBean;
 import com.demo.swt.mystudyappshop.bean.NewBannerBean;
 import com.demo.swt.mystudyappshop.contract.IBannerConstact;
+import com.demo.swt.mystudyappshop.contract.TokenBean;
 import com.demo.swt.mystudyappshop.presenter.BannerPresenter;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
@@ -54,6 +55,7 @@ public class TabMainFragment extends Fragment implements IBannerConstact.IView {
         super.onCreate(savedInstanceState);
         mIPresenter = new BannerPresenter(this);
         mIPresenter.requestBanner(56);
+        mIPresenter.requestToken();
     }
 
     @Nullable
@@ -156,6 +158,11 @@ public class TabMainFragment extends Fragment implements IBannerConstact.IView {
         if (null != bannerBeen && bannerBeen.size() > 0) {
             mCstComomSliderView.setData(bannerBeen);
         }
+    }
+
+    @Override
+    public void showToken(TokenBean tokenBean) {
+
     }
 
     @Override
