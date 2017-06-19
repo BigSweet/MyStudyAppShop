@@ -32,7 +32,7 @@ android {
         release {
             keyAlias 'china'
             keyPassword '123456'
-            storeFile file('H:/work/release.jks')
+            storeFile file('H:/release.jks')
             storePassword '123456'
             //指定生成的release包的文件名
         }

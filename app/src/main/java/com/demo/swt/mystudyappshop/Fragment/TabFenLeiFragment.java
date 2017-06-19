@@ -23,6 +23,7 @@ import com.demo.swt.mystudyappshop.Activity.RecordDemoActivity;
 import com.demo.swt.mystudyappshop.Activity.RgbaActivity;
 import com.demo.swt.mystudyappshop.Activity.SqliteDataBaseActivity;
 import com.demo.swt.mystudyappshop.Activity.TanTanActivity;
+import com.demo.swt.mystudyappshop.Activity.TextViewAndImageViewActivity;
 import com.demo.swt.mystudyappshop.Activity.WebChatActivity;
 import com.demo.swt.mystudyappshop.Activity.WuZiQiActivity;
 import com.demo.swt.mystudyappshop.Activity.ZhiMaLeiDaActivity;
@@ -229,6 +230,13 @@ public class TabFenLeiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DownloadAppActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.tuwen).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TextViewAndImageViewActivity.class);
                 startActivity(intent);
             }
         });

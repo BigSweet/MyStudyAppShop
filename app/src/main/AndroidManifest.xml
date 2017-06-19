@@ -7,7 +7,7 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/mystudyapp"
+        android:icon="@drawable/zhuyin"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
@@ -70,12 +70,12 @@
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.demo.swt.mystudyappshop"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <!--元数据-->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path" />
+                android:resource="@xml/file_path"/>
         </provider>
         <!-- Required SDK核心功能-->
         <activity
@@ -207,13 +207,14 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <activity
-            android:configChanges="orientation|screenSize"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name=".Activity.PlayViewActivity"
-            android:screenOrientation="landscape"/>
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
 
         <activity android:name=".Activity.BiuBiuViewpagerActivity"/>
         <activity android:name=".Activity.DownloadAppActivity"/>
+        <activity android:name=".Activity.TextViewAndImageViewActivity"/>
 
         <meta-data
             android:name="${UMENG_CHANNEL_VALUE}"
