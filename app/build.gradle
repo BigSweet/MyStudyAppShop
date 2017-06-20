@@ -30,10 +30,10 @@ android {
         }
         //为签名包添加配置
         release {
-            keyAlias 'china'
-            keyPassword '123456'
-            storeFile file('H:/release.jks')
-            storePassword '123456'
+            storeFile file('debug.keystore')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
             //指定生成的release包的文件名
         }
     }
