@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/base_activity_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <com.demo.swt.mystudyappshop.BasePackage.CstTopBanner
+        android:id="@+id/base_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_hight">
+
+    </com.demo.swt.mystudyappshop.BasePackage.CstTopBanner>
+
+    <View
+        android:id="@+id/base_activity_divider"
+        android:background="@color/app_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/q2"/>
+
+    <FrameLayout
+        android:id="@+id/base_activity_replace"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/base_activity_toolbar"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

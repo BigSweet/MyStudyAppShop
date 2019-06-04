@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/android_back"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/vudio_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--播放器-->
+        <com.demo.swt.mystudyappshop.Wight.SWVideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@color/android_back"/>
+
+
+        <ProgressBar
+            android:id="@+id/vodioBar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/big_img_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/btn_peter_pause"/>
+
+        <LinearLayout
+            android:id="@+id/top_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/videoView"
+            android:background="@color/audio_title_bac"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/btn_notscreen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/btn_back_white2x"/>
+
+            <TextView
+                android:id="@+id/vodioName1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
+                android:textSize="13sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/videoView"
+            android:background="@color/audio_title_bac"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_peter_play"/>
+
+            <ImageView
+                android:id="@+id/btn_next"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_video_next"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/time_play_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="5dp"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <SeekBar
+                android:id="@+id/vudioSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
+                android:indeterminateOnly="false"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:progressDrawable="@drawable/sp_radio_seekbar"
+                android:thumb="@drawable/seekbar_thumb"
+                android:thumbOffset="1dp"/>
+
+            <TextView
+                android:id="@+id/time_toal_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:id="@+id/btn_screen"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_peter_full"/>
+        </LinearLayout>
+
+        <master.flame.danmaku.ui.widget.DanmakuView
+            android:id="@+id/danmaku_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/operation_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="#fff"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Send" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

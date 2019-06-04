@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/q180"
+              android:background="#ffffff"
+              android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/q180"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp">
+
+        <com.demo.swt.mystudyappshop.Util.QQNaviView
+            android:id="@+id/id_tab_zhuye"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:onClick="onClick"
+            app:iconHeight="@dimen/q100"
+            app:iconWidth="@dimen/q100"
+            android:orientation="horizontal"
+            app:bigIconSrc="@drawable/biglanseaixin"
+            app:range="1.2"
+            app:smallIconSrc="@drawable/small"
+            >
+
+            <TextView
+                android:id="@+id/tv_zhuye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="首页"
+                android:textSize="12sp"/>
+
+        </com.demo.swt.mystudyappshop.Util.QQNaviView>
+
+
+        <com.demo.swt.mystudyappshop.Util.QQNaviView
+            android:id="@+id/id_tab_frd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            app:bigIconSrc="@drawable/pre_star_big"
+            app:iconHeight="@dimen/q100"
+            app:iconWidth="@dimen/q100"
+            app:range="1.2"
+            app:smallIconSrc="@drawable/pre_star_small"
+            >
+
+            <TextView
+                android:id="@+id/tv_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朋友"
+                android:textSize="12sp"/>
+
+        </com.demo.swt.mystudyappshop.Util.QQNaviView>
+
+        <com.demo.swt.mystudyappshop.Util.QQNaviView
+            android:id="@+id/id_tab_fenlei"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            app:bigIconSrc="@drawable/toumingtaiyang"
+            app:iconHeight="@dimen/q100"
+            app:iconWidth="@dimen/q100"
+            app:range="1.2"
+
+            >
+
+            <TextView
+                android:id="@+id/tv_fenlei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分类"
+                android:textSize="12sp"/>
+
+        </com.demo.swt.mystudyappshop.Util.QQNaviView>
+
+        <com.demo.swt.mystudyappshop.Util.QQNaviView
+            android:id="@+id/id_tab_duanzi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            app:bigIconSrc="@drawable/pre_bubble_big"
+            app:iconHeight="@dimen/q100"
+            app:iconWidth="@dimen/q100"
+            app:range="1.2"
+            app:smallIconSrc="@drawable/pre_bubble_small"
+            >
+
+            <TextView
+                android:id="@+id/tv_duanzi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="段子"
+                android:textSize="12sp"/>
+
+        </com.demo.swt.mystudyappshop.Util.QQNaviView>
+
+
+        <com.demo.swt.mystudyappshop.Util.QQNaviView
+            android:id="@+id/id_tab_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            app:bigIconSrc="@drawable/pre_person_big"
+            app:iconHeight="@dimen/q100"
+            app:iconWidth="@dimen/q100"
+            app:range="1.2"
+            app:smallIconSrc="@drawable/pre_person_small"
+            >
+
+            <TextView
+                android:id="@+id/tv_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个人中心"
+                android:textSize="12sp"/>
+
+        </com.demo.swt.mystudyappshop.Util.QQNaviView>
+
+    </LinearLayout>
+
+</LinearLayout>

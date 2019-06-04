@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/pop_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示在这里"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/left_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="lefttop"
+        android:text="左上方对齐"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/left_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="leftbottom"
+        android:text="左下方对齐"
+        app:layout_constraintLeft_toRightOf="@+id/left_top"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/right_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="righttop"
+        android:text="右上方对齐"
+        app:layout_constraintLeft_toRightOf="@+id/left_bottom"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rightbottom"
+        android:text="右下方对齐"
+        app:layout_constraintLeft_toRightOf="@+id/right_top"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/as_down_left_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="asdownleftbottom"
+        android:text="AsDown左下"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/left_top"/>
+
+    <Button
+        android:id="@+id/as_down_left_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="asdownlefttop"
+        android:text="AsDown左上"
+        app:layout_constraintLeft_toRightOf="@+id/as_down_left_bottom"
+        app:layout_constraintTop_toBottomOf="@+id/left_top"/>
+
+    <Button
+        android:id="@+id/as_down_right_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="asdownrighttop"
+        android:text="AsDown右上"
+        app:layout_constraintLeft_toRightOf="@+id/as_down_left_top"
+        app:layout_constraintTop_toBottomOf="@+id/left_top"/>
+
+    <Button
+        android:id="@+id/as_down_right_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="asdownrightbottom"
+        android:text="AsDown右下"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/as_down_left_bottom"/>
+</android.support.constraint.ConstraintLayout>

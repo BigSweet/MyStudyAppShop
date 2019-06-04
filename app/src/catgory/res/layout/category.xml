@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.demo.swt.mystudyappshop.Wight.MyFlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/select_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="自定义的小控件"/>
+
+            <Button
+                android:id="@+id/zhima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="芝麻雷达图"/>
+
+            <Button
+                android:id="@+id/rgbabutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="RGBA"/>
+
+            <Button
+                android:id="@+id/qrcodebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="3dp"
+                android:text="QRcode"/>
+
+            <Button
+                android:id="@+id/webchatbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="微信语音聊天"/>
+
+            <Button
+                android:id="@+id/recorddemobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="录音demo"/>
+
+            <Button
+                android:id="@+id/ninebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="九宫格解锁"/>
+
+            <Button
+                android:id="@+id/smsservice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="短信验证"/>
+
+
+            <Button
+                android:id="@+id/aqlitebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="sqlite数据库"/>
+
+            <Button
+                android:id="@+id/chatjiqiren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="语音聊天机器人"/>
+
+            <Button
+                android:id="@+id/wuziqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="五子棋游戏"/>
+
+            <Button
+                android:id="@+id/butt_ditu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="百度地图"/>
+
+            <Button
+                android:id="@+id/donghua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="动画demo"/>
+
+            <Button
+                android:id="@+id/camrea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="摄像机demo"/>
+
+            <Button
+                android:id="@+id/flow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="FlowLayout"/>
+
+            <Button
+                android:id="@+id/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="GreenDao"/>
+
+            <Button
+                android:id="@+id/leidasoamiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="雷达扫描"/>
+
+            <Button
+                android:id="@+id/bendixiangce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="本地相册"/>
+
+            <Button
+                android:id="@+id/kapian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="滑动卡片"/>
+
+            <Button
+                android:id="@+id/playview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="播放视频"/>
+
+            <Button
+                android:id="@+id/update_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="下载app安装"/>
+
+            <Button
+                android:id="@+id/tuwen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="图文混排"/>
+
+
+            <Button
+                android:id="@+id/toumingzhuomian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="透明桌面"/>
+
+            <Button
+                android:id="@+id/shipinzhuomian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="视频桌面"/>
+
+            <Button
+                android:id="@+id/swipe_match"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="滑动验证码"/>
+
+            <Button
+                android:id="@+id/ruler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="自定义的滑动尺子"/>
+
+            <Button
+                android:id="@+id/cst_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="下拉放大的scrollview"/>
+
+            <Button
+                android:id="@+id/cst_touch_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:padding="5dp"
+                android:text="仿QQ空间视频播放"/>
+
+            <Button
+                android:id="@+id/wangzherongyao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="王者荣耀等级条"/>
+
+            <Button
+                android:id="@+id/pc_to_anroid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="PC端传文件到手机"/>
+
+            <Button
+                android:id="@+id/touch_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="拖拽新闻"/>
+
+            <Button
+                android:id="@+id/key_board"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="安全键盘"/>
+
+            <Button
+                android:id="@+id/nes_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="滑动嵌套"/>
+
+            <Button
+                android:id="@+id/md_nes_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="MD滑动嵌套"/>
+
+            <Button
+                android:id="@+id/marqee_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="跑马灯View"/>
+
+            <Button
+                android:id="@+id/web_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="webview示例代码"/>
+
+            <Button
+                android:id="@+id/ball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="弹跳小球"/>
+
+            <Button
+                android:id="@+id/zhiwen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="指纹验证"/>
+
+            <Button
+                android:id="@+id/loadmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="fc加载更多"/>
+
+            <Button
+                android:id="@+id/vote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="投票view"/>
+
+            <Button
+                android:id="@+id/popwindoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:text="popwindows"/>
+        </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

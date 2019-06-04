@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/wuyuitemlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                app:roundAsCircle="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:text="我是名字"/>
+
+                <TextView
+                    android:id="@+id/school"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/gray1"
+                    android:textSize="12sp"
+                    tools:text="我是来自什么学校"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:ellipsize="end"
+            android:maxLines="8"
+            android:id="@+id/wuyu_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textSize="17sp"
+            tools:text="我是内容"/>
+
+
+        <com.jaeger.ninegridimageview.NineGridImageView
+            android:id="@+id/cstimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            app:imgGap="4dp"
+            app:maxSize="9"
+            app:singleImgSize="120dp"
+            android:layout_marginRight="10dp">
+        </com.jaeger.ninegridimageview.NineGridImageView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/displaytime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="2分钟前"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ups_rv"
+                android:layout_width="250dp"
+                android:layout_height="30dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/ups_size_tv"
+                android:textColor="@color/material_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/commentzan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/app_bg">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View style="@style/HorizontalLineq3"/>
+
+    </LinearLayout>
+
+</LinearLayout>

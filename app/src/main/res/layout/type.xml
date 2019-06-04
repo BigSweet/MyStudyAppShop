@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫星图" />
+
+        <Button
+            android:id="@+id/nomal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="正常图" />
+
+        <Button
+            android:id="@+id/kong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="空白图" />
+
+        <Button
+            android:id="@+id/jiaotong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="交通图" />
+
+        <Button
+            android:id="@+id/hotjiaotong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热力交通图" />
+    </LinearLayout>
+
+
+</RelativeLayout>

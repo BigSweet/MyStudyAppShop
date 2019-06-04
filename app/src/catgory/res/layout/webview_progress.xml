@@ -1,0 +1,13 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/load_layout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5px"/>
+
+</merge>

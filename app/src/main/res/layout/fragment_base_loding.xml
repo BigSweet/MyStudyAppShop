@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/success_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/empty_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/logingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:id="@+id/app_progress"
+            android:layout_width="@dimen/q120"
+            android:layout_height="@dimen/q120"/>
+    </RelativeLayout>
+</FrameLayout>

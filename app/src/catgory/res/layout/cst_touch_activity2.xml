@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:orientation="vertical">
+
+
+    <com.demo.swt.mystudyappshop.Util.DraggableView
+        android:id="@+id/draggable"
+        android:background="@drawable/bg_gauss_blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:drag_view_id="@+id/scroll_view">
+
+        <com.demo.swt.mystudyappshop.Util.DraggableScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <!--顶部播放器部分-->
+                <RelativeLayout
+                    android:id="@+id/fl_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/black">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="播放器控件"/>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="底部列表部分"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="底部列表部分"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="底部列表部分"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="底部列表部分"/>
+            </LinearLayout>
+        </com.demo.swt.mystudyappshop.Util.DraggableScrollView>
+
+
+    </com.demo.swt.mystudyappshop.Util.DraggableView>
+</RelativeLayout>

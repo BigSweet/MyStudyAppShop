@@ -1,0 +1,238 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="CstAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+    <!--全屏加透明，慢速启动-->
+    <style name="TranslucentFullScreenTheme" parent="FullScreenTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+    <declare-styleable name="CircleProgressView">
+        <attr name="cpv_progressNormalColor" format="color"/>
+        <attr name="cpv_progressReachColor" format="color"/>
+        <attr name="cpv_progressTextColor" format="color"/>
+        <attr name="cpv_progressTextSize" format="dimension"/>
+        <attr name="cpv_progressTextOffset" format="dimension"/>
+        <attr name="cpv_progressNormalSize" format="dimension"/>
+        <attr name="cpv_progressReachSize" format="dimension"/>
+        <attr name="cpv_radius" format="dimension"/>
+        <attr name="cpv_progressTextVisible" format="boolean"/>
+        <attr name="cpv_progressStartArc" format="integer"/>
+        <attr name="cpv_progressTextSkewX" format="dimension"/>
+        <attr name="cpv_progressTextPrefix" format="string"/>
+        <attr name="cpv_progressTextSuffix" format="string"/>
+        <attr name="cpv_innerBackgroundColor" format="color"/>
+        <attr name="cpv_progressStyle" format="enum">
+            <enum name="Normal" value="0"/>
+            <enum name="FillInner" value="1"/>
+            <enum name="FillInnerArc" value="2"/>
+        </attr>
+        <attr name="cpv_innerProgressColor" format="color"/>
+        <attr name="cpv_innerPadding" format="dimension"/>
+        <attr name="cpv_outerColor" format="color"/>
+        <attr name="cpv_outerSize" format="dimension"/>
+        <attr name="cpv_reachCapRound" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="RulerView">
+        <attr name="rulerHeight" format="dimension"/>               <!--尺子的高度-->
+        <attr name="rulerToResultgap" format="dimension"/>          <!--尺子距离结果的高度-->
+        <attr name="scaleGap" format="dimension"/>                  <!--刻度间距-->
+        <attr name="scaleCount" format="integer"/>                  <!--刻度数-->
+        <attr name="firstScale" format="float"/>                    <!--默认选中的刻度-->
+        <attr name="maxScale" format="integer"/>                    <!--最大刻度-->
+        <attr name="minScale" format="integer"/>                    <!--最小刻度-->
+        <attr name="bgColor" format="color"/>                       <!--背景色-->
+        <attr name="smallScaleColor" format="color"/>               <!--小刻度的颜色-->
+        <attr name="midScaleColor" format="color"/>                 <!--中刻度的颜色-->
+        <attr name="largeScaleColor" format="color"/>               <!--大刻度的颜色-->
+        <attr name="scaleNumColor" format="color"/>                 <!--刻度数的颜色-->
+        <attr name="resultNumColor" format="color"/>                <!--结果字体的颜色-->
+        <attr name="unit" format="string"/>                         <!--单位-->
+        <attr name="unitColor" format="color"/>                     <!--单位颜色-->
+        <attr name="smallScaleStroke" format="dimension"/>          <!--小刻度的宽度-->
+        <attr name="midScaleStroke" format="dimension"/>            <!--中刻度的宽度-->
+        <attr name="largeScaleStroke" format="dimension"/>          <!--大刻度的宽度-->
+        <attr name="resultNumTextSize" format="dimension"/>         <!--结果字体大小-->
+        <attr name="scaleNumTextSize" format="dimension"/>          <!--刻度字体大小-->
+        <attr name="unitTextSize" format="dimension"/>              <!--单位字体大小-->
+        <attr name="showScaleResult" format="boolean"/>             <!--是否显示结果值-->
+        <attr name="isBgRoundRect" format="boolean"/>               <!--背景是否圆角-->
+    </declare-styleable>
+
+    <style name="textview_black_14sp">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize14</item>
+        <item name="android:textColor">@color/gray_333333</item>
+    </style>
+    <!--透明背景Activity-->
+    <style name="TransparentTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="SplashTheme" parent="CstAppTheme">
+        <item name="android:windowBackground">@mipmap/guide_image3</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!--屏蔽Activity进出动画-->
+    <style name="SlideAnimationStyle">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <style name="app_top_title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize18</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="HooliganActivityStyle">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoDisplay">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <!-- 灰色－16sp字体 -->
+    <style name="textview_white_16sp">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize16</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ThemeRecordingDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <style name="Anim_fade" parent="@android:style/Theme.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+
+    <style name="fade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
+    </style>
+
+
+    <style name="text_flag_01">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/flag_01</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="video_vertical_progressBar">
+        <item name="android:maxWidth">12dp</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:progressDrawable">@drawable/video_volume_progress_bg</item>
+        <item name="android:indeterminateDuration">3500</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:minWidth">1dp</item>
+    </style>
+
+    <style name="video_style_dialog_progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/video_popup_toast_anim</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="video_popup_toast_anim" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <declare-styleable name="AnimShopButton">
+        <!--加按钮是否开启fill模式 默认是stroke(false)-->
+        <attr name="isAddFillMode" format="boolean"/>
+        <!--加按钮的背景色前景色-->
+        <attr name="addEnableBgColor" format="color"/>
+        <attr name="addEnableFgColor" format="color"/>
+        <!--加按钮不可用时的背景色前景色-->
+        <attr name="addDisableBgColor" format="color"/>
+        <attr name="addDisableFgColor" format="color"/>
+
+        <!--减按钮是否开启fill模式 默认是stroke(false)-->
+        <attr name="isDelFillMode" format="boolean"/>
+        <!--减按钮的背景色前景色-->
+        <attr name="delEnableBgColor" format="color"/>
+        <attr name="delEnableFgColor" format="color"/>
+        <!--减按钮不可用时的背景色前景色-->
+        <attr name="delDisableBgColor" format="color"/>
+        <attr name="delDisableFgColor" format="color"/>
+
+        <!--圆的半径-->
+        <attr name="radius" format="dimension"/>
+        <!--圆圈的宽度-->
+        <attr name="circleStrokeWidth" format="dimension"/>
+        <!--线(+ - 符号)的宽度-->
+        <attr name="lineWidth" format="dimension"/>
+
+        <!--两个圆之间的间距-->
+        <attr name="gapBetweenCircle" format="dimension"/>
+        <!--绘制数量的textSize-->
+        <attr name="numTextSize" format="dimension"/>
+        <!--最大数量和当前数量-->
+        <attr name="maxCount" format="integer"/>
+        <attr name="count" format="integer"/>
+
+        <!-- 增加一个开关 ignoreHintArea：UI显示、动画是否忽略hint收缩区域-->
+        <attr name="ignoreHintArea" format="boolean"/>
+
+        <!--数量为0时，hint文字 背景色前景色 大小,圆角值-->
+        <attr name="hintText" format="string"/>
+        <attr name="hintBgColor" format="color"/>
+        <attr name="hintFgColor" format="color"/>
+        <attr name="hingTextSize" format="dimension"/>
+        <attr name="hintBgRoundValue" format="dimension"/>
+
+        <attr name="perAnimDuration" format="integer"/>
+
+        <!--in replenish -->
+        <attr name="replenishTextColor" format="color"/>
+        <attr name="replenishTextSize" format="dimension"/>
+        <attr name="replenishText" format="string"/>
+
+    </declare-styleable>
+    <declare-styleable name="SwipeCaptchaView">
+        <attr name="captchaWidth" format="dimension"/>
+        <attr name="captchaHeight" format="dimension"/>
+        <attr name="matchDeviation" format="dimension"/>
+    </declare-styleable>
+</resources>

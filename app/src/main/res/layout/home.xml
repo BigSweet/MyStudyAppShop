@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/q500">
+
+        <com.demo.swt.mystudyappshop.Util.CstComomSliderView
+            android:id="@+id/sliderview"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.youth.banner.Banner>
+    </FrameLayout>
+
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="分享"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="强制点击震动，不管用户的感受哈哈"/>
+
+    <com.demo.swt.mystudyappshop.mobike.MoBikeView
+        android:id="@+id/mo_bike"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.demo.swt.mystudyappshop.mobike.MoBikeView>
+
+</LinearLayout>

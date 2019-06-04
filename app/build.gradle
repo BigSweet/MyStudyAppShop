@@ -1,0 +1,178 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'channel'
+def cfg = rootProject.ext.android
+def librarys = rootProject.ext.dependencies
+android {
+    compileSdkVersion cfg.compileSdkVersion
+    defaultConfig {
+        applicationId cfg.applicationId
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+
+        /* jackOptions {
+             additionalParameters("jack.incremental": "true")
+             enabled true
+         }*/
+    }
+/*    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }*/
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        //为签名包添加配置
+        release {
+            storeFile file('debug.keystore')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+            v1SigningEnabled true
+            v2SigningEnabled false
+            //指定生成的release包的文件名
+        }
+    }
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        profile {
+            // Specifies a sorted list of fallback build types that the
+            // plugin should try to use when a dependency does not include a
+            // "staging" build type. You may specify as many fallbacks as you
+            // like, and the plugin selects the first build type that's
+            // available in the dependency.
+            matchingFallbacks = ['debug', 'release']
+        }
+    }
+/*
+    productFlavors {  //在这里添加你所有需要打包的渠道
+        xiaomi {}        //xiaomi渠道 
+        meizu {}         //魅族
+
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def buildType
+            if (variant.buildType.name.equals('release')) {
+                buildType = "release"
+            } else if (variant.buildType.name.equals('debug')) {
+                buildType = "debug"
+            }
+            if (outputFileName.endsWith('.apk')) {
+                // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
+                def fileName = "Sunwentao-v${defaultConfig.versionName}-${variant.productFlavors[0].name}-${buildType}.apk"
+                outputFileName =fileName
+            }
+        }
+    }*/
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/friend/java/', 'src/catgory/java/', 'src/duanzi/java/', 'src/my/java']
+
+            /* if (isBuildModuleFriend.toBoolean()) {
+                 java.srcDirs += ['src/friend/java/']
+             }
+
+             if (isBuildModuleAyc.toBoolean()) {
+                 java.srcDirs += ['src/ayc/java/']
+             }*/
+
+
+            res.srcDirs = ['src/main/res', 'src/friend/res/', 'src/catgory/res/', 'src/duanzi/res/', 'src/my/res']
+
+            /* if (isBuildModuleFriend.toBoolean()) {
+                 res.srcDirs += ['src/friend/res/']
+             }
+
+             if (isBuildModuleAyc.toBoolean()) {
+                 res.srcDirs += ['src/ayc/res/']
+             }*/
+
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    channel {
+        //指定渠道文件
+        //多渠道包的输出目录，默认为new File(project.buildDir,"channel")
+        baseOutputDir = new File(project.buildDir, "chanel")
+        //多渠道包的命名规则，默认为：${appName}-${versionName}-${versionCode}-${flavorName}-${buildType}
+        apkNameFormat = '${appName}-${versionName}-${versionCode}-${flavorName}-${buildType}'
+        //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上）
+        isFastMode = false
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    /*   compileOptions {
+           targetCompatibility 1.8
+           sourceCompatibility 1.8
+       }*/
+}
+
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    mavenCentral()
+    jcenter()
+    google()
+    maven { url "http://dl.bintray.com/403462630/maven" }
+
+}
+
+greendao {
+    schemaVersion 1
+    daoPackage 'com.anye.greendao.gen'
+    targetGenDir 'src/main/java'
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
+    api 'com.leon.channel:helper:1.1.7'
+    librarys.each { k, v -> implementation v }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    //Your dependency that includes the module with the duplicates.
+    implementation project(':matisse')
+    implementation project(':mylib')
+
+}

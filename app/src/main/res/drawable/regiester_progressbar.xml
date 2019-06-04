@@ -1,0 +1,54 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@android:id/background">
+
+        <shape>
+
+            <corners android:radius="5dip" />
+
+            <gradient
+                android:angle="0"
+                android:centerColor="@color/colorAccent"
+                android:centerY="0.75"
+                android:endColor="@color/colorAccent"
+                android:startColor="@color/colorAccent" />
+        </shape>
+    </item>
+
+
+    <!--第二个进度条的颜色-->
+    <item android:id="@android:id/secondaryProgress">
+
+        <clip>
+
+            <shape>
+
+                <corners android:radius="5dip" />
+
+                <gradient
+                    android:angle="0"
+                    android:centerColor="@color/blue"
+                    android:centerY="0.75"
+                    android:endColor="@color/blue"
+                    android:startColor="@color/blue" />
+            </shape>
+        </clip>
+    </item>
+
+    <item android:id="@android:id/progress">
+
+        <clip>
+
+            <shape>
+
+                <corners android:radius="5dip" />
+
+                <gradient
+                    android:angle="0"
+                    android:endColor="@color/yellow_fddc5b"
+                    android:startColor="@color/yellow_fddc5b" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

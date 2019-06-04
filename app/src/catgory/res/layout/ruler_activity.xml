@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:lsp="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <com.demo.swt.mystudyappshop.Wight.CstRulerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        lsp:bgColor="#fcfffc"
+        lsp:firstScale="172"
+        lsp:isBgRoundRect="true"
+        lsp:largeScaleColor="@color/colorAccent"
+        lsp:largeScaleStroke="5dp"
+        lsp:maxScale="230"
+        lsp:midScaleColor="@color/colorPrimaryDark"
+        lsp:midScaleStroke="3dp"
+        lsp:minScale="150"
+        lsp:resultNumColor="#50b586"
+        lsp:resultNumTextSize="20sp"
+        lsp:rulerHeight="50dp"
+        lsp:rulerToResultgap="30dp"
+        lsp:scaleCount="5"
+        lsp:scaleGap="10dp"
+        lsp:scaleNumColor="#666666"
+        lsp:scaleNumTextSize="16sp"
+        lsp:showScaleResult="true"
+        lsp:smallScaleColor="@color/colorPrimary"
+        lsp:smallScaleStroke="2dp"
+        lsp:unit="cm"
+        lsp:unitColor="#50b586"
+        lsp:unitTextSize="10sp" />
+</LinearLayout>

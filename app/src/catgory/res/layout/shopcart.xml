@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></com.baidu.mapapi.map.MapView>
+
+
+    <LinearLayout
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/select_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择类型" />
+
+        <Button
+            android:id="@+id/dingwei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="location"
+            android:text="定位自己" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/background"
+        android:drawable="@color/color_grey_999999" />
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="2.0dip" />
+                <gradient
+                    android:angle="270.0"
+                    android:centerColor="@color/peter_back"
+                    android:centerY="0.75"
+                    android:endColor="@color/peter_back"
+                    android:startColor="@color/peter_back" />
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip android:drawable="@color/seek_play" />
+    </item>
+    <!--seekbar-->
+</layer-list>

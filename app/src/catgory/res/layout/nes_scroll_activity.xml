@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<widght.FixedNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/nes_scroll"
+    android:overScrollMode="never"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:descendantFocusability="blocksDescendants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout_club_main"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/q126"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="@color/black"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_club_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</widght.FixedNestedScrollView>
