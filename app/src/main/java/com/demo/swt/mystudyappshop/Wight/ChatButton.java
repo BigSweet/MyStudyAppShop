@@ -1,5 +1,7 @@
 package com.demo.swt.mystudyappshop.Wight;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
@@ -12,6 +14,10 @@ import android.view.View;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.AudioManager;
 import com.demo.swt.mystudyappshop.Util.Dilogmanager;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 介绍：这里写介绍
@@ -35,7 +41,7 @@ public class ChatButton extends AppCompatButton implements AudioManager.AudioSta
         this(context, null);
     }
 
-    public ChatButton(Context context, AttributeSet attrs) {
+    public ChatButton(final Context context, AttributeSet attrs) {
         super(context, attrs);
         dilogmanager = new Dilogmanager(context);
 
@@ -46,8 +52,35 @@ public class ChatButton extends AppCompatButton implements AudioManager.AudioSta
         setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                mReady = true;
-                mAudioManager.prepareAudio();
+                RxPermissions rxPermissions = new RxPermissions((Activity) context);
+                rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.RECORD_AUDIO)
+                        .subscribe(new Observer<Boolean>() {
+
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(Boolean aBoolean) {
+                                if (aBoolean) {
+                                    mReady = true;
+                                    mAudioManager.prepareAudio();
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
                 return true;
             }
         });
