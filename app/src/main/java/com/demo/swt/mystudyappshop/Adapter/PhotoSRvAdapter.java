@@ -28,7 +28,7 @@ public class PhotoSRvAdapter extends BaseAdapter<String, BaseHolder> {
     }
 
     @Override
-    public void bindata(BaseHolder holder, String s, int position) {
+    public void binData(BaseHolder holder, String s, int position) {
         mImageLoader.loadImage(mDirPath + "/" + mData.get(position),
                 (ImageView) holder.getView(R.id.id_item_image));
     }

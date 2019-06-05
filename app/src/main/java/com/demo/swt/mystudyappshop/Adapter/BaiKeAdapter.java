@@ -39,7 +39,7 @@ public class BaiKeAdapter extends BaseAdapter<BaiKeBean, BaseHolder> {
     }
 
     @Override
-    public void bindata(BaseHolder holder, BaiKeBean baiKeBean, int position) {
+    public void binData(BaseHolder holder, BaiKeBean baiKeBean, int position) {
         LinearLayout wuyuitem = (LinearLayout) holder.getView(R.id.wuyuitemlayout);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) wuyuitem.getLayoutParams();
         params.height = LinearLayout.LayoutParams.WRAP_CONTENT;

@@ -28,7 +28,7 @@ public class CommentAdapter extends BaseAdapter<FeedBean.CommentsBean, BaseHolde
     }
 
     @Override
-    public void bindata(BaseHolder holder, FeedBean.CommentsBean commentBean, int position) {
+    public void binData(BaseHolder holder, FeedBean.CommentsBean commentBean, int position) {
         NoNullUtils.setText((TextView) holder.getView(R.id.comment_name), commentBean.getUser().getName());
         NoNullUtils.setText((TextView) holder.getView(R.id.comment_content), commentBean.getContent());
     }

@@ -1,6 +1,6 @@
 package fragment
 
-import adapter.SearchAdapter
+import adapter.FriendAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
@@ -16,7 +16,6 @@ import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
 import com.demo.swt.mystudyappshop.R
 import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider
-import com.demo.swt.mystudyappshop.Wight.SwtToast
 import com.demo.swt.mystudyappshop.retrofit.RetrofitManager
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -48,7 +47,7 @@ class TabFriendFragment : Fragment() {
 
     private var feedList: List<FeedBean>? = ArrayList()
     private var moreList: List<FeedBean>? = ArrayList()
-    private var myAdapter: SearchAdapter? = null
+    private var myAdapter: FriendAdapter? = null
     private var nt = ""
     private var state = STATE_NORMAL
     private var feedbeanlist: FeedBeanList? = null
@@ -67,11 +66,10 @@ class TabFriendFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        myAdapter = SearchAdapter(activity, feedList, R.layout.wuyu)
+        myAdapter = FriendAdapter()
         home_recycle.layoutManager = LinearLayoutManager(activity)
         home_recycle.addItemDecoration(RecyclerLinearDivider(activity, RecyclerView.VERTICAL, 5, resources.getColor(R.color.gray1)))
         home_recycle.adapter = myAdapter
-        myAdapter?.setOnItemClickListener { position, feedBean, view -> SwtToast.show("item被点击了$position") }
         home_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             var offset: Float = activity!!.resources.getDimensionPixelSize(R.dimen.q80).toFloat()
             var hide: ObjectAnimator? = null
@@ -149,13 +147,13 @@ class TabFriendFragment : Fragment() {
         when (state) {
             STATE_NORMAL -> myAdapter?.addData(feedList)
             STATE_LOADMORE -> {
-                myAdapter?.addData(myAdapter?.getdata()?.size ?: 0, feedList)
-                home_recycle.scrollToPosition(myAdapter?.getdata()?.size ?: 0)
+                myAdapter?.addData(feedList)
+                home_recycle.scrollToPosition(myAdapter?.getData()?.size ?: 0)
                 refresh.finishRefreshLoadMore()
             }
 
             STATE_REFRESH -> {
-                myAdapter?.addData(moreList)
+                myAdapter?.setData(moreList)
                 refresh.finishRefresh()
             }
         }

@@ -21,7 +21,12 @@ allprojects {
         jcenter()
         mavenCentral()
         google()
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url  "http://dl.bintray.com/piasy/maven"
+        }
 
     }
 }

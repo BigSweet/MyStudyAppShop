@@ -23,7 +23,7 @@ public class RvAdapter extends BaseAdapter<User, BaseHolder> {
     }
 
     @Override
-    public void bindata(BaseHolder holder, User user, int position) {
+    public void binData(BaseHolder holder, User user, int position) {
         NoNullUtils.setText((TextView) holder.getView(R.id.tv_id), user.getId()+"");
         NoNullUtils.setText((TextView) holder.getView(R.id.tv_name), user.getName());
         NoNullUtils.setText((TextView) holder.getView(R.id.tv_age), user.getAge() + "");

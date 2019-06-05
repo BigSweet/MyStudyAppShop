@@ -164,6 +164,7 @@ public class BigImageActivity extends FragmentActivity {
                     public void onResourceReady(File resource, GlideAnimation<? super File> animation) {
                         super.onResourceReady(resource, animation);
                         progressview.setVisibility(View.GONE);
+//                        Glide.with(getApplicationContext()).load(resource).into(imageView);
                         imageView.setImage(new FileBitmapDecoderFactory(resource));
                     }
 

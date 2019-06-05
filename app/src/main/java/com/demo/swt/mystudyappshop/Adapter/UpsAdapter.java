@@ -24,7 +24,7 @@ public class UpsAdapter extends BaseAdapter<FeedBean.UpsBean, BaseHolder> {
     }
 
     @Override
-    public void bindata(BaseHolder holder, FeedBean.UpsBean upsBean, int position) {
+    public void binData(BaseHolder holder, FeedBean.UpsBean upsBean, int position) {
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) holder.getView(R.id.up_item_adv);
         simpleDraweeView.setImageURI(upsBean.getAvatar());
     }

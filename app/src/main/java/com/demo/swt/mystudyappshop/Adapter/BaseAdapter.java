@@ -52,10 +52,10 @@ public abstract class BaseAdapter<T, H extends BaseHolder> extends RecyclerView.
         H h = (H) holder;
         h.setOnItemClickListener(position, getItem(position), onItemClickListener);
         T t = getItem(position);
-        bindata(holder, t, position);
+        binData(holder, t, position);
     }
 
-    public abstract void bindata(BaseHolder holder, T t, int position);
+    public abstract void binData(BaseHolder holder, T t, int position);
 
     public void setOnItemClickListener(OnRecyclerViewItemClickListener<T> l) {
         this.onItemClickListener = l;

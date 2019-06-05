@@ -51,6 +51,7 @@ public class MyApplication extends Application {
         IonNetInterface.get().start(this);
         IonNetInterface.get().setInterceptNet(new MyIntercept());
         LoadImgUtils.setContext(this);
+//        BigImageViewer.initialize(GlideImageLoader.with(this));
 
     }
 

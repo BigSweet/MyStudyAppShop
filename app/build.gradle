@@ -157,6 +157,9 @@ repositories {
     maven { url "http://dl.bintray.com/403462630/maven" }
 
 }
+androidExtensions {
+    experimental = true
+}
 
 greendao {
     schemaVersion 1
