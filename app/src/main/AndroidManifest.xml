@@ -138,9 +138,6 @@
         <meta-data
             android:name="widght.OkHttpProgressGlideModule"
             android:value="GlideModule" />
-        <!--<meta-data-->
-            <!--android:name="com.demo.swt.mystudyappshop.Util.glideprogress.MyGlideModule"-->
-            <!--android:value="GlideModule" />-->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

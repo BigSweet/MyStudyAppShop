@@ -20,10 +20,10 @@ import android.widget.Toast;
 
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.GifSizeFilter;
-import com.demo.swt.mystudyappshop.Util.Glide4Engine;
 import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.listener.OnCheckedListener;
@@ -458,7 +458,7 @@ public class TabFenLeiFragment extends Fragment {
                 // for glide-V3
 //                                            .imageEngine(new GlideEngine())
                 // for glide-V4
-                .imageEngine(new Glide4Engine())
+                .imageEngine(new GlideEngine())
                 .setOnSelectedListener(new OnSelectedListener() {
                     @Override
                     public void onSelected(

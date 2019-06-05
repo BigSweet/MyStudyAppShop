@@ -1,10 +1,12 @@
 package widght;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.shizhefei.view.largeimage.ILargeImageView;
 import com.shizhefei.view.largeimage.factory.FileBitmapDecoderFactory;
 
@@ -14,7 +16,6 @@ import java.io.File;
  * A base {@link com.bumptech.glide.request.target.Target} for displaying resources in
  * {@link android.widget.ImageView}s.
  *
- * @param <Z> The type of resource that this target will display in the wrapped {@link android.widget.ImageView}.
  */
 public class LargeImageViewTarget extends ViewTarget<View, File>{
     private ILargeImageView largeImageView;
@@ -23,15 +24,17 @@ public class LargeImageViewTarget extends ViewTarget<View, File>{
         this.largeImageView = view;
     }
 
-    /**
-     * Sets the given {@link android.graphics.drawable.Drawable} on the view using
-     * {@link android.widget.ImageView#setImageDrawable(android.graphics.drawable.Drawable)}.
-     *
-     * @param placeholder {@inheritDoc}
-     */
     @Override
-    public void onLoadStarted(Drawable placeholder) {
+    public void onLoadStarted(@Nullable Drawable placeholder) {
+        super.onLoadStarted(placeholder);
         largeImageView.setImageDrawable(placeholder);
+
+    }
+
+    @Override
+    public void onResourceReady(@NonNull File resource, @Nullable Transition<? super File> transition) {
+        largeImageView.setImage(new FileBitmapDecoderFactory(resource));
+
     }
 
     /**
@@ -41,14 +44,10 @@ public class LargeImageViewTarget extends ViewTarget<View, File>{
      * @param errorDrawable {@inheritDoc}
      */
     @Override
-    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+    public void onLoadFailed(Drawable errorDrawable) {
         largeImageView.setImageDrawable(errorDrawable);
     }
 
-    @Override
-    public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
-        largeImageView.setImage(new FileBitmapDecoderFactory(resource));
-    }
 
     /**
      * Sets the given {@link android.graphics.drawable.Drawable} on the view using
@@ -57,8 +56,10 @@ public class LargeImageViewTarget extends ViewTarget<View, File>{
      * @param placeholder {@inheritDoc}
      */
     @Override
-    public void onLoadCleared(Drawable placeholder) {
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+        super.onLoadCleared(placeholder);
         largeImageView.setImageDrawable(placeholder);
     }
+
 }
 

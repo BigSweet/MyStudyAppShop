@@ -2,6 +2,7 @@ package activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -10,8 +11,8 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.demo.swt.mystudyappshop.MyApplication;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.SaleProgressView;
@@ -80,11 +81,12 @@ public class SwipeMatchActivity extends FragmentActivity {
 
         //测试从网络加载图片是否ok
         Glide.with(MyApplication.getmContext())
-                .load("http://www.investide.cn/data/edata/image/20151201/20151201180507_281.jpg")
                 .asBitmap()
+                .load("http://www.investide.cn/data/edata/image/20151201/20151201180507_281.jpg")
                 .into(new SimpleTarget<Bitmap>() {
+
                     @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         mSwipeCaptchaView.setImageBitmap(resource);
                         mSwipeCaptchaView.createCaptcha();
                     }

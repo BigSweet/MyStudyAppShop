@@ -33,10 +33,10 @@ import android.widget.Toast;
 
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.GifSizeFilter;
-import com.demo.swt.mystudyappshop.Util.Glide4Engine;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
@@ -98,7 +98,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                             // for glide-V3
 //                                            .imageEngine(new GlideEngine())
                                             // for glide-V4
-                                            .imageEngine(new Glide4Engine())
+                                            .imageEngine(new GlideEngine())
                                             .setOnSelectedListener(new OnSelectedListener() {
                                                 @Override
                                                 public void onSelected(

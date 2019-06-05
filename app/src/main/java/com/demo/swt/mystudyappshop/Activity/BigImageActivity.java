@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
@@ -20,16 +21,15 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.demo.swt.mystudyappshop.MyApplication;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.Util.glideprogress.CircleProgressView;
+import com.demo.swt.mystudyappshop.Util.glideprogress.ProgressInterceptor;
+import com.demo.swt.mystudyappshop.Util.glideprogress.ProgressListener;
 import com.demo.swt.mystudyappshop.Wight.NoPreloadViewPager;
 import com.shizhefei.view.largeimage.LargeImageView;
-import com.shizhefei.view.largeimage.factory.FileBitmapDecoderFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,7 +40,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import widght.ProgressTarget;
+import widght.GlideApp;
 
 /**
  * Created by pc on 2016/12/5.
@@ -138,38 +138,34 @@ public class BigImageActivity extends FragmentActivity {
                         finish();
                     }
                 });
-                Glide.with(BigImageActivity.this).load(tulist.get(position)).downloadOnly(new ProgressTarget<String, File>(tulist.get(position), null) {
+
+                ProgressInterceptor.addListener(tulist.get(position), new ProgressListener() {
                     @Override
-                    public void onLoadStarted(Drawable placeholder) {
-                        super.onLoadStarted(placeholder);
+                    public void onProgress(int progress) {
+                        progressview.setProgress(progress);
+                    }
+                });
+
+                SimpleTarget<Drawable> simpleTarge = new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        ProgressInterceptor.removeListener(tulist.get(position));
+                        progressview.setVisibility(View.GONE);
+//                        Glide.with(getApplicationContext()).load(resource).into(imageView);
+                        imageView.setImage((resource));
+                    }
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
                         progressview.setVisibility(View.VISIBLE);
                         progressview.setProgress(0);
                     }
+                };
 
-                    @Override
-                    public void onProgress(long bytesRead, long expectedLength) {
-                        int p = 0;
-                        if (expectedLength >= 0) {
-                            p = (int) (100 * bytesRead / expectedLength);
-                        }
-                        progressview.setProgress(p);
-                    }
-
-                    @Override
-                    public void getSize(SizeReadyCallback cb) {
-                        cb.onSizeReady(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
-                    }
-
-                    @Override
-                    public void onResourceReady(File resource, GlideAnimation<? super File> animation) {
-                        super.onResourceReady(resource, animation);
-                        progressview.setVisibility(View.GONE);
-//                        Glide.with(getApplicationContext()).load(resource).into(imageView);
-                        imageView.setImage(new FileBitmapDecoderFactory(resource));
-                    }
-
-
-                });
+                GlideApp.with(BigImageActivity.this)
+                        .load(tulist.get(position))
+                        .into(simpleTarge);
                 return view;
             }
 
@@ -229,7 +225,6 @@ public class BigImageActivity extends FragmentActivity {
         }
         return false;
     }
-
 
 
     @Override

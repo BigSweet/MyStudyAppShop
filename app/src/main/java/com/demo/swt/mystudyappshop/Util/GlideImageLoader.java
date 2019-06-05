@@ -8,7 +8,7 @@ import com.demo.swt.mystudyappshop.bean.BannerBean;
 
 /**
  * introduce：这里写介绍
- * createBy：sunwentao
+ * createBy：sunwentaoglide
  * email：wentao.sun@yintech.cn
  * time: 20/7/18
  */

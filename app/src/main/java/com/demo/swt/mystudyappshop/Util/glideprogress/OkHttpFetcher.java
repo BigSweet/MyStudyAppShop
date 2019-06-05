@@ -1,6 +1,9 @@
 package com.demo.swt.mystudyappshop.Util.glideprogress;
 
+import android.support.annotation.NonNull;
+
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.util.ContentLengthInputStream;
@@ -33,8 +36,9 @@ public class OkHttpFetcher implements DataFetcher<InputStream> {
         this.url = url;
     }
 
+
     @Override
-    public InputStream loadData(Priority priority) throws Exception {
+    public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url.toStringUrl());
         for (Map.Entry<String, String> headerEntry : url.getHeaders().entrySet()) {
@@ -43,16 +47,22 @@ public class OkHttpFetcher implements DataFetcher<InputStream> {
         }
         Request request = requestBuilder.build();
         if (isCancelled) {
-            return null;
+//            return null;
         }
-        Response response = client.newCall(request).execute();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         responseBody = response.body();
         if (!response.isSuccessful() || responseBody == null) {
-            throw new IOException("Request failed with code: " + response.code());
+//            throw new IOException("Request failed with code: " + response.code());
         }
         stream = ContentLengthInputStream.obtain(responseBody.byteStream(),
                 responseBody.contentLength());
-        return stream;
+        callback.onDataReady(stream);
+//        return stream;
     }
 
     @Override
@@ -69,13 +79,21 @@ public class OkHttpFetcher implements DataFetcher<InputStream> {
         }
     }
 
-    @Override
-    public String getId() {
-        return url.getCacheKey();
-    }
 
     @Override
     public void cancel() {
         isCancelled = true;
+    }
+
+    @NonNull
+    @Override
+    public Class<InputStream> getDataClass() {
+        return null;
+    }
+
+    @NonNull
+    @Override
+    public DataSource getDataSource() {
+        return null;
     }
 }
