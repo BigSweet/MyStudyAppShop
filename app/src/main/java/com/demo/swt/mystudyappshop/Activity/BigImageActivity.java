@@ -146,12 +146,11 @@ public class BigImageActivity extends FragmentActivity {
                     }
                 });
 
-                SimpleTarget<Drawable> simpleTarge = new SimpleTarget<Drawable>() {
+                SimpleTarget<Drawable> simpleTarget = new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         ProgressInterceptor.removeListener(tulist.get(position));
                         progressview.setVisibility(View.GONE);
-//                        Glide.with(getApplicationContext()).load(resource).into(imageView);
                         imageView.setImage((resource));
                     }
 
@@ -165,7 +164,7 @@ public class BigImageActivity extends FragmentActivity {
 
                 GlideApp.with(BigImageActivity.this)
                         .load(tulist.get(position))
-                        .into(simpleTarge);
+                        .into(simpleTarget);
                 return view;
             }
 

@@ -17,7 +17,6 @@ import com.demo.swt.mystudyappshop.Adapter.UpsAdapter
 import com.demo.swt.mystudyappshop.R
 import com.demo.swt.mystudyappshop.Util.DetailTimeUtil
 import com.demo.swt.mystudyappshop.Wight.NoNullUtils
-import com.demo.swt.mystudyappshop.Wight.NoNullUtils.setText
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter
 import com.spero.vision.ktx.inflateLayout
 import kotlinx.android.extensions.LayoutContainer
@@ -40,7 +39,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
     }
 
     override fun onBindViewHolder(p0: FriendHolder, p1: Int) {
-        p0.binData(mList[p1], p1)
+        p0.binData(mList[p1])
     }
 
     fun setData(list: List<FeedBean>?) {
@@ -61,75 +60,88 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
     }
 
     class FriendHolder(override var containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun binData(feedBean: FeedBean, position: Int) {
+        fun binData(feedBean: FeedBean) {
             if (feedBean.feedType == 1) {
-                var imglist: List<String>? = null
-
-                val params = wuyuitemlayout.layoutParams as LinearLayout.LayoutParams
-                params.height = LinearLayout.LayoutParams.WRAP_CONTENT
-                wuyuitemlayout.layoutParams = params
-                if (feedBean.content != null) {
-                    setText(wuyu_text, feedBean.content)
-
-                    if (feedBean.imageList != null && feedBean.imageList.size > 0) {
-                        imglist = feedBean.imageList
-                        val nineGridImageViewAdapter = object : NineGridImageViewAdapter<String>() {
-                            override fun onDisplayImage(context: Context, imageView: ImageView, s: String) {
-                                Glide.with(context).load(s).into(imageView)
-
-                            }
-
-                            override fun onItemImageClick(context: Context?, index: Int, list: MutableList<String>) {
-                                super.onItemImageClick(context, index, list)
-                                val intent = Intent(context, BigImageActivity::class.java)
-                                val bundle = Bundle()
-                                if (list.size > 0) {
-                                    bundle.putStringArrayList("tulist", list as ArrayList<String>)
-                                    bundle.putInt("pos", index)
-                                }
-                                intent.putExtras(bundle)
-                                context!!.startActivity(intent)
-                            }
-                        }
-                        cstimage.setAdapter(nineGridImageViewAdapter)
-                        cstimage.setImagesData(imglist)
-                    } else {
-                        NoNullUtils.setVisible(cstimage, false)
-                    }
-                }
-                setText(name, feedBean.user.name)
-                setText(school, feedBean.user.entityName)
-                if (feedBean.ups != null) {
-                    setText(ups_size_tv, feedBean.ups.size.toString() + "人喜欢")
-                }
-
-                var uplist = feedBean.ups
-                if (uplist != null && uplist!!.size > 0) {
-                    val adapter = UpsAdapter(containerView.context, uplist, R.layout.up_rv_item)
-                    NoNullUtils.setVisible(ups_rv, true)
-                    ups_rv.adapter = adapter
-                    ups_rv.layoutManager = LinearLayoutManager(containerView.context, LinearLayoutManager.HORIZONTAL, false)
-                } else {
-                    NoNullUtils.setVisible(ups_rv, false)
-                }
-
-                if (feedBean.comments != null) {
-                    val adapter = CommentAdapter(containerView.context, feedBean.comments, R.layout.comment_item)
-                    commentzan.visibility = View.VISIBLE
-                    commentzan.adapter = adapter
-                    commentzan.layoutManager = LinearLayoutManager(containerView.context)
-                    NoNullUtils.setVisible(commentzan, true)
-                } else {
-                    NoNullUtils.setVisible(commentzan, false)
-                }
-                logo.setImageURI(feedBean.user.avatar + "?x-oss-process=image/resize,h_200")
-                logo.scaleType = ImageView.ScaleType.CENTER_CROP
-                setText(displaytime, DetailTimeUtil.getTimeRange(feedBean.createTime))
+                setParams(LinearLayout.LayoutParams.WRAP_CONTENT)
+                setContent(feedBean)
+                setText(feedBean)
+                setUpList(feedBean)
+                setComment(feedBean)
             } else {
-                val params = wuyuitemlayout.layoutParams as LinearLayout.LayoutParams
-                params.height = 1
-                wuyuitemlayout.layoutParams = params
+                setParams(1)
             }
+        }
+
+        private fun setText(feedBean: FeedBean) {
+            name.text = feedBean.user.name
+            school.text = feedBean.user.entityName
+            ups_size_tv.text = feedBean.ups.size.toString() + "人喜欢"
+            displaytime.text = DetailTimeUtil.getTimeRange(feedBean.createTime)
+            logo.setImageURI(feedBean.user.avatar + "?x-oss-process=image/resize,h_200")
+            logo.scaleType = ImageView.ScaleType.CENTER_CROP
+        }
+
+        private fun setParams(height: Int) {
+            val params = wuyuitemlayout.layoutParams as LinearLayout.LayoutParams
+            params.height = height
+            wuyuitemlayout.layoutParams = params
+        }
+
+        private fun setUpList(feedBean: FeedBean) {
+            var uplist = feedBean.ups
+            if (uplist != null && uplist!!.size > 0) {
+                val adapter = UpsAdapter(containerView.context, uplist, R.layout.up_rv_item)
+                NoNullUtils.setVisible(ups_rv, true)
+                ups_rv.adapter = adapter
+                ups_rv.layoutManager = LinearLayoutManager(containerView.context, LinearLayoutManager.HORIZONTAL, false)
+            } else {
+                NoNullUtils.setVisible(ups_rv, false)
+            }
+
+        }
+
+        private fun setComment(feedBean: FeedBean) {
+            if (feedBean.comments != null) {
+                val adapter = CommentAdapter(containerView.context, feedBean.comments, R.layout.comment_item)
+                commentzan.visibility = View.VISIBLE
+                commentzan.adapter = adapter
+                commentzan.layoutManager = LinearLayoutManager(containerView.context)
+                NoNullUtils.setVisible(commentzan, true)
+            } else {
+                NoNullUtils.setVisible(commentzan, false)
+            }
+        }
+
+        private fun setContent(feedBean: FeedBean) {
+            var imglist: List<String>? = null
+            if (feedBean.content != null) {
+                wuyu_text.text = feedBean.content
+                if (feedBean.imageList != null && feedBean.imageList.size > 0) {
+                    imglist = feedBean.imageList
+                    val nineGridImageViewAdapter = object : NineGridImageViewAdapter<String>() {
+                        override fun onDisplayImage(context: Context, imageView: ImageView, s: String) {
+                            Glide.with(context).load(s).into(imageView)
+
+                        }
+                        override fun onItemImageClick(context: Context?, index: Int, list: MutableList<String>) {
+                            super.onItemImageClick(context, index, list)
+                            val intent = Intent(context, BigImageActivity::class.java)
+                            val bundle = Bundle()
+                            if (list.size > 0) {
+                                bundle.putStringArrayList("tulist", list as ArrayList<String>)
+                                bundle.putInt("pos", index)
+                            }
+                            intent.putExtras(bundle)
+                            context!!.startActivity(intent)
+                        }
+                    }
+                    cstimage.setAdapter(nineGridImageViewAdapter)
+                    cstimage.setImagesData(imglist)
+                } else {
+                    NoNullUtils.setVisible(cstimage, false)
+                }
+            }
+
         }
 
     }
