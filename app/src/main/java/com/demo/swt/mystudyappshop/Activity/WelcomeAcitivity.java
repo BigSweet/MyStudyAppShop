@@ -25,7 +25,7 @@ public class WelcomeAcitivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (SharedPreferencesUtils.getInstance().getString("lock").equals("false")) {
+        if (SharedPreferencesUtils.getInstance().getString("lock") != null && SharedPreferencesUtils.getInstance().getString("lock").equals("false")) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {

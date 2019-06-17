@@ -102,7 +102,7 @@ public class TabSettingFragment extends Fragment implements View.OnClickListener
                 requestAuthWeiXin();
                 break;
             case R.id.launch_lock:
-                if (SharedPreferencesUtils.getInstance().getString("lock").equals("false")) {
+                if (SharedPreferencesUtils.getInstance().getString("lock") == null || SharedPreferencesUtils.getInstance().getString("lock").equals("false")) {
                     SharedPreferencesUtils.getInstance().saveString("lock", "true");
                 } else {
                     SharedPreferencesUtils.getInstance().saveString("lock", "false");

@@ -75,7 +75,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
         private fun setText(feedBean: FeedBean) {
             name.text = feedBean.user.name
             school.text = feedBean.user.entityName
-            ups_size_tv.text = feedBean.ups.size.toString() + "人喜欢"
+            ups_size_tv.text = feedBean?.ups?.size.toString() + "人喜欢"
             displaytime.text = DetailTimeUtil.getTimeRange(feedBean.createTime)
             logo.setImageURI(feedBean.user.avatar + "?x-oss-process=image/resize,h_200")
             logo.scaleType = ImageView.ScaleType.CENTER_CROP

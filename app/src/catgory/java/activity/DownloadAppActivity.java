@@ -66,7 +66,7 @@ public class DownloadAppActivity extends FragmentActivity implements OnProgressL
 
         if (SharedPreferenceUtil.get("info") == null) {
             final FileInfo fileInfo = new FileInfo();
-            fileInfo.setUrl("http://101.28.249.94/apk.r1.market.hiapk.com/data/upload/apkres/2017/4_11/15/com.baidu.searchbox_034250.apk");
+            fileInfo.setUrl("https://github.com/BigSweet/urlResposity/blob/master/app-debug.apk");
             fileInfo.setFileName("sss.apk");
             SharedPreferenceUtil.save("info", fileInfo);
         }

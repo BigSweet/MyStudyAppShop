@@ -82,7 +82,7 @@ public class SwipeMatchActivity extends FragmentActivity {
         //测试从网络加载图片是否ok
         Glide.with(MyApplication.getmContext())
                 .asBitmap()
-                .load("http://www.investide.cn/data/edata/image/20151201/20151201180507_281.jpg")
+                .load("https://pic.anlaiye.com.cn/5de270ed30244ab4b9a1552ed90fcb14_700x700.jpg")
                 .into(new SimpleTarget<Bitmap>() {
 
                     @Override
