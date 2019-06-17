@@ -22,6 +22,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:support-v4:28.0.0'
-    testCompile 'junit:junit:4.12'
-    compile files('libs/zxing.jar')
+    implementation 'junit:junit:4.12'
+    implementation files('libs/zxing.jar')
 }

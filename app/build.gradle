@@ -17,7 +17,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
-
         /* jackOptions {
              additionalParameters("jack.incremental": "true")
              enabled true
@@ -172,8 +171,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation fileTree(include: ['*.aar'], dir: 'libs')
     api 'com.leon.channel:helper:1.1.7'
-    librarys.each { k, v -> implementation v }
+    annotationProcessor 'com.zhy:mpermission-compiler:1.0.0'
+//    annotationProcessor 'com.zhy:mpermission-compiler:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    librarys.each { k, v -> implementation v }
     //Your dependency that includes the module with the duplicates.
     implementation project(':matisse')
     implementation project(':mylib')

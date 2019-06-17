@@ -25,7 +25,7 @@ ext {
             "analytics"                : 'com.umeng.analytics:analytics:latest.integration',
             "jsoup"                    : 'org.jsoup:jsoup:1.10.2',
             "design"                   : 'com.android.support:design:28.0.0',
-            "greendao"                 : 'org.greenrobot:greendao:3.2.0',
+            "greendao"                 : 'org.greenrobot:greendao:3.2.2',
             "generator"                : 'org.greenrobot:greendao-generator:3.0.0',
             "eventbus"                 : 'org.greenrobot:eventbus:3.0.0',
             "ion"                      : 'com.koushikdutta.ion:ion:2.+',
@@ -48,7 +48,7 @@ ext {
             "largeImageView"           : 'com.shizhefei:LargeImageView:1.1.0',
             "okhttp3_integration"      : 'com.github.bumptech.glide:okhttp3-integration:4.3.1',
             "ninegridimageview"        : 'com.jaeger.ninegridimageview:library:1.0.2',
-            "stdlib"                   : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+            "stdlib"                   : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             "support_constraint"       : 'com.android.support.constraint:constraint-layout:1.1.3',
     ]
 }

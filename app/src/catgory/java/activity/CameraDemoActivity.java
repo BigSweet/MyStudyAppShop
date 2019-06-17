@@ -8,18 +8,21 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.demo.swt.mystudyappshop.R;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhy.m.permission.MPermissions;
-import com.zhy.m.permission.PermissionDenied;
-import com.zhy.m.permission.PermissionGrant;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 介绍：这里写介绍
@@ -34,6 +37,7 @@ public class CameraDemoActivity extends FragmentActivity {
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;//拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;//相册
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +46,65 @@ public class CameraDemoActivity extends FragmentActivity {
     }
 
     public void takePhoto(View view) {
-        MPermissions.requestPermissions(CameraDemoActivity.this, 4, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA)
+                .subscribe(new Observer<Boolean>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        if (aBoolean) {
+                            requestCameraSuccess();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        requestCameraFailed();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     public void getPhotoFromPhone(View view) {
-        MPermissions.requestPermissions(CameraDemoActivity.this, 3, Manifest.permission.READ_EXTERNAL_STORAGE);
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new Observer<Boolean>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        if (aBoolean) {
+                            requestContactSuccess();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        requestContactFailed();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 
@@ -94,7 +152,8 @@ public class CameraDemoActivity extends FragmentActivity {
     File tempFile;
     File cropFilePath;
     public static final String photopath = Environment.getExternalStorageDirectory() + "/photodemo";
-    @PermissionGrant(4)
+
+
     public void requestCameraSuccess() {
         String sdStatus = Environment.getExternalStorageState();
         if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
@@ -114,19 +173,18 @@ public class CameraDemoActivity extends FragmentActivity {
                     e.printStackTrace();
                 }
             }*/
-            targetUri = Uri.fromFile(tempFile);
+            targetUri = FileProvider.getUriForFile(this,"com.demo.swt.mystudyappshop", tempFile);
+//            targetUri = Uri.fromFile(tempFile);
         }
         Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent2.putExtra(MediaStore.EXTRA_OUTPUT, targetUri);
         startActivityForResult(intent2, PHOTO_REQUEST_TAKEPHOTO);// 采用ForResult打开
     }
 
-    @PermissionDenied(4)
     public void requestCameraFailed() {
         Toast.makeText(this, "没有摄像机权限", Toast.LENGTH_SHORT).show();
     }
 
-    @PermissionGrant(3)
     public void requestContactSuccess() {
         String sdStatus = Environment.getExternalStorageState();
         if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
@@ -139,7 +197,6 @@ public class CameraDemoActivity extends FragmentActivity {
         startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
     }
 
-    @PermissionDenied(3)
     public void requestContactFailed() {
         Toast.makeText(this, "没有权限", Toast.LENGTH_SHORT).show();
     }
