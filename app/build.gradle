@@ -174,7 +174,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     librarys.each { k, v -> implementation v }
     //Your dependency that includes the module with the duplicates.
-    implementation project(':matisse')
     implementation project(':zxinglib')
 
 }

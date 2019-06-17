@@ -36,8 +36,6 @@ import com.demo.swt.mystudyappshop.Util.GifSizeFilter;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.listener.OnCheckedListener;
@@ -47,6 +45,7 @@ import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import widght.Glide4Engine;
 
 public class SampleActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -70,7 +69,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(final View v) {
         RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(new Observer<Boolean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -98,7 +97,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                             // for glide-V3
 //                                            .imageEngine(new GlideEngine())
                                             // for glide-V4
-                                            .imageEngine(new GlideEngine())
+                                            .imageEngine(new Glide4Engine())
                                             .setOnSelectedListener(new OnSelectedListener() {
                                                 @Override
                                                 public void onSelected(
@@ -128,7 +127,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                             .maxSelectable(9)
                                             .originalEnable(true)
                                             .maxOriginalSize(10)
-                                            .imageEngine(new PicassoEngine())
+                                            .imageEngine(new Glide4Engine())
                                             .forResult(REQUEST_CODE_CHOOSE);
                                     break;
                                 default:
