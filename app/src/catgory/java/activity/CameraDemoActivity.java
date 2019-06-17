@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.demo.swt.mystudyappshop.R;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.zhy.m.permission.MPermissions;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -199,12 +198,6 @@ public class CameraDemoActivity extends FragmentActivity {
 
     public void requestContactFailed() {
         Toast.makeText(this, "没有权限", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        MPermissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 

@@ -35,7 +35,6 @@ ext {
             "retrofit2-rxjava2-adapter": 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0',
             "rxandroid"                : 'io.reactivex.rxjava2:rxandroid:2.0.1',
             "rxjava"                   : 'io.reactivex.rxjava2:rxjava:2.0.9',
-            "mpermission"              : 'com.zhy:mpermission-api:1.0.0',
             "DanmakuFlameMaster"       : 'com.github.ctiao:DanmakuFlameMaster:0.5.3',
             "banner"                   : 'com.youth.banner:banner:1.4.10',
             "ninelockView"             : "com.github.ihsg:PatternLocker:2.1.0",
