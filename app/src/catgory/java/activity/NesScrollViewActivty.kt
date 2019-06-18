@@ -1,9 +1,9 @@
 package activity
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.appcompat.app.AppCompatActivity
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.LinearLayout
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.nes_scroll_activity.*
  */
 
 class NesScrollViewActivty : AppCompatActivity() {
-    var fragmentlist = arrayListOf<Fragment>()
+    var fragmentlist = arrayListOf<androidx.fragment.app.Fragment>()
     private val mTitles = arrayOf("社团介绍", "活动", "讨论区")
     private var imgList: MutableList<Any>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,8 +61,8 @@ class NesScrollViewActivty : AppCompatActivity() {
             fragmentlist.add(fragment)
         }
 
-        vp_club_main.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment {
+        vp_club_main.adapter = object : androidx.fragment.app.FragmentPagerAdapter(supportFragmentManager) {
+            override fun getItem(position: Int): androidx.fragment.app.Fragment {
                 return fragmentlist.get(position)
             }
 

@@ -2,8 +2,8 @@ package activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;

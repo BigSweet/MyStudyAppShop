@@ -1,6 +1,6 @@
 package com.demo.swt.mystudyappshop.Activity;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.demo.swt.mystudyappshop.BasePackage.SWBaseActivity;
 import com.demo.swt.mystudyappshop.Fragment.WelcomeFragment;

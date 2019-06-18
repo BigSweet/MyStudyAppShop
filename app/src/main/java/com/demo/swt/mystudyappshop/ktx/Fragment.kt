@@ -1,7 +1,7 @@
 package com.spero.vision.ktx
 
 import android.app.Fragment
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.widget.Toast
 
 /**
@@ -14,6 +14,6 @@ fun Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT): Toast? 
 
 fun Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT): Toast? = activity?.toast(resId, duration)
 
-fun android.support.v4.app.Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT): Toast? = activity?.toast(message, duration)
+fun androidx.fragment.app.Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT): Toast? = activity?.toast(message, duration)
 
-fun android.support.v4.app.Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT): Toast? = activity?.toast(resId, duration)
+fun androidx.fragment.app.Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT): Toast? = activity?.toast(resId, duration)

@@ -1,7 +1,7 @@
 package com.demo.swt.mystudyappshop.Util;
 
 import android.app.Activity;
-import android.support.v4.widget.ViewDragHelper;
+import androidx.customview.widget.ViewDragHelper;
 import android.util.Log;
 import android.view.View;
 

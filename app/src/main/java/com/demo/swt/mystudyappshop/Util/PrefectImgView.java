@@ -20,7 +20,7 @@ import android.view.animation.DecelerateInterpolator;
  * 邮箱：sunwentao@priemdu.cn
  * 时间: 2018/1/12
  */
-public class PrefectImgView extends android.support.v7.widget.AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener, View.OnTouchListener {
+public class PrefectImgView extends androidx.appcompat.widget.AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener, View.OnTouchListener {
 
     private final static int SINGLE_TOUCH = 1; //单指
     private final static int DOUBLE_TOUCH = 2; //双指

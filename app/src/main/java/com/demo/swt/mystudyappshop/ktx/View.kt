@@ -1,7 +1,7 @@
 package com.spero.vision.ktx
 
 import android.graphics.Bitmap
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View

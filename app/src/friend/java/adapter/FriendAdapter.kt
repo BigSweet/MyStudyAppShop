@@ -3,8 +3,8 @@ package adapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -28,7 +28,7 @@ import java.util.*
  * Created by pc on 2016/12/7.
  */
 
-class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
+class FriendAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
     private var mList: MutableList<FeedBean> = mutableListOf()
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FriendHolder {
         return FriendHolder(p0.inflateLayout(R.layout.wuyu))
@@ -59,7 +59,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
         return mList
     }
 
-    class FriendHolder(override var containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    class FriendHolder(override var containerView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun binData(feedBean: FeedBean) {
             if (feedBean.feedType == 1) {
                 setParams(LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -93,7 +93,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
                 val adapter = UpsAdapter(containerView.context, uplist, R.layout.up_rv_item)
                 NoNullUtils.setVisible(ups_rv, true)
                 ups_rv.adapter = adapter
-                ups_rv.layoutManager = LinearLayoutManager(containerView.context, LinearLayoutManager.HORIZONTAL, false)
+                ups_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(containerView.context, androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL, false)
             } else {
                 NoNullUtils.setVisible(ups_rv, false)
             }
@@ -105,7 +105,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
                 val adapter = CommentAdapter(containerView.context, feedBean.comments, R.layout.comment_item)
                 commentzan.visibility = View.VISIBLE
                 commentzan.adapter = adapter
-                commentzan.layoutManager = LinearLayoutManager(containerView.context)
+                commentzan.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(containerView.context)
                 NoNullUtils.setVisible(commentzan, true)
             } else {
                 NoNullUtils.setVisible(commentzan, false)

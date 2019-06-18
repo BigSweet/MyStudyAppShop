@@ -14,7 +14,7 @@ android {
         versionCode cfg.versionCode
         versionName cfg.versionName
         flavorDimensions "versionCode"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
         /* jackOptions {
@@ -171,9 +171,11 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation fileTree(include: ['*.aar'], dir: 'libs')
     api 'com.leon.channel:helper:1.1.7'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     librarys.each { k, v -> implementation v }
     //Your dependency that includes the module with the duplicates.
     implementation project(':zxinglib')
+    implementation "com.android.support:support-annotations:28.0.0-alpha3"
+    annotationProcessor "com.android.support:support-annotations:28.0.0-alpha3"
 
 }

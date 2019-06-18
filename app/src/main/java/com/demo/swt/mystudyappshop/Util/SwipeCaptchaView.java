@@ -18,11 +18,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
+import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
-import android.widget.ImageView;
 
 import com.demo.swt.mystudyappshop.R;
 
@@ -39,7 +38,7 @@ import static com.demo.swt.mystudyappshop.Util.DrawHelperUtils.drawPartCircle;
  * 时间： 2016/11/14.
  */
 
-public class SwipeCaptchaView extends android.support.v7.widget.AppCompatImageView {
+public class SwipeCaptchaView extends androidx.appcompat.widget.AppCompatImageView {
     private static final String TAG = "zxt/" + SwipeCaptchaView.class.getName();
     //控件的宽高
     protected int mWidth;

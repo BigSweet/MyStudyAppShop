@@ -1,6 +1,6 @@
 package activity;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.demo.swt.mystudyappshop.BasePackage.SWBaseActivity;
 import fragment.PlayViewFragment;

@@ -3,7 +3,6 @@ package activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -11,6 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.demo.swt.mystudyappshop.R;
 

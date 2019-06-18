@@ -2,7 +2,7 @@ package com.demo.swt.mystudyappshop.Util;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 

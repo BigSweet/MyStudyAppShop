@@ -2,7 +2,7 @@ package widght;
 
 import android.graphics.Path;
 import android.graphics.PointF;
-import android.support.v4.view.animation.PathInterpolatorCompat;
+import androidx.core.view.animation.PathInterpolatorCompat;
 import android.view.animation.Interpolator;
 
 /**

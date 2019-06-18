@@ -4,9 +4,9 @@ import adapter.FriendAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +26,7 @@ import java.util.*
  * Created by pc on 2016/11/29.
  */
 
-class TabFriendFragment : Fragment() {
+class TabFriendFragment : androidx.fragment.app.Fragment() {
 
     companion object {
 
@@ -67,19 +67,19 @@ class TabFriendFragment : Fragment() {
 
     private fun initRecyclerView() {
         myAdapter = FriendAdapter()
-        home_recycle.layoutManager = LinearLayoutManager(activity)
-        home_recycle.addItemDecoration(RecyclerLinearDivider(activity, RecyclerView.VERTICAL, 5, resources.getColor(R.color.gray1)))
+        home_recycle.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        home_recycle.addItemDecoration(RecyclerLinearDivider(activity, androidx.recyclerview.widget.RecyclerView.VERTICAL, 5, resources.getColor(R.color.gray1)))
         home_recycle.adapter = myAdapter
-        home_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        home_recycle.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
             var offset: Float = activity!!.resources.getDimensionPixelSize(R.dimen.q80).toFloat()
             var hide: ObjectAnimator? = null
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 mHandler.removeCallbacksAndMessages(null)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE) {
                     mHandler.postDelayed({ showAnim(0f) }, 1000)
-                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                } else if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING) {
                     showAnim(offset)
                 }
             }

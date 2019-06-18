@@ -42,13 +42,13 @@
         android:dividerHeight="5dp" >
     </ListView>-->
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_above="@id/id_ly_bottom"
         android:background="@color/gray1"
         android:id="@+id/id_listview_msgs"
         android:layout_width="match_parent"
         android:divider="@null"
         android:dividerHeight="5dp"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

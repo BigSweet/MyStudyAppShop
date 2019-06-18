@@ -109,12 +109,12 @@
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ups_rv"
                 android:layout_width="250dp"
                 android:layout_height="30dp">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:layout_marginLeft="20dp"
@@ -125,7 +125,7 @@
         </LinearLayout>
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentzan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
             android:layout_marginBottom="10dp"
             android:background="@color/app_bg">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <View style="@style/HorizontalLineq3"/>
 
