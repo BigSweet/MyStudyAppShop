@@ -3,15 +3,17 @@ package activity;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import androidx.fragment.app.FragmentActivity;
-import androidx.core.content.FileProvider;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentActivity;
 
 import com.demo.swt.mystudyappshop.R;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -22,6 +24,7 @@ import java.util.Date;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import widght.FileUtil;
 
 /**
  * 介绍：这里写介绍
@@ -139,6 +142,14 @@ public class CameraDemoActivity extends FragmentActivity {
                         Upload(Part);*/
                     }
                 }
+
+                if (resultCode == RESULT_OK && null != data) {// 裁剪返回
+                    if (cropFilePath != null && cropFilePath.length() != 0) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(cropFilePath);
+                        //给头像设置图片源
+                        mImageView.setImageBitmap(bitmap);
+                    }
+                }
                 break;
             default:
                 break;
@@ -149,7 +160,7 @@ public class CameraDemoActivity extends FragmentActivity {
 
     private Uri targetUri;//拍照时 指定的存储路径
     File tempFile;
-    File cropFilePath;
+    String cropFilePath;
     public static final String photopath = Environment.getExternalStorageDirectory() + "/photodemo";
 
 
@@ -172,7 +183,7 @@ public class CameraDemoActivity extends FragmentActivity {
                     e.printStackTrace();
                 }
             }*/
-            targetUri = FileProvider.getUriForFile(this,"com.demo.swt.mystudyappshop", tempFile);
+            targetUri = FileProvider.getUriForFile(this, "com.demo.swt.mystudyappshop", tempFile);
 //            targetUri = Uri.fromFile(tempFile);
         }
         Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -210,12 +221,15 @@ public class CameraDemoActivity extends FragmentActivity {
     private String getCroPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat("'CROIMG'_yyyyMMdd_HHmmss");
-        return dateFormat.format(date) + ".jpg";
+        return dateFormat.format(date);
     }
 
     private void startPhotoZoom(Uri uri, int size) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        String address = getCroPhotoFileName();
         // crop为true是设置在开启的intent中设置显示的view可以剪裁
         intent.putExtra("crop", "true");
         // aspectX aspectY 是宽高的比例
@@ -224,9 +238,19 @@ public class CameraDemoActivity extends FragmentActivity {
         // outputX,outputY 是剪裁图片的宽高
         intent.putExtra("outputX", size);
         intent.putExtra("outputY", size);
-        intent.putExtra("return-data", true);
-        cropFilePath = new File(photopath, getCroPhotoFileName());
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(cropFilePath));
+        intent.putExtra("return-data", false);
+        Uri imageUri = Uri.parse("file:///sdcard/formats/" + address + ".JPEG");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+        // 输出格式
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        // 不启用人脸识别
+        intent.putExtra("noFaceDetection", false);
+        intent.putExtra("return-data", false);
+        intent.putExtra("fileurl", FileUtil.SDPATH + address + ".JPEG");
+
+        cropFilePath = FileUtil.SDPATH + address + ".JPEG";
+
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
 }
