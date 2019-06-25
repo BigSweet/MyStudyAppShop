@@ -7,14 +7,15 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import com.demo.swt.mystudyappshop.Activity.HooliganActivity;
 import com.demo.swt.mystudyappshop.Fragment.TabDuanZiFragment;
@@ -31,7 +32,7 @@ import java.util.List;
 import fragment.TabFenLeiFragment;
 import fragment.TabFriendFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,ActivityCompat.OnRequestPermissionsResultCallback {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
     private CstTopBanner cstTopBanner;
     private QQNaviView MainNavi, FriendNavi, FenLeiNavi, DuanZiNavi, SetitingNavi;
     //    private ImageButton MainButton, FriendButton, FenLeiButton, DuanZiButton, SettingButton;
@@ -130,9 +131,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
+        server = new BootCompleteReceiver();
+        registerReceiver(server, filter);
 
-        registerReceiver(new BootCompleteReceiver(), filter);
+    }
 
+    BootCompleteReceiver server;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(server);
     }
 
     public class BootCompleteReceiver extends BroadcastReceiver {
@@ -168,8 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     TabFenLeiFragment mTabFenLeiFragment;
+
     private void getFrament() {
-        mTabFenLeiFragment=TabFenLeiFragment.newInstance();
+        mTabFenLeiFragment = TabFenLeiFragment.newInstance();
         mViews.add(TabMainFragment.newInstance());
         mViews.add(TabFriendFragment.newInstance());
         mViews.add(mTabFenLeiFragment);
@@ -297,7 +307,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
 
 
 }

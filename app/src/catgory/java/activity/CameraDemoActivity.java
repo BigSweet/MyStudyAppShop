@@ -24,7 +24,6 @@ import java.util.Date;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import widght.FileUtil;
 
 /**
  * 介绍：这里写介绍
@@ -125,24 +124,6 @@ public class CameraDemoActivity extends FragmentActivity {
                 }
                 break;
             case PHOTO_REQUEST_CUT:
-                if (data != null && !"".equals(data)) {
-                    Bundle extras = data.getExtras();
-                    head = extras.getParcelable("data");
-                    if (head != null) {
-                        mImageView.setImageBitmap(head);
-                        /**
-                         * 上传服务器代码
-                         * 我先注释有需要的替换成自己的接口就可以了
-                         */
-                 /*       RequestBody requestFile =
-                                RequestBody.create(MediaType.parse("image/png"), cropFilePath);
-                        // MultipartBody.Part is used to send also the actual file name
-                        MultipartBody.Part Part =
-                                MultipartBody.Part.createFormData("avatar", cropFilePath.getName(), requestFile);
-                        Upload(Part);*/
-                    }
-                }
-
                 if (resultCode == RESULT_OK && null != data) {// 裁剪返回
                     if (cropFilePath != null && cropFilePath.length() != 0) {
                         Bitmap bitmap = BitmapFactory.decodeFile(cropFilePath);
@@ -239,17 +220,21 @@ public class CameraDemoActivity extends FragmentActivity {
         intent.putExtra("outputX", size);
         intent.putExtra("outputY", size);
         intent.putExtra("return-data", false);
-        Uri imageUri = Uri.parse("file:///sdcard/formats/" + address + ".JPEG");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 
+        //这里要确保photopath存在 不然会出现保存文件失败
+        cropFilePath = photopath + "/" + address + ".jpg";
+        File fileDir = new File(photopath);
+        if (!fileDir.exists()) {
+            fileDir.mkdirs();
+        }
+        Uri imageUri = Uri.fromFile(new File(cropFilePath));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         // 输出格式
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         // 不启用人脸识别
         intent.putExtra("noFaceDetection", false);
         intent.putExtra("return-data", false);
-        intent.putExtra("fileurl", FileUtil.SDPATH + address + ".JPEG");
-
-        cropFilePath = FileUtil.SDPATH + address + ".JPEG";
+        intent.putExtra("fileurl", cropFilePath);
 
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
