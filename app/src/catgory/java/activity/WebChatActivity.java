@@ -1,7 +1,6 @@
 package activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
