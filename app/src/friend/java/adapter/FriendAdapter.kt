@@ -3,12 +3,11 @@ package adapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import bean.FeedBean
 import com.bumptech.glide.Glide
 import com.demo.swt.mystudyappshop.Activity.BigImageActivity
@@ -75,7 +74,11 @@ class FriendAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FriendAd
         private fun setText(feedBean: FeedBean) {
             name.text = feedBean.user.name
             school.text = feedBean.user.entityName
-            ups_size_tv.text = feedBean?.ups?.size.toString() + "人喜欢"
+            if (feedBean?.ups?.isNullOrEmpty() == true) {
+                ups_size_tv.text = "0人喜欢"
+            } else {
+                ups_size_tv.text = feedBean?.ups?.size.toString() + "人喜欢"
+            }
             displaytime.text = DetailTimeUtil.getTimeRange(feedBean.createTime)
             logo.setImageURI(feedBean.user.avatar + "?x-oss-process=image/resize,h_200")
             logo.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -123,6 +126,7 @@ class FriendAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FriendAd
                             Glide.with(context).load(s).into(imageView)
 
                         }
+
                         override fun onItemImageClick(context: Context?, index: Int, list: MutableList<String>) {
                             super.onItemImageClick(context, index, list)
                             val intent = Intent(context, BigImageActivity::class.java)
