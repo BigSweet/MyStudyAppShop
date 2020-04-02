@@ -208,6 +208,7 @@
         <activity android:name="activity.VoteActivity" />
         <activity android:name="activity.WebViewActivity" />
         <activity android:name="activity.PopWindowsActivity" />
+        <activity android:name="com.demo.swt.mystudyappshop.StubActivity"/>
         <activity
             android:name="activity.BounceBallActivity"
             android:theme="@style/Anim_fade" />

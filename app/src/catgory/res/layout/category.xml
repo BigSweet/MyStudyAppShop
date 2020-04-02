@@ -328,6 +328,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edittext"
                 android:text="popwindows"/>
+
+            <Button
+                android:id="@+id/hook"
+                android:background="@drawable/bg_edittext"
+                android:layout_width="wrap_content"
+                android:text="hook插件化"
+                android:layout_height="wrap_content"/>
         </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 
     </androidx.core.widget.NestedScrollView>
