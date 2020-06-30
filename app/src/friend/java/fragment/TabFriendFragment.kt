@@ -4,9 +4,6 @@ import adapter.FriendAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +16,7 @@ import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider
 import com.demo.swt.mystudyappshop.retrofit.RetrofitManager
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import ioToMain
 import kotlinx.android.synthetic.main.search.*
 import java.util.*
 
@@ -115,30 +113,32 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
 
     //请求recyclerview的数据
     private fun requestRecyclerView(nt: String) {
-        RetrofitManager.getInstance().getFriend(nt).subscribe(object : Observer<FeedBeanList> {
+        RetrofitManager.getInstance().getFriend(nt)
+                .ioToMain()
+                .subscribe(object : Observer<FeedBeanList> {
 
-            override fun onSubscribe(d: Disposable) {
+                    override fun onSubscribe(d: Disposable) {
 
-            }
+                    }
 
-            override fun onNext(response: FeedBeanList) {
-                if (response.data != null) {
-                    feedList = response.data.list
-                    moreList = response.data.list
-                    feedbeanlist = response
-                    initData()
-                    progress.visibility = View.GONE
-                }
-            }
+                    override fun onNext(response: FeedBeanList) {
+                        if (response.data != null) {
+                            feedList = response.data.list
+                            moreList = response.data.list
+                            feedbeanlist = response
+                            initData()
+                            progress.visibility = View.GONE
+                        }
+                    }
 
-            override fun onError(e: Throwable) {
+                    override fun onError(e: Throwable) {
 
-            }
+                    }
 
-            override fun onComplete() {
+                    override fun onComplete() {
 
-            }
-        })
+                    }
+                })
     }
 
 

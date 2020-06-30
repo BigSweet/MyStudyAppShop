@@ -2,6 +2,7 @@ package com.demo.swt.mystudyappshop.retrofit;
 
 import com.demo.swt.mystudyappshop.MyApplication;
 import com.demo.swt.mystudyappshop.Util.SpUtils;
+import com.demo.swt.mystudyappshop.bean.PlayBean;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import bean.FeedBeanList;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -124,13 +126,13 @@ public class RetrofitManager {
     }
 
     //测试类
-    public Observable getPlayData() {
+    public Observable<BaseData<PlayBean>> getPlayData() {
         return mApiService.getPlayData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
     }
 
     //测试类
-    public Observable getFriend(String nt) {
+    public Observable<FeedBeanList> getFriend(String nt) {
         return mApiService.getFriend(nt).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
     }

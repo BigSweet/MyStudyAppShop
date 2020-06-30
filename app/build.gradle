@@ -177,5 +177,6 @@ dependencies {
     implementation project(':zxinglib')
     implementation 'androidx.annotation:annotation:1.0.0'
     annotationProcessor 'androidx.annotation:annotation:1.0.0'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
 
 }
