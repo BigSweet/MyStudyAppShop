@@ -18,4 +18,17 @@
     <string name="choose_wallpaper">Choose wallpaper</string>
     <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 
+
+    <string-array name="quote_words">
+        <item>行情往往在绝望中产生，在犹豫中发展，在欢乐中死亡</item>
+        <item>不要轻易预测市场</item>
+        <item>涨时重势，跌时重质</item>
+        <item>在别人恐惧时我贪婪，在别人贪婪时我恐惧</item>
+        <item>拥有一只股票，期待它下个早晨就上涨是十分愚蠢的</item>
+        <item>市场不会在乎你为股市投了多少钱，也不会在乎你认为什么价格合适</item>
+        <item>一定要在自己的理解能力允许的范围内投资</item>
+        <item>人生就像滚雪球，重要的是发现够湿的雪，和一道够长的山坡</item>
+        <item>长期看，市场是称重机，短期看，市场是投票机</item>
+        <item>承担风险，无可指责，但同时记住千万不能孤注一掷</item>
+    </string-array>
 </resources>

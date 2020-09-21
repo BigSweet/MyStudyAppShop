@@ -171,6 +171,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation fileTree(include: ['*.aar'], dir: 'libs')
     api 'com.leon.channel:helper:1.1.7'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     librarys.each { k, v -> implementation v }
     //Your dependency that includes the module with the duplicates.
@@ -178,5 +180,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.0.0'
     annotationProcessor 'androidx.annotation:annotation:1.0.0'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    api "fc.nestedscrollview.androidx:library:1.0.4"
 
 }

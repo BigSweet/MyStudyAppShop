@@ -4,6 +4,47 @@
     package="com.demo.swt.mystudyappshop">
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.demo.swt.mystudyappshop.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Required -->
+    <permission
+        android:name="com.demo.swt.mystudyappshop.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -13,26 +54,28 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/CstAppTheme">
+        <activity android:name=".PullDownActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.demo.swt.mystudyappshop"
             android:exported="false"
             android:grantUriPermissions="true">
-            <!--元数据-->
+
+            <!-- 元数据 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
-
         <!--
                 <supports-screens
                     android:anyDensity="true"
                     android:largeScreens="true"
                     android:normalScreens="true"
                     android:resizeable="true"
-                    android:smallScreens="true"/>-->
-        <!-- Required SDK 核心功能-->
+                    android:smallScreens="true"/>
+        -->
+        <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
@@ -44,9 +87,7 @@
                 <action android:name="cn.jpush.android.intent.PushService" />
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
             </intent-filter>
-        </service>
-
-        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        </service> <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
         <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
         <service
             android:name="cn.jpush.android.service.DaemonService"
@@ -54,18 +95,17 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
+
                 <category android:name="com.demo.swt.mystudyappshop" />
             </intent-filter>
         </service>
-
-
-        <service android:name=".Activity.DownApkIntentService" />
-        <!-- Required SDK核心功能-->
+        <service android:name=".Activity.DownApkIntentService" /> <!-- Required SDK核心功能 -->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+
                 <category android:name="com.demo.swt.mystudyappshop" />
             </intent-filter>
             <intent-filter>
@@ -80,9 +120,8 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        <service android:name=".Util.DownloadService" />
 
-        <!-- Required SDK核心功能-->
+        <service android:name=".Util.DownloadService" /> <!-- Required SDK核心功能 -->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -94,19 +133,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.demo.swt.mystudyappshop" />
             </intent-filter>
-        </activity>
-
-        <!-- Required SDK核心功能-->
+        </activity> <!-- Required SDK核心功能 -->
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service>
-
-        <!-- Required SDK核心功能-->
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-
-        <!-- User defined. 用户自定义的广播接收器-->
-        <!--<receiver
+            android:exported="false" /> <!-- Required SDK核心功能 -->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" /> <!-- User defined. 用户自定义的广播接收器 -->
+        <!--
+<receiver
             android:name="您自己定义的Receiver"
             android:enabled="true">
             <intent-filter>
@@ -122,18 +156,17 @@
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
                 <category android:name="com.demo.swt.mystudyappshop" />
             </intent-filter>
-        </receiver>-->
-
+        </receiver>
+        -->
         <!-- Required. For publish channel feature -->
-        <!-- JPUSH_CHANNEL 是为了方便开发者统计APK分发渠道。-->
+        <!-- JPUSH_CHANNEL 是为了方便开发者统计APK分发渠道。 -->
         <!-- 例如: -->
         <!-- 发到 Google Play 的APK可以设置为 google-play; -->
         <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
-        <!-- 目前这个渠道统计功能的报表还未开放。-->
+        <!-- 目前这个渠道统计功能的报表还未开放。 -->
         <meta-data
             android:name="JPUSH_CHANNEL"
-            android:value="developer-default" />
-        <!-- Required. AppKey copied from Portal -->
+            android:value="developer-default" /> <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="8e9ed4617ce3bb7f2c832ba2" />
@@ -146,11 +179,11 @@
             android:enabled="true"
             android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2"></action>
+                <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
         </service>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name="activity.LeiDaActivity" />
         <activity android:name="activity.GreenMainAcitivity" />
         <activity android:name="activity.PhotosListActivity" />
@@ -161,7 +194,6 @@
         <activity
             android:name=".Activity.WelcomeAcitivity"
             android:theme="@style/SplashTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -208,7 +240,7 @@
         <activity android:name="activity.VoteActivity" />
         <activity android:name="activity.WebViewActivity" />
         <activity android:name="activity.PopWindowsActivity" />
-        <activity android:name="com.demo.swt.mystudyappshop.StubActivity"/>
+        <activity android:name=".StubActivity" />
         <activity
             android:name="activity.BounceBallActivity"
             android:theme="@style/Anim_fade" />
@@ -220,15 +252,12 @@
             android:finishOnTaskLaunch="false"
             android:launchMode="singleInstance"
             android:theme="@style/HooliganActivityStyle" />
-
-
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -242,18 +271,15 @@
                 <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name="activity.PlayViewActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
         <activity android:name="activity.DownloadAppActivity" />
         <activity android:name="activity.TextViewAndImageViewActivity" />
         <activity android:name="activity.VideoWapperActivity" />
@@ -261,13 +287,9 @@
         <meta-data
             android:name="${UMENG_CHANNEL_VALUE}"
             android:value="Channel ID" />
-
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58490310e88bad3aa9000220"></meta-data>
-
-        <!--原来的appkey   B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3-->
-
+            android:value="58490310e88bad3aa9000220" /> <!-- 原来的appkey   B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="B3GfpFDBrr7cuRN1Zqu5IKwMy7xiEbT3" />
@@ -276,6 +298,7 @@
             android:name=".Util.CameraLiveWallpaper"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_WALLPAPER">
+
             <!-- 为实时壁纸配置intent-filter -->
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
@@ -285,12 +308,12 @@
                 android:name="android.service.wallpaper"
                 android:resource="@xml/livewallpaper" />
         </service>
-
         <service
             android:name=".Util.VideoLiveWallpaper"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_WALLPAPER"
             android:process=":wallpaper">
+
             <!-- 为实时壁纸配置intent-filter -->
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
@@ -301,52 +324,5 @@
                 android:resource="@xml/livewallpaper" />
         </service>
     </application>
-
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" /><!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.demo.swt.mystudyappshop.permission.JPUSH_MESSAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-
-    <!-- Optional for location -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" /><!-- Required -->
-    <permission
-        android:name="com.demo.swt.mystudyappshop.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
-
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
 
 </manifest>

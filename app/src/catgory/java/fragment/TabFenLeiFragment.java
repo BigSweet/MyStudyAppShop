@@ -19,8 +19,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.demo.swt.mystudyappshop.TargetActivity;
+import com.demo.swt.mystudyappshop.PullDownActivity;
 import com.demo.swt.mystudyappshop.R;
+import com.demo.swt.mystudyappshop.TargetActivity;
 import com.demo.swt.mystudyappshop.Util.GifSizeFilter;
 import com.demo.swt.mystudyappshop.Wight.SwtToast;
 import com.zhihu.matisse.Matisse;
@@ -414,6 +415,13 @@ public class TabFenLeiFragment extends Fragment {
                 HookHelper.hookIActivityManager();
                 HookHelper.hookHandler();
                 Intent intent = new Intent(getActivity(), TargetActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.pull_anima).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PullDownActivity.class);
                 startActivity(intent);
             }
         });

@@ -18,7 +18,9 @@
         <attr name="scroll_view_id" format="reference"/>
         <attr name="drag_view_id" format="reference"/>
     </declare-styleable>
-
+    <declare-styleable name="AnimView">
+        <attr name="anim_view_res" format="reference" />
+    </declare-styleable>
     <declare-styleable name="LevelProgressBar">
         <attr name="levelTextSize" format="dimension"/>
         <attr name="levelTextChooseColor" format="color"/>

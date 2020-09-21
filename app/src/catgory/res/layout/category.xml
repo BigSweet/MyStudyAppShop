@@ -335,6 +335,12 @@
                 android:layout_width="wrap_content"
                 android:text="hook插件化"
                 android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/pull_anima"
+                android:background="@drawable/bg_edittext"
+                android:layout_width="wrap_content"
+                android:text="下拉动画"
+                android:layout_height="wrap_content"/>
         </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 
     </androidx.core.widget.NestedScrollView>
