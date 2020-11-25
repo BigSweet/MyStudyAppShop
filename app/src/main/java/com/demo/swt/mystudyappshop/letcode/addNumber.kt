@@ -23,7 +23,29 @@ object addNumber {
         node22.next = node23
         val newNode = addTwoNumbers(node11, node21)
         println("最大字符长度为" + lengthOfLongestSubstring("sbcsshsdskfg"))
+
+        println("最大中位数" + findMedianSortedArrays(intArrayOf(1, 2, 3, 8), intArrayOf(4, 5, 6,10)))
     }
+
+
+    fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
+        var allNums = IntArray(nums1.size + nums2.size)
+        for (i in nums1.indices) {
+            allNums[i] = nums1[i]
+        }
+        for (j in nums2.indices) {
+            allNums[nums1.size + j] = nums2[j]
+        }
+        val newNums = allNums.sortedWith(Comparator<Int> { o1, o2 ->
+            o1.compareTo(o2)
+        })
+        return if (newNums.size % 2 == 0) {
+            ((newNums[(newNums.size / 2)] + newNums[(newNums.size / 2) - 1]).toDouble() / 2)
+        } else {
+            (newNums[(newNums.size / 2)]).toDouble()
+        }
+    }
+
 
     /**
      * 俩数相加，寻找指定的数字，返回指定数字在数组中的下标
