@@ -12,7 +12,12 @@ object FindMidd {
     @JvmStatic
     fun main(args: Array<String>) {
 //        print(findMedianSortedArrays(intArrayOf(1, 3, 5, 7, 9), intArrayOf(2, 4, 6, 8, 10)))
-        print(longestPalindrome("aba"))
+//        print(longestPalindrome("aba"))
+//        print(reverse(1254))
+        var ans = 0
+        val c = '8'
+        ans = ans * 10 + (c - '2');
+        print(ans)
     }
 
     /**
@@ -100,6 +105,19 @@ object FindMidd {
             }
         }
         return if ((m + n) % 2 == 0) (median1 + median2) / 2.0 else median1.toDouble()
+    }
+
+    fun reverse(x: Int): Int {
+        var x = x
+        var rev = 0
+        while (x != 0) {
+            val pop = x % 10
+            x /= 10
+            if (rev > Int.MAX_VALUE / 10 || rev == Int.MAX_VALUE / 10 && pop > 7) return 0
+            if (rev < Int.MIN_VALUE / 10 || rev == Int.MIN_VALUE / 10 && pop < -8) return 0
+            rev = rev * 10 + pop
+        }
+        return rev
     }
 
 
