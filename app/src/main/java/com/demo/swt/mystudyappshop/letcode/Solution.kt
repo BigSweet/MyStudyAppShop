@@ -39,7 +39,7 @@ object Solution {
             state = table[state]!![get_col(c)]
             if ("in_number" == state) {
                 ans = ans * 10 + (c - '0')
-                ans = if (sign == 1) Math.min(ans, Int.MAX_VALUE.toLong()) else Math.min(ans, (-Int.MIN_VALUE).toLong())
+                ans = if (sign == 1) Math.min(ans, Int.MAX_VALUE.toLong()) else Math.min(ans, -(Int.MIN_VALUE).toLong())
             } else if ("signed" == state) {
                 sign = if (c == '+') 1 else -1
             }
