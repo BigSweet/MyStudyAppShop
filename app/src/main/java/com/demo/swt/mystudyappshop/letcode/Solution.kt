@@ -10,7 +10,7 @@ package com.demo.swt.mystudyappshop.letcode
 object Solution {
     @JvmStatic
     fun main(args: Array<String>) {
-        print(myAtoi("28dju12"))
+        print(myAtoi(" -42"))
     }
 
     fun myAtoi(str: String): Int {
