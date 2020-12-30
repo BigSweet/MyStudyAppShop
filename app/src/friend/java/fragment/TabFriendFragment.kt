@@ -7,6 +7,8 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import bean.FeedBean
 import bean.FeedBeanList
 import com.cjj.MaterialRefreshLayout
@@ -14,11 +16,9 @@ import com.cjj.MaterialRefreshListener
 import com.demo.swt.mystudyappshop.R
 import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider
 import com.demo.swt.mystudyappshop.retrofit.RetrofitManager
-import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import ioToMain
 import kotlinx.android.synthetic.main.search.*
-import java.util.*
 
 /**
  * Created by pc on 2016/11/29.
@@ -110,35 +110,21 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
         })
     }
 
+    val viewModel by lazy { ViewModelProviders.of(this).get(FriendViewModel::class.java) }
+
 
     //请求recyclerview的数据
     private fun requestRecyclerView(nt: String) {
-        RetrofitManager.getInstance().getFriend(nt)
-                .ioToMain()
-                .subscribe(object : Observer<FeedBeanList> {
-
-                    override fun onSubscribe(d: Disposable) {
-
-                    }
-
-                    override fun onNext(response: FeedBeanList) {
-                        if (response.data != null) {
-                            feedList = response.data.list
-                            moreList = response.data.list
-                            feedbeanlist = response
-                            initData()
-                            progress.visibility = View.GONE
-                        }
-                    }
-
-                    override fun onError(e: Throwable) {
-
-                    }
-
-                    override fun onComplete() {
-
-                    }
-                })
+        viewModel.data.observe(this, Observer {
+            if (it.data != null) {
+                feedList = it.data.list
+                moreList = it.data.list
+                feedbeanlist = it
+                initData()
+                progress.visibility = View.GONE
+            }
+        })
+        viewModel.getFriend(nt)
     }
 
 

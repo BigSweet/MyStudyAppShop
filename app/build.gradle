@@ -139,10 +139,10 @@ android {
         abortOnError false
     }
 
-    /*   compileOptions {
-           targetCompatibility 1.8
-           sourceCompatibility 1.8
-       }*/
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 
@@ -182,5 +182,14 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     api "fc.nestedscrollview.androidx:library:1.0.4"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha03"
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.5.0'
+
 
 }
