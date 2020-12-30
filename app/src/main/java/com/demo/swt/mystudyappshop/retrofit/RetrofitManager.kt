@@ -65,8 +65,8 @@ class RetrofitManager private constructor() {
     val playData: Observable<BaseData<PlayBean>>
         get() = mApiService.playData.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
-    suspend fun getFriend(nt: String) = withContext(Dispatchers.IO) {
-        mApiService.getFriend(nt).await()
+    suspend fun getFriend(page: Int) = withContext(Dispatchers.IO) {
+        mApiService.getFriend(page).await()
     }
 
 

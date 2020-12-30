@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bean.FeedBeanList
+import com.demo.swt.mystudyappshop.retrofit.BaseData
+import com.demo.swt.mystudyappshop.retrofit.MainHeartData
 import com.demo.swt.mystudyappshop.retrofit.RetrofitManager
 import kotlinx.coroutines.launch
 
@@ -16,11 +18,11 @@ import kotlinx.coroutines.launch
  */
 class FriendViewModel() : ViewModel() {
 
-    var data = MutableLiveData<FeedBeanList>()
+    var data = MutableLiveData<BaseData<MainHeartData>>()
 
-    fun getFriend(nt: String) {
+    fun getFriend(page: Int) {
         launch({
-            data.value = RetrofitManager.getInstance().getFriend(nt)
+            data.value = RetrofitManager.getInstance().getFriend(page)
         }, {
 
         })

@@ -15,6 +15,7 @@ import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
 import com.demo.swt.mystudyappshop.R
 import com.demo.swt.mystudyappshop.Wight.RecyclerLinearDivider
+import com.demo.swt.mystudyappshop.retrofit.HeartData
 import com.demo.swt.mystudyappshop.retrofit.RetrofitManager
 import io.reactivex.disposables.Disposable
 import ioToMain
@@ -43,12 +44,11 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
         private const val STATE_LOADMORE = 2
     }
 
-    private var feedList: List<FeedBean>? = ArrayList()
-    private var moreList: List<FeedBean>? = ArrayList()
+    private var feedList: List<HeartData>? = ArrayList()
+    private var moreList: List<HeartData>? = ArrayList()
     private var myAdapter: FriendAdapter? = null
     private var nt = ""
     private var state = STATE_NORMAL
-    private var feedbeanlist: FeedBeanList? = null
     private var mHandler = Handler()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -58,7 +58,7 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ivAd.visibility = View.VISIBLE
-        requestRecyclerView("")
+        requestRecyclerView(page)
         initRecyclerView()
         initRefresh()
     }
@@ -93,19 +93,28 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
     }
 
 
+    var page = 0
     private fun initRefresh() {
         refresh.setLoadMore(true)
         refresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
             override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
                 state = STATE_REFRESH
-                requestRecyclerView("")
+                page = 0
+                requestRecyclerView(page)
             }
 
             override fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout?) {
                 super.onRefreshLoadMore(materialRefreshLayout)
                 state = STATE_LOADMORE
-                nt = feedbeanlist?.data?.nt ?: ""
-                requestRecyclerView(nt)
+                requestRecyclerView(++page)
+            }
+        })
+        viewModel.data.observe(this, Observer {
+            if (it.data != null) {
+                feedList = it.data.list
+                moreList = it.data.list
+                initData()
+                progress.visibility = View.GONE
             }
         })
     }
@@ -114,17 +123,8 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
 
 
     //请求recyclerview的数据
-    private fun requestRecyclerView(nt: String) {
-        viewModel.data.observe(this, Observer {
-            if (it.data != null) {
-                feedList = it.data.list
-                moreList = it.data.list
-                feedbeanlist = it
-                initData()
-                progress.visibility = View.GONE
-            }
-        })
-        viewModel.getFriend(nt)
+    private fun requestRecyclerView(page: Int) {
+        viewModel.getFriend(page)
     }
 
 

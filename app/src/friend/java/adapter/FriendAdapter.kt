@@ -16,6 +16,7 @@ import com.demo.swt.mystudyappshop.Adapter.UpsAdapter
 import com.demo.swt.mystudyappshop.R
 import com.demo.swt.mystudyappshop.Util.DetailTimeUtil
 import com.demo.swt.mystudyappshop.Wight.NoNullUtils
+import com.demo.swt.mystudyappshop.retrofit.HeartData
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter
 import com.spero.vision.ktx.inflateLayout
 import kotlinx.android.extensions.LayoutContainer
@@ -28,7 +29,7 @@ import java.util.*
  */
 
 class FriendAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FriendAdapter.FriendHolder>() {
-    private var mList: MutableList<FeedBean> = mutableListOf()
+    private var mList: MutableList<HeartData> = mutableListOf()
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FriendHolder {
         return FriendHolder(p0.inflateLayout(R.layout.wuyu))
     }
@@ -41,46 +42,38 @@ class FriendAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FriendAd
         p0.binData(mList[p1])
     }
 
-    fun setData(list: List<FeedBean>?) {
+    fun setData(list: List<HeartData>?) {
         if (list == null) return
         mList.clear()
         mList.addAll(list)
         notifyDataSetChanged()
     }
 
-    fun addData(list: List<FeedBean>?) {
+    fun addData(list: List<HeartData>?) {
         if (list == null) return
         mList.addAll(list)
         notifyDataSetChanged()
     }
 
-    fun getData(): List<FeedBean> {
+    fun getData(): List<HeartData> {
         return mList
     }
 
     class FriendHolder(override var containerView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun binData(feedBean: FeedBean) {
-            if (feedBean.feedType == 1) {
-                setParams(LinearLayout.LayoutParams.WRAP_CONTENT)
-                setContent(feedBean)
-                setText(feedBean)
-                setUpList(feedBean)
-                setComment(feedBean)
-            } else {
-                setParams(1)
-            }
+        fun binData(feedBean: HeartData) {
+            setParams(LinearLayout.LayoutParams.WRAP_CONTENT)
+            setContent(feedBean)
+            setText(feedBean)
+//            setUpList(feedBean)
+//            setComment(feedBean)
         }
 
-        private fun setText(feedBean: FeedBean) {
-            name.text = feedBean.user.name
-            school.text = feedBean.user.entityName
-            if (feedBean?.ups?.isNullOrEmpty() == true) {
-                ups_size_tv.text = "0人喜欢"
-            } else {
-                ups_size_tv.text = feedBean?.ups?.size.toString() + "人喜欢"
-            }
-            displaytime.text = DetailTimeUtil.getTimeRange(feedBean.createTime)
-            logo.setImageURI(feedBean.user.avatar + "?x-oss-process=image/resize,h_200")
+        private fun setText(feedBean: HeartData) {
+            name.text = feedBean.nickname
+//            school.text = feedBean.user.entityName
+            ups_size_tv.text = feedBean?.likes?.toString() + "人喜欢"
+            displaytime.text = feedBean.time
+            logo.setImageURI(feedBean.portrait)
             logo.scaleType = ImageView.ScaleType.CENTER_CROP
         }
 
@@ -90,37 +83,37 @@ class FriendAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FriendAd
             wuyuitemlayout.layoutParams = params
         }
 
-        private fun setUpList(feedBean: FeedBean) {
-            var uplist = feedBean.ups
-            if (uplist != null && uplist!!.size > 0) {
-                val adapter = UpsAdapter(containerView.context, uplist, R.layout.up_rv_item)
-                NoNullUtils.setVisible(ups_rv, true)
-                ups_rv.adapter = adapter
-                ups_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(containerView.context, androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL, false)
-            } else {
-                NoNullUtils.setVisible(ups_rv, false)
-            }
+//        private fun setUpList(feedBean: HeartData) {
+//            var uplist = feedBean.ups
+//            if (uplist != null && uplist!!.size > 0) {
+//                val adapter = UpsAdapter(containerView.context, uplist, R.layout.up_rv_item)
+//                NoNullUtils.setVisible(ups_rv, true)
+//                ups_rv.adapter = adapter
+//                ups_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(containerView.context, androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL, false)
+//            } else {
+//                NoNullUtils.setVisible(ups_rv, false)
+//            }
+//
+//        }
+//
+//        private fun setComment(feedBean: HeartData) {
+//            if (feedBean.comments != null) {
+//                val adapter = CommentAdapter(containerView.context, feedBean.comments, R.layout.comment_item)
+//                commentzan.visibility = View.VISIBLE
+//                commentzan.adapter = adapter
+//                commentzan.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(containerView.context)
+//                NoNullUtils.setVisible(commentzan, true)
+//            } else {
+//                NoNullUtils.setVisible(commentzan, false)
+//            }
+//        }
 
-        }
-
-        private fun setComment(feedBean: FeedBean) {
-            if (feedBean.comments != null) {
-                val adapter = CommentAdapter(containerView.context, feedBean.comments, R.layout.comment_item)
-                commentzan.visibility = View.VISIBLE
-                commentzan.adapter = adapter
-                commentzan.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(containerView.context)
-                NoNullUtils.setVisible(commentzan, true)
-            } else {
-                NoNullUtils.setVisible(commentzan, false)
-            }
-        }
-
-        private fun setContent(feedBean: FeedBean) {
+        private fun setContent(feedBean: HeartData) {
             var imglist: List<String>? = null
             if (feedBean.content != null) {
                 wuyu_text.text = feedBean.content
-                if (feedBean.imageList != null && feedBean.imageList.size > 0) {
-                    imglist = feedBean.imageList
+                if (!feedBean.data.isNullOrEmpty()) {
+                    imglist = feedBean.data
                     val nineGridImageViewAdapter = object : NineGridImageViewAdapter<String>() {
                         override fun onDisplayImage(context: Context, imageView: ImageView, s: String) {
                             Glide.with(context).load(s).into(imageView)
