@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'channel'
+apply plugin: 'kotlin-kapt'
 def cfg = rootProject.ext.android
 def librarys = rootProject.ext.dependencies
 android {
@@ -143,6 +144,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 
@@ -173,12 +177,12 @@ dependencies {
     api 'com.leon.channel:helper:1.1.7'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
     librarys.each { k, v -> implementation v }
     //Your dependency that includes the module with the duplicates.
     implementation project(':zxinglib')
     implementation 'androidx.annotation:annotation:1.0.0'
-    annotationProcessor 'androidx.annotation:annotation:1.0.0'
+    kapt 'androidx.annotation:annotation:1.0.0'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     api "fc.nestedscrollview.androidx:library:1.0.4"
