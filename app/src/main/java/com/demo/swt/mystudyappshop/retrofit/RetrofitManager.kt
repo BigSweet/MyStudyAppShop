@@ -1,6 +1,7 @@
 package com.demo.swt.mystudyappshop.retrofit
 
 import bean.FeedBeanList
+import com.android.okhttp.monitor.interceptor.MonitorInterceptor
 import com.demo.swt.mystudyappshop.MyApplication
 import com.demo.swt.mystudyappshop.Util.SpUtils
 import com.demo.swt.mystudyappshop.bean.PlayBean
@@ -94,7 +95,7 @@ class RetrofitManager private constructor() {
         return Interceptor { chain ->
             val originalRequest = chain.request()
             val request: Request
-            val modifiedUrl = originalRequest.url().newBuilder() // Provide your custom parameter here
+            val modifiedUrl = originalRequest.url.newBuilder() // Provide your custom parameter here
                     .addQueryParameter("utoken", "xgsSH55CeXWKN_aJs-Mz_nkj7BS0tejDKYMckbQ1BaJECsjqK59AJJPIn_VqErii-2mFvngFv7bV9F0YOqEbrzCbyrGMGfcfWrO4cKqZaH7P3RRUb6FTL2RBbGqbAU5tgqoVSiPgZCbgRBnkSZiu3XzGWZXY-VLk")
                     .addQueryParameter("phoneModel", "")
                     .build()
@@ -111,7 +112,7 @@ class RetrofitManager private constructor() {
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder() // Provide your custom header here
                     .header("token", SpUtils.get("token", "") as String)
-                    .method(originalRequest.method(), originalRequest.body())
+                    .method(originalRequest.method, originalRequest.body)
             val request = requestBuilder.build()
             chain.proceed(request)
         }
@@ -124,6 +125,7 @@ class RetrofitManager private constructor() {
         val client = OkHttpClient.Builder()
                 .addInterceptor(addQueryParameterInterceptor()) //参数添加
                 .addInterceptor(addHeaderInterceptor()) // token过滤
+                .addInterceptor(MonitorInterceptor()) // token过滤
                 .addInterceptor(LogInterceptor().setLevel(LogInterceptor.Level.BODY))
                 .cache(cache) //添加缓存
                 .connectTimeout(60L, TimeUnit.SECONDS) //                .addNetworkInterceptor(new LogInterceptor())

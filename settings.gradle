@@ -1,1 +1,1 @@
-include ':app', ':zxinglib', ':matisse'
+include ':app', ':zxinglib', ':matisse',"monitor"

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>抓包助手</title>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://unpkg.com/dayjs"></script>
+    <script>
+        $(document).ready(function () {
+            $("#query").on("click", function () {
+                var limit = $("#limit").val();
+                if (limit <= 0) {
+                    limit = 10;
+                }
+                $.get("/query?limit=" + limit, function (data) {
+                    if (data == undefined || data.length <= 0 || data == "[]") {
+                        emptyView()
+                        return;
+                    }
+                    var rootDiv = document.getElementById("root_list_div");
+                    rootDiv.innerHTML = "";
+                    var jsonObj = JSON.parse(data);
+                    for (index in jsonObj) {
+                        var monitorData = jsonObj[index];
+                        createItem(rootDiv, monitorData, index);
+                    }
+                }).error(function () {
+                    errorView()
+                });
+            });
+
+            $("#clean").on("click", function () {
+                $.get("/clean", function (data) {
+                    emptyView();
+                });
+            });
+        });
+
+        /**
+         * 创建列表item
+         */
+        function createItem(rootDiv, item, position) {
+            var list = "";
+            var collapseId = "collapse" + position;
+            list += createDivStart(item);
+
+            list += createTitleDiv(item, collapseId, position);
+            list += createBodyDiv(item, collapseId);
+
+            list += createDivEnd();
+
+            var createDiv = document.createElement('div');
+            createDiv.innerHTML = list;
+
+            rootDiv.appendChild(createDiv);
+        }
+
+        function createDivStart(data) {
+            var code = data.responseCode;
+            var divStyle = "";
+            switch (code) {
+                case 200:
+                    divStyle = '<div class= "panel panel-info" >';
+                    break;
+                case 500:
+                    divStyle = '<div class= "panel panel-danger" >';
+                    break;
+                default:
+                    divStyle = '<div class= "panel panel-warning" >';
+            }
+            return divStyle
+        }
+
+        function createDivEnd() {
+            return '</div>';
+        }
+
+        /**
+         * 创建title内容
+         */
+        function createTitleDiv(data, collapseId, position) {
+            var titleDiv = '<div class="panel-heading">';
+            titleDiv += '<a data-toggle="collapse" data-parent="#root_list_div" href=#';
+            titleDiv += collapseId + '>';
+            titleDiv += parseInt(position) + 1 + "、";
+            titleDiv += createSpan(data);
+            titleDiv += data.path;
+            titleDiv += '</a></div>';
+            return titleDiv
+        }
+
+        /**
+         * 创建body内容
+         */
+        function createBodyDiv(data, collapseId) {
+            var bodyDiv = '<div class="panel-collapse collapse" id=';
+            bodyDiv += collapseId + '>';
+            bodyDiv += '<div class="panel-body"><pre>';
+            bodyDiv += createRequestHeaderTable(data);
+            bodyDiv += createPostRequestParams(data);
+            if (data.responseBody != undefined && data.responseBody != null) {
+                bodyDiv += JSON.stringify(JSON.parse(data.responseBody), null, 2);
+            } else {
+                bodyDiv += data.errorMsg;
+            }
+            bodyDiv += '</pre></div></div>';
+            return bodyDiv;
+        }
+
+        /**
+         *创建请求头表格
+         */
+        function createRequestHeaderTable(data) {
+            var headerObj = JSON.parse(data.requestHeaders);
+            if (headerObj.length < 7) return "";
+            var table = '<table class="table table-bordered">';
+            table += '<thead> <tr> <th>host</th> <th>' + headerObj[0].name + '</th> <th>' + headerObj[1].name + '</th> <th>' + headerObj[2].name + '</th> <th>' + headerObj[3].name + '</th><th>' + headerObj[4].name + '</th> <th>' + headerObj[5].name + '</th> <th>' + headerObj[6].name + '</th> </tr> </thead>';
+            table += '<tbody><tr class="info">';
+            table += '<td>' + data.host + '</td>';
+            table += '<td>' + headerObj[0].value + '</td>';
+            table += '<td>' + headerObj[1].value + '</td>';
+            table += '<td>' + headerObj[2].value + '</td>';
+            table += '<td>' + headerObj[3].value + '</td>';
+            table += '<td>' + headerObj[4].value + '</td>';
+            table += '<td>' + headerObj[5].value + '</td>';
+            table += '<td>' + headerObj[6].value + '</td>';
+            table += '</tr></tbody></table><HR>';
+            return table;
+        }
+
+        /**
+         * 创建请求参数
+         */
+        function createPostRequestParams(data) {
+            if (data.requestBody == null || data.requestBody == undefined || data.requestBody.length <= 0) return "";
+            var info = '<div class="well">';
+            info += "请求参数：" + data.requestBody;
+            info += '</div>';
+            return info;
+        }
+
+        /**
+         * 创建footer（展示效果不好，暂未使用）
+         */
+        function createFooterDiv(data) {
+            var footerDiv = '<div class="panel-footer">';
+            footerDiv += data.host;
+            footerDiv += '</div>';
+            return footerDiv;
+        }
+
+        /**
+         * 创建状态码，请求方式，请求时间的标签
+         */
+        function createSpan(data) {
+            var spanStyle = "";
+            switch (data.responseCode) {
+                case 200:
+                    spanStyle = '<span class="label label-success">';
+                    break;
+                case 500:
+                    spanStyle = '<span class="label label-danger">';
+                    break;
+                default:
+                    spanStyle = '<span class="label label-warning">';
+            }
+
+            var span = spanStyle + getFormatDate(data.requestDate) + '</span>';
+            span += spanStyle + data.responseCode + '</span>';
+            span += spanStyle + data.method + '</span>';
+            var duration;
+            if (data.duration == undefined) {
+                duration = 0;
+            } else {
+                duration = data.duration;
+            }
+            span += spanStyle + duration + "ms" + '</span>';
+            return span;
+        }
+
+        /**
+         *格式化请求时间
+         * @param date
+         * @returns {*}
+         */
+        function getFormatDate(date) {
+            return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
+        }
+
+        /**
+         * 空布局
+         */
+        function emptyView() {
+            var rootDiv = document.getElementById("root_list_div");
+            rootDiv.innerHTML = '<h1 style="text-align: center">' + "暂无数据" + "</h1><hr/>";
+        }
+        /**
+         * 错误布局
+         */
+        function errorView() {
+            var rootDiv = document.getElementById("root_list_div");
+            rootDiv.innerHTML = '<h1 style="text-align: center">' + "服务器异常，请重启APP" + "</h1><hr/>";
+        }
+
+
+    </script>
+    <style>
+        .panel {
+            margin-bottom: 10px;
+        }
+
+        span {
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+
+        .input-group {
+            width: 400px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div style="padding: 10px 10px 10px 10px;">
+    <div style="margin: 10px 10px 10px 10px;display: flex" ;>
+        <div class="input-group">
+            <input type="text" class="form-control" id="limit" placeholder="默认十条，建议单次查询50条以内数据">
+            <span class="input-group-btn">
+						<button class="btn btn-success" id="query" type="button">查询</button>
+					</span>
+        </div>
+        <button type="button" id="clean" class="btn btn-danger" style="margin-left: 20px">清空数据库
+        </button>
+    </div>
+    <HR>
+
+    <div id="root_list_div"></div>
+</div>
+</body>
+
+</html>

@@ -3,6 +3,7 @@ package com.demo.swt.mystudyappshop;
 import android.app.Application;
 import android.content.Context;
 
+import com.android.okhttp.monitor.MonitorHelper;
 import com.baidu.mapapi.SDKInitializer;
 import com.demo.swt.mystudyappshop.Util.LoadImgUtils;
 import com.demo.swt.mystudyappshop.Util.LogUtils;
@@ -51,6 +52,7 @@ public class MyApplication extends Application {
         IonNetInterface.get().start(this);
         IonNetInterface.get().setInterceptNet(new MyIntercept());
         LoadImgUtils.setContext(this);
+        MonitorHelper.INSTANCE.init(this, "freebrio");
 //        BigImageViewer.initialize(GlideImageLoader.with(this));
 
     }

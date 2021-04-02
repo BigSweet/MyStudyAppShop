@@ -34,7 +34,9 @@ public class LogInterceptor implements Interceptor {
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
     public enum Level {
-        /** No logs. */
+        /**
+         * No logs.
+         */
         NONE,
         /**
          * Logs request and response lines.
@@ -93,8 +95,9 @@ public class LogInterceptor implements Interceptor {
         void log(String message);
 
         LogInterceptor.Logger DEFAULT = new LogInterceptor.Logger() {
-            @Override public void log(String message) {
-                Platform.get().log(INFO, message, null);
+            @Override
+            public void log(String message) {
+                Platform.get().log(message, INFO, null);
             }
         };
     }
@@ -111,7 +114,9 @@ public class LogInterceptor implements Interceptor {
 
     private volatile LogInterceptor.Level level = LogInterceptor.Level.NONE;
 
-    /** Change the level at which this interceptor logs. */
+    /**
+     * Change the level at which this interceptor logs.
+     */
     public LogInterceptor setLevel(LogInterceptor.Level level) {
         if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
         this.level = level;
@@ -122,7 +127,8 @@ public class LogInterceptor implements Interceptor {
         return level;
     }
 
-    @Override public Response intercept(Chain chain) throws IOException {
+    @Override
+    public Response intercept(Chain chain) throws IOException {
         LogInterceptor.Level level = this.level;
 
         Request request = chain.request();
@@ -204,7 +210,7 @@ public class LogInterceptor implements Interceptor {
         ResponseBody responseBody = response.body();
         long contentLength = responseBody.contentLength();
         String bodySize = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
-        LogUtils.d("swt","<-- " + request.method() + ' ' + response.message() + ' '
+        LogUtils.d("swt", "<-- " + request.method() + ' ' + response.message() + ' '
                 + response.request().url() + " (" + tookMs + "ms" + (!logHeaders ? ", "
                 + bodySize + " body" : "") + ')');
 
@@ -246,7 +252,7 @@ public class LogInterceptor implements Interceptor {
                 if (contentLength != 0) {
 //                    logger.log("");
 //                    logger.log(buffer.clone().readString(charset));
-                    LogUtils.d("swt",convert(buffer.clone().readString(charset)));
+                    LogUtils.d("swt", convert(buffer.clone().readString(charset)));
                 }
 
 //                logger.log("<-- END HTTP (" + buffer.size() + "-byte body)");
@@ -255,21 +261,23 @@ public class LogInterceptor implements Interceptor {
 
         return response;
     }
-    public String convert(String utfString){
+
+    public String convert(String utfString) {
         StringBuilder sb = new StringBuilder();
         int i = -1;
         int pos = 0;
 
-        while((i=utfString.indexOf("\\u", pos)) != -1){
+        while ((i = utfString.indexOf("\\u", pos)) != -1) {
             sb.append(utfString.substring(pos, i));
-            if(i+5 < utfString.length()){
-                pos = i+6;
-                sb.append((char)Integer.parseInt(utfString.substring(i+2, i+6), 16));
+            if (i + 5 < utfString.length()) {
+                pos = i + 6;
+                sb.append((char) Integer.parseInt(utfString.substring(i + 2, i + 6), 16));
             }
         }
 
         return sb.toString();
     }
+
     /**
      * Returns true if the body in question probably contains human readable text. Uses a small sample
      * of code points to detect unicode control characters commonly used in binary file signatures.

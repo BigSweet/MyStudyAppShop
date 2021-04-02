@@ -10,10 +10,10 @@ ext {
     ]
 
     dependencies = [
-            "appcompat"                : 'androidx.appcompat:appcompat:1.1.0',
+            "appcompat"                : 'androidx.appcompat:appcompat:1.2.0',
             "nineoldandroids"          : 'com.nineoldandroids:library:2.4.0',
             "slider"                   : 'com.daimajia.slider:library:1.1.5@aar',
-            "recyclerview"             : 'androidx.recyclerview:recyclerview:1.0.0',
+            "recyclerview"             : 'androidx.recyclerview:recyclerview:1.1.0',
             "okhttp-urlconnection"     : 'com.squareup.okhttp:okhttp-urlconnection:2.2.0',
             "picasso"                  : 'com.squareup.picasso:picasso:2.5.2',
             "gson"                     : 'com.google.code.gson:gson:2.8.0',
