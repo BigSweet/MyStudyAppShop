@@ -235,4 +235,14 @@
         <attr name="captchaHeight" format="dimension"/>
         <attr name="matchDeviation" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="ComboProgress">
+        <attr name="comboTextSize" format="dimension" />
+        <attr name="comboBgColor" format="color" />
+        <attr name="comboProgressColor" format="color" />
+        <attr name="comboTvColor" format="color" />
+        <attr name="backColor" format="color" />
+        <attr name="comboProgressHeight" format="dimension" />
+        <attr name="sensorType" format="string" />
+    </declare-styleable>
 </resources>

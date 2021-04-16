@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.demo.swt.mystudyappshop.ComboActivity;
 import com.demo.swt.mystudyappshop.PullDownActivity;
 import com.demo.swt.mystudyappshop.R;
 import com.demo.swt.mystudyappshop.TargetActivity;
@@ -422,6 +423,13 @@ public class TabFenLeiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PullDownActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.combo_progress).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ComboActivity.class);
                 startActivity(intent);
             }
         });

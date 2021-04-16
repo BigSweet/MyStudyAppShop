@@ -179,6 +179,7 @@ dependencies {
     api 'com.leon.channel:helper:1.1.7'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
     librarys.each { k, v -> implementation v }
     //Your dependency that includes the module with the duplicates.

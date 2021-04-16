@@ -341,6 +341,13 @@
                 android:layout_width="wrap_content"
                 android:text="下拉动画"
                 android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/combo_progress"
+                android:background="@drawable/bg_edittext"
+                android:layout_width="wrap_content"
+                android:text="带回退的进度条"
+                android:layout_height="wrap_content"/>
         </com.demo.swt.mystudyappshop.Wight.MyFlowLayout>
 
     </androidx.core.widget.NestedScrollView>
