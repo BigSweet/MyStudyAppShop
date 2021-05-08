@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -313,8 +313,7 @@
         <service
             android:name=".Util.VideoLiveWallpaper"
             android:label="@string/app_name"
-            android:permission="android.permission.BIND_WALLPAPER"
-            android:process=":wallpaper">
+            android:permission="android.permission.BIND_WALLPAPER">
 
             <!-- 为实时壁纸配置intent-filter -->
             <intent-filter>
