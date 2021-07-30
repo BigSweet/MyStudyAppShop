@@ -189,7 +189,6 @@ dependencies {
     kapt 'androidx.annotation:annotation:1.0.0'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
-    api "fc.nestedscrollview.androidx:library:1.0.4"
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
