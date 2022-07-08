@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.demo.swt.mystudyappshop.R;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 import java.util.UUID;
@@ -194,12 +193,12 @@ public abstract class SWBaseActivity extends FragmentActivity  {
     public void onResume() {
         Thread.setDefaultUncaughtExceptionHandler(Thread.getDefaultUncaughtExceptionHandler());
         super.onResume();
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
     }
 
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+//        MobclickAgent.onPause(this);
     }
 
     //直接findviewbyid在基类里面做了
