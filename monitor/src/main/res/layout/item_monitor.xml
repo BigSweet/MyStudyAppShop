@@ -16,8 +16,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/tv_code"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="https://dev-outspace.secon.cn/" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/tv_path"
@@ -30,8 +29,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/tv_host"
         app:layout_constraintRight_toRightOf="@+id/tv_host"
         app:layout_constraintTop_toBottomOf="@+id/tv_host"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="spero-ultron-service/user/spero_165653/image" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/tv_request_date"
