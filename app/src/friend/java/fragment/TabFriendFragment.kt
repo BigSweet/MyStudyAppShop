@@ -111,8 +111,8 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
         })
         viewModel.data.observe(this, Observer {
             if (it.data != null) {
-                feedList = it.data.list
-                moreList = it.data.list
+//                feedList = it.data.list
+//                moreList = it.data.list
                 initData()
                 progress.visibility = View.GONE
             }
@@ -124,7 +124,12 @@ class TabFriendFragment : androidx.fragment.app.Fragment() {
 
     //请求recyclerview的数据
     private fun requestRecyclerView(page: Int) {
-        viewModel.getFriend(page)
+//        viewModel.getFriend("sjasDIv1so/EtjcEnuJiMCZ9Hg8YSv6TTMjcD3Wb2BFmLAOuTGnPPeFDPCYM2+oIMOERmRD8o4p6\n" +
+//                "Es7ykySnBgEq4NGyjSk3lDdTp2mEBUnHTgxXNuJFB1u4g4MMWlOkkrROB+GkzLLtM/e5m38NP4z7\n" +
+//                "YEISOyj9uZk56SiTEHCAVEV37o3mBON33ConeoxH/8zf+LC4zcPdcGVxyR3xPxAwK0APdqOyN9ls\n" +
+//                "s4iN4ohlL9BW/YpE5yMLHuDWaySYaU/of7Plpqespux/K1Kcjytcr67pIC8p+aOTvxlSMNh/Hajx\n" +
+//                "BXUujSvHELhHcPL6spJWfhVR9v5FZVAS/jdsToSAwUrcIvA7cUvpIyY4sHc26OmfkYYS8enINcNV\n" +
+//                "KdR3UTCgbLCMjxj4Z6Ax04b5i330rwbhEYCCHzRsjRHMxno=")
     }
 
 

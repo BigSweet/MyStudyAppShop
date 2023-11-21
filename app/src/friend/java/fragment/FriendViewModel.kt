@@ -18,9 +18,9 @@ import kotlinx.coroutines.launch
  */
 class FriendViewModel() : ViewModel() {
 
-    var data = MutableLiveData<BaseData<MainHeartData>>()
+    var data = MutableLiveData<BaseData<String>>()
 
-    fun getFriend(page: Int) {
+    fun getFriend(page: String) {
         launch({
             data.value = RetrofitManager.getInstance().getFriend(page)
         }, {

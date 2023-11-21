@@ -3,13 +3,14 @@ package com.demo.swt.mystudyappshop.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -122,7 +123,10 @@ public class DuanZiFragment extends Fragment {
 
                     String url = null;
                     String remen = "http://www.qiushibaike.com/8hr/page/" + index + "/";
-                    String retu = "http://www.qiushibaike.com/imgrank/page/" + index + "/";
+                    String retu = "https://m.neihanduanzi.cn/pic";
+                    if (index != 1) {
+                        retu = "https://m.neihanduanzi.cn/pic_" + index;
+                    }
                     String xiaoshi = "http://www.qiushibaike.com/hot/page/" + index + "/";
                     String wenzi = "  http://www.qiushibaike.com/text/page/" + index + "/";
                     String chuanyue = " http://www.qiushibaike.com/history/862c9499d3e81ceb75ef070ed0c11b23/page/" + index + "/";
@@ -151,25 +155,28 @@ public class DuanZiFragment extends Fragment {
                     }
 
                     Document document = Jsoup.connect(url).get();
-                    Elements datas = document.select("div.article.block.untagged.mb15");
+//                    Elements datas = document.select("div.u-info");
+                    Elements datas = document.select("li[data-j-id]");
                     for (int i = 0; i < datas.size(); i++) {
                         BaiKeBean mBaiKeBean = new BaiKeBean();
                         List<String> imgs = new ArrayList<>();
                         Element element = datas.get(i);
-                        Elements infoData = element.select("div.author.clearfix");
-                        Elements picdata = element.select("div.thumb");
-                        Elements conentData = element.select("div.content");
-                        if (infoData.size() > 0) {
-                            mBaiKeBean.setTouxiang(infoData.get(0).getElementsByIndexEquals(0).attr("src"));
-                            mBaiKeBean.setName(infoData.get(0).getElementsByIndexEquals(1).text());
-                        } else {
-                            mBaiKeBean.setTouxiang(null);
-                            mBaiKeBean.setName("没有名字");
-                        }
+                        Elements infoData = element.select("p.j-title");
+                        Elements picdata = element.select("div.j-content").select("img");
+                        Elements conentData = element.select("div.u-info");
+//                        if (infoData.size() > 0) {
+//                            mBaiKeBean.setTouxiang(infoData.get(0).getElementsByIndexEquals(0).attr("src"));
+//                            mBaiKeBean.setName(infoData.get(0).getElementsByIndexEquals(1).text());
+//                        } else {
+//                            mBaiKeBean.setTouxiang(null);
+//                            mBaiKeBean.setName("没有名字");
+//                        }
+                        mBaiKeBean.setTouxiang(null);
+                        mBaiKeBean.setName("没有名字");
                         mBaiKeBean.setContent(conentData.text());
                         if (picdata.size() > 0) {
 
-                            imgs.add("https:"+picdata.get(0).getElementsByIndexEquals(0).attr("src"));
+                            imgs.add(picdata.get(0).getElementsByIndexEquals(0).attr("src"));
                             mBaiKeBean.setImgs(imgs);
                         } else {
 

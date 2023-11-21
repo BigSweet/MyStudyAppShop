@@ -66,7 +66,7 @@ class RetrofitManager private constructor() {
     val playData: Observable<BaseData<PlayBean>>
         get() = mApiService.playData.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
-    suspend fun getFriend(page: Int) = withContext(Dispatchers.IO) {
+    suspend fun getFriend(page: String) = withContext(Dispatchers.IO) {
         mApiService.getFriend(page).await()
     }
 
@@ -96,8 +96,6 @@ class RetrofitManager private constructor() {
             val originalRequest = chain.request()
             val request: Request
             val modifiedUrl = originalRequest.url.newBuilder() // Provide your custom parameter here
-                    .addQueryParameter("utoken", "xgsSH55CeXWKN_aJs-Mz_nkj7BS0tejDKYMckbQ1BaJECsjqK59AJJPIn_VqErii-2mFvngFv7bV9F0YOqEbrzCbyrGMGfcfWrO4cKqZaH7P3RRUb6FTL2RBbGqbAU5tgqoVSiPgZCbgRBnkSZiu3XzGWZXY-VLk")
-                    .addQueryParameter("phoneModel", "")
                     .build()
             request = originalRequest.newBuilder().url(modifiedUrl).build()
             chain.proceed(request)
@@ -111,7 +109,6 @@ class RetrofitManager private constructor() {
         return Interceptor { chain ->
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder() // Provide your custom header here
-                    .header("token", SpUtils.get("token", "") as String)
                     .method(originalRequest.method, originalRequest.body)
             val request = requestBuilder.build()
             chain.proceed(request)

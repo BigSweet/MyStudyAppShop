@@ -48,10 +48,10 @@ public class BaiKeAdapter extends BaseAdapter<BaiKeBean, BaseHolder> {
             setText((TextView) holder.getView(R.id.baike_text), baiKeBean.getContent());
             setText((TextView) holder.getView(R.id.name), baiKeBean.getName());
             SimpleDraweeView simpleDraweeView = (SimpleDraweeView) holder.getView(R.id.logo);
-            if (baiKeBean.getTouxiang().contains("?")) {
-                String url = baiKeBean.getTouxiang().substring(0, baiKeBean.getTouxiang().indexOf("?"));
-                simpleDraweeView.setImageURI("https:" + url);
-            }
+//            if (baiKeBean.getTouxiang().contains("?")) {
+//                String url = baiKeBean.getTouxiang().substring(0, baiKeBean.getTouxiang().indexOf("?"));
+//                simpleDraweeView.setImageURI("https:" + url);
+//            }
             NineGridImageView nineGridView = (NineGridImageView) holder.getView(R.id.cstimage);
 
             if (baiKeBean.getImgs() != null && baiKeBean.getImgs().size() > 0) {
